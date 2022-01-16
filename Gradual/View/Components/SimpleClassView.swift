@@ -12,18 +12,21 @@ struct SimpleClassView: View {
     @Binding var classData: Class
     
     var body: some View {
-        HStack {
-            Text(classData.name)
-            Spacer()
-            Text(String(classData.grade))
-                .fontWeight(.heavy)
-                .foregroundColor(Color.white)
-                .padding(.horizontal, 23)
-                .padding(.vertical, 6)
-                .background(Color("GradGreen"))
-                .cornerRadius(7)
+        VStack {
+            HStack {
+                Text(classData.name)
+                Spacer()
+                Text(String(classData.grade))
+                    .fontWeight(.heavy)
+                    .foregroundColor(Color.white)
+                    .padding(.horizontal, 23)
+                    .padding(.vertical, 6)
+                    .background(Color("GradGreen"))
+                    .cornerRadius(7)
+            }
+            Divider()
         }
-        .padding(.vertical)
+        .padding()
     }
 }
 

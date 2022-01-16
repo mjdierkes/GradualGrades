@@ -13,20 +13,43 @@ struct HomePage: View {
     
     var body: some View {
         
-        VStack {
-            if let student = manager.student {
-                Text("Good \(dayTime()) \(student.studentName)")
-            }
-            
-            Text("Grades")
-            List {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading){
+                Header()
+                Text("Good \(dayTime()) \(manager.student?.studentName ?? "Student")")
+                    .padding(.top, 10)
+                    .padding(.horizontal)
+                    .font(.title2)
+                Text("3.98")
+                    .font(.largeTitle)
+                    .padding(.horizontal)
+                
+                
+                ScrollView(.horizontal, showsIndicators: false){
+                    HStack {
+                        RecentAssignmentView()
+                            .padding(2)
+                        RecentAssignmentView()
+                            .padding(2)
+                        RecentAssignmentView()
+                            .padding(2)
+
+                    }
+                    .padding(.horizontal)
+                }
+                
+                        
+                Text("Grades")
+                    .padding()
+                    .font(.title2)
+                
                 ForEach($manager.classes) { classData in
                     SimpleClassView(classData: classData)
                 }
+                
             }
-            .listStyle(.plain)
-            
         }
+        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
     

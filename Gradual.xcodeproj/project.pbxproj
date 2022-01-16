@@ -18,6 +18,8 @@
 		F74DDE35279467B600894237 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE34279467B600894237 /* HomePage.swift */; };
 		F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3627946BBB00894237 /* AsyncButton.swift */; };
 		F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE392794890400894237 /* SimpleClassView.swift */; };
+		F74DDE3C27949B6D00894237 /* RecentAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */; };
+		F74DDE3F2794A02200894237 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3E2794A02200894237 /* Header.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		F74DDE34279467B600894237 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		F74DDE3627946BBB00894237 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		F74DDE392794890400894237 /* SimpleClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleClassView.swift; sourceTree = "<group>"; };
+		F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAssignmentView.swift; sourceTree = "<group>"; };
+		F74DDE3E2794A02200894237 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,8 @@
 			isa = PBXGroup;
 			children = (
 				F74DDE392794890400894237 /* SimpleClassView.swift */,
+				F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */,
+				F74DDE3E2794A02200894237 /* Header.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -190,10 +196,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74DDE3C27949B6D00894237 /* RecentAssignmentView.swift in Sources */,
 				F74DDE1127939AB100894237 /* ContentView.swift in Sources */,
 				F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */,
 				F74DDE2B2793BC1700894237 /* GradeService.swift in Sources */,
 				F74DDE3327944BAC00894237 /* AppManager.swift in Sources */,
+				F74DDE3F2794A02200894237 /* Header.swift in Sources */,
 				F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */,
 				F74DDE3127943DC400894237 /* LoginPage.swift in Sources */,
 				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
