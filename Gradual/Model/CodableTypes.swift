@@ -27,11 +27,17 @@ struct Classes: Codable {
     let currentClasses: [Class]
 }
 
-struct Class: Codable {
+struct Class: Codable, Identifiable {
+    let id = UUID()
+    
     let name: String
     let grade: Double
     let weight: Int
     let credits: Double
+    
+    private enum CodingKeys: String, CodingKey {
+            case name, grade, weight, credits
+        }
 }
 
 struct AllGrades: Codable {

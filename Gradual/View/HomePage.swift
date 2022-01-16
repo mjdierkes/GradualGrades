@@ -10,20 +10,47 @@ import SwiftUI
 struct HomePage: View {
     
     @EnvironmentObject var manager: AppManager
-
+    
     var body: some View {
         
         VStack {
             if let student = manager.student {
-                Text(student.studentName)
+                Text("Good \(dayTime()) \(student.studentName)")
             }
+            
+            Text("Grades")
+            List {
+                ForEach($manager.classes) { classData in
+                    SimpleClassView(classData: classData)
+                }
+            }
+            .listStyle(.plain)
+            
         }
         .navigationBarBackButtonHidden(true)
+    }
+    
+    func dayTime() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch hour {
+        case 1..<12 :
+            return "Morning"
+        case 13..<22 :
+            return "Afternoon"
+        default:
+            return ""
+        }
     }
 }
 
 struct HomePage_Previews: PreviewProvider {
+    @StateObject static var manager = AppManager()
+    init(){
+        HomePage_Previews.manager.classes = [Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1.0), Class(name: "AP US History", grade: 78.3, weight: 6, credits: 1.0)]
+    }
     static var previews: some View {
         HomePage()
+            .environmentObject(manager)
     }
 }
