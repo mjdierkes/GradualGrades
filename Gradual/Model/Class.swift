@@ -8,12 +8,12 @@
 import Foundation
 
 struct Classes: Codable {
-    let current: [Class]
+    let currentClasses: [Class]
 }
 
 struct Class: Codable {
     let name: String
-    let grade: Int
+    let grade: Double
     let weight: Int
     let credits: Int
 }

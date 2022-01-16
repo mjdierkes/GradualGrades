@@ -8,6 +8,6 @@
 import Foundation
 
 struct User: Codable {
-    let student: Student
-    let classes: [Class]
+    let student: Result
+    let classes: Classes
 }

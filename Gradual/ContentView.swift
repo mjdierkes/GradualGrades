@@ -13,11 +13,12 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Hello, \(gradeService.result?.studentData.studentName ?? "ERROR")")
-                .padding()
+            if let student = gradeService.student {
+                Text(student.studentName)
+            }
         }
         .task {
-            try? await gradeService.fetchUser()
+            try? await gradeService.fetchData()
         }
         
     }

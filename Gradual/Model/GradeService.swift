@@ -9,7 +9,8 @@ import Foundation
 
 
 class GradeService: ObservableObject {
-    @Published private(set) var result: Result?
+    @Published private(set) var student: Student?
+    @Published private(set) var classes: [Class]?
     @Published private(set) var isFetching = false
     
     private let store: GradeServiceStore
@@ -21,12 +22,16 @@ class GradeService: ObservableObject {
 
 extension GradeService {
     @MainActor
-    func fetchUser() async throws {
+    func fetchData() async throws {
         isFetching = true
         defer { isFetching = false }
         
-        let loadedUser = try await store.load()
-        result = loadedUser
+        let loadedResult: Result = try await store.load()
+        student = loadedResult.studentData
+
+        // TODO: Load classes
+//        let loadedClasses: Classes = try await store.load()
+//        classes = loadedClasses.currentClasses
     }
 }
 
@@ -61,13 +66,13 @@ private actor GradeServiceStore {
         return components
     }
     
-    func load() async throws -> Result{
+    func load<T>() async throws -> T where T: Decodable {
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
         else {
             throw DownloadError.statusNotOK
         }
-        guard let decodedResponse = try? JSONDecoder().decode(Result.self, from: data)
+        guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data)
         else { throw DownloadError.decoderError }
         
         return decodedResponse
