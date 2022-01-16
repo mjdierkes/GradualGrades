@@ -10,16 +10,12 @@ import Foundation
 class AppManager: ObservableObject {
     
     @Published var student: Student?
-
-    func loadData(username: String, password: String) async {
+    @Published var error = ""
+    
+    func loadData(username: String, password: String) async throws {
         let gradeService = GradeService(username, password)
-        
-        do {
-            let loadedResult: Result = try await gradeService.fetchData()
-            student = loadedResult.studentData
-        } catch {
-            print(error)
-        }
+        let loadedResult: Result = try await gradeService.fetchData()
+        student = loadedResult.studentData
     }
 
 }

@@ -15,6 +15,8 @@
 		F74DDE2F279433A500894237 /* CodableTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE2E279433A500894237 /* CodableTypes.swift */; };
 		F74DDE3127943DC400894237 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3027943DC400894237 /* LoginPage.swift */; };
 		F74DDE3327944BAC00894237 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3227944BAC00894237 /* AppManager.swift */; };
+		F74DDE35279467B600894237 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE34279467B600894237 /* HomePage.swift */; };
+		F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3627946BBB00894237 /* AsyncButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		F74DDE2E279433A500894237 /* CodableTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableTypes.swift; sourceTree = "<group>"; };
 		F74DDE3027943DC400894237 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		F74DDE3227944BAC00894237 /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		F74DDE34279467B600894237 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		F74DDE3627946BBB00894237 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				F74DDE3027943DC400894237 /* LoginPage.swift */,
+				F74DDE34279467B600894237 /* HomePage.swift */,
+				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,6 +184,8 @@
 				F74DDE2B2793BC1700894237 /* GradeService.swift in Sources */,
 				F74DDE3327944BAC00894237 /* AppManager.swift in Sources */,
 				F74DDE3127943DC400894237 /* LoginPage.swift in Sources */,
+				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
+				F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */,
 				F74DDE2F279433A500894237 /* CodableTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

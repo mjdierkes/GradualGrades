@@ -81,6 +81,24 @@ enum DownloadError: Error {
     case decoderError
 }
 
+extension DownloadError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .statusNotOK:
+            return NSLocalizedString(
+                "Invalid Credentials",
+                comment: ""
+            )
+        case .decoderError:
+            let format = NSLocalizedString(
+                "JSON Parse Error",
+                comment: ""
+            )
+            return String(format: format)
+            }
+        }
+    }
+
 extension URLComponents {
     mutating func setQueryItems(with parameters: [String: String]) {
         self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value)}
