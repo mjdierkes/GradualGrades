@@ -9,18 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var gradeService = GradeService(username: "john", password: "doe")
+    @StateObject var manager = AppManager()
     
     var body: some View {
-        VStack {
-            if let student = gradeService.student {
-                Text(student.studentName)
-            }
-        }
-        .task {
-            try? await gradeService.fetchData()
-        }
-        
+        LoginPage()
+            .environmentObject(manager)
     }
 }
 

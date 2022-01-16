@@ -8,30 +8,24 @@
 import Foundation
 
 
-class GradeService: ObservableObject {
-    @Published private(set) var student: Student?
-    @Published private(set) var classes: [Class]?
-    @Published private(set) var isFetching = false
+class GradeService {
+    private(set) var isFetching = false
     
     private let store: GradeServiceStore
     
-    public init(username: String, password: String) {
+    public init(_ username: String, _ password: String) {
         store = GradeServiceStore(username: username, password: password)
     }
 }
 
 extension GradeService {
     @MainActor
-    func fetchData() async throws {
+    func fetchData<T>() async throws -> T where T: Decodable {
         isFetching = true
         defer { isFetching = false }
         
-        let loadedResult: Result = try await store.load()
-        student = loadedResult.studentData
-
-        // TODO: Load classes
-//        let loadedClasses: Classes = try await store.load()
-//        classes = loadedClasses.currentClasses
+        let loadedPackage: T = try await store.load()
+        return loadedPackage
     }
 }
 
@@ -72,10 +66,12 @@ private actor GradeServiceStore {
         else {
             throw DownloadError.statusNotOK
         }
-        guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data)
-        else { throw DownloadError.decoderError }
-        
-        return decodedResponse
+        do{
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            print("Error \(error)")
+            throw DownloadError.decoderError
+        }
     }
     
 }
