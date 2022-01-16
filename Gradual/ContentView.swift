@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var gradeService = GradeService(username: "john", password: "doe")
+    
     var body: some View {
-        Text("Hello, Gradual!")
-            .padding()
+        VStack {
+            Text("Hello, \(gradeService.result?.studentData.studentName ?? "ERROR")")
+                .padding()
+        }
+        .task {
+            try? await gradeService.fetchUser()
+        }
+        
     }
 }
 
