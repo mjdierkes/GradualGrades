@@ -26,7 +26,7 @@ struct CardView: View {
                     
                     
                     Text("Upcoming SAT March 14th at Frisco High School")
-                        .font(.title)
+                        .font(.title2)
                     
                     Spacer()
                     

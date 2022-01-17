@@ -16,7 +16,7 @@ struct HomePage: View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading){
                 Header()
-                Text("Good \(dayTime()) \(manager.student?.studentName ?? "Student")")
+                Text("Good \(dayTime()) \(manager.firstName)")
                     .padding(.top, 10)
                     .padding(.horizontal)
                     .font(.title2)

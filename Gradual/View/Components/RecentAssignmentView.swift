@@ -40,7 +40,7 @@ struct RecentAssignmentView: View {
             Spacer()
         }
         .padding(15)
-        .frame(width: 170, height: 140)
+        .frame(width: 170, height: 170)
         .cornerRadius(7)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
