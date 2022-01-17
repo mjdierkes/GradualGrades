@@ -45,13 +45,17 @@ struct HomePage: View {
                     .font(.title2)
                 
                 ForEach($manager.classes) { classData in
-                    SimpleClassView(classData: classData)
+                    NavigationLink(destination: AssignmentPage()) {
+                        SimpleClassView(classData: classData)
+                    }
+                    .tint(.black)
                 }
                 
             }
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        
     }
     
     func dayTime() -> String {

@@ -11,7 +11,7 @@ class AppManager: ObservableObject {
     
     @Published var student: Student?
     @Published var classes = [Class]()
-    @Published var classAssignments = [Assignment]()
+    @Published var classDetails = [ClassDetails]()
     @Published var error = ""
     
     var firstName: String {
@@ -23,11 +23,12 @@ class AppManager: ObservableObject {
         
         let loadedResult: Result = try await gradeService.fetchData()
         let loadedClasses: Classes = try await gradeService.fetchData()
-//        let loadedAssignments: [ClassDetails] = try await gradeService.fetchData()
+        let loadedAssignments: AllGrades = try await gradeService.fetchData()
         
         
         student = loadedResult.studentData
         classes = loadedClasses.currentClasses
+        classDetails = loadedAssignments.currentClassDetails
         
         //TODO: Add preventative measures for crashing
         for i in 0..<classes.count {
@@ -39,7 +40,6 @@ class AppManager: ObservableObject {
         }
         
         
-//        classAssignments = loadedAssignments.
     }
     
     

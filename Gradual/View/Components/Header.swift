@@ -8,15 +8,22 @@
 import SwiftUI
 
 struct Header: View {
+    
+    @State private var showingSheet = false
+    
     var body: some View {
         HStack {
             ZStack{
-                HStack {
-                    Image(systemName: "star.circle.fill")
-                    Text("Free Premium")
-                        .font(.system(size: 14))
+                Button {
+                    showingSheet.toggle()
+                } label: {
+                    HStack {
+                        Image(systemName: "star.circle.fill")
+                        Text("Free Premium")
+                            .font(.system(size: 14))
+                    }
+                    .foregroundColor(Color("GradGreen"))
                 }
-                .foregroundColor(Color("GradGreen"))
             }
             .padding(.vertical, 6)
             .padding(.horizontal, 12)
@@ -30,6 +37,9 @@ struct Header: View {
                 .frame(width: 25, height: 25)
         }
         .scaleEffect(0.9)
+        .sheet(isPresented: $showingSheet){
+            PremiumPage()
+        }
 
     }
 }

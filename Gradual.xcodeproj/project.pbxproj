@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */; };
+		F70E67A02795B47900D6D60E /* AssignmentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679F2795B47900D6D60E /* AssignmentHeader.swift */; };
+		F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E67A12795BC3000D6D60E /* PremiumPage.swift */; };
 		F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE0E27939AB100894237 /* GradualApp.swift */; };
 		F74DDE1127939AB100894237 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE1027939AB100894237 /* ContentView.swift */; };
 		F74DDE1327939AB300894237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74DDE1227939AB300894237 /* Assets.xcassets */; };
@@ -25,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
+		F70E679F2795B47900D6D60E /* AssignmentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeader.swift; sourceTree = "<group>"; };
+		F70E67A12795BC3000D6D60E /* PremiumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPage.swift; sourceTree = "<group>"; };
 		F74DDE0B27939AB100894237 /* Gradual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gradual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74DDE0E27939AB100894237 /* GradualApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradualApp.swift; sourceTree = "<group>"; };
 		F74DDE1027939AB100894237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,6 +60,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F70E67932795AAA400D6D60E /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		F74DDE0227939AB100894237 = {
 			isa = PBXGroup;
 			children = (
@@ -104,11 +117,13 @@
 		F74DDE222793AF4500894237 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F70E67932795AAA400D6D60E /* Modifiers */,
 				F74DDE38279488CF00894237 /* Components */,
 				F74DDE3027943DC400894237 /* LoginPage.swift */,
 				F74DDE34279467B600894237 /* HomePage.swift */,
 				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
 				F78C33152795158E00596478 /* AssignmentPage.swift */,
+				F70E67A12795BC3000D6D60E /* PremiumPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,6 +143,8 @@
 				F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */,
 				F74DDE3E2794A02200894237 /* Header.swift */,
 				F78C33132794EF3000596478 /* CardView.swift */,
+				F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */,
+				F70E679F2795B47900D6D60E /* AssignmentHeader.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -148,6 +165,8 @@
 			dependencies = (
 			);
 			name = Gradual;
+			packageProductDependencies = (
+			);
 			productName = Gradual;
 			productReference = F74DDE0B27939AB100894237 /* Gradual.app */;
 			productType = "com.apple.product-type.application";
@@ -176,6 +195,8 @@
 				Base,
 			);
 			mainGroup = F74DDE0227939AB100894237;
+			packageReferences = (
+			);
 			productRefGroup = F74DDE0C27939AB100894237 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,9 +231,12 @@
 				F78C33162795158E00596478 /* AssignmentPage.swift in Sources */,
 				F74DDE3F2794A02200894237 /* Header.swift in Sources */,
 				F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */,
+				F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */,
 				F74DDE3127943DC400894237 /* LoginPage.swift in Sources */,
 				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
+				F70E67A02795B47900D6D60E /* AssignmentHeader.swift in Sources */,
 				F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */,
+				F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,
 				F74DDE2F279433A500894237 /* CodableTypes.swift in Sources */,
 			);
