@@ -44,10 +44,16 @@ struct AllGrades: Codable {
     let currentClassDetails: [ClassDetails]
 }
 
-struct ClassDetails: Codable {
-    let className: String
+struct ClassDetails: Codable, Identifiable {
+    let id = UUID()
+    
+    var className: String
     let classGrade: String
-    let assignments: [Assignment]
+    var assignments: [Assignment]
+    
+    private enum CodingKeys: String, CodingKey {
+        case className, classGrade, assignments
+    }
 }
 
 struct Assignment: Codable, Identifiable {
@@ -56,9 +62,9 @@ struct Assignment: Codable, Identifiable {
     
     let dateDue: String
     let dateAssigned: String
-    let assignment: String
+    var assignment: String
     let category: String
-    let score: String
+    var score: String
     let totalPoints: String
     
     private enum CodingKeys: String, CodingKey {

@@ -9,14 +9,14 @@ import SwiftUI
 
 struct SimpleClassView: View {
     
-    @Binding var classData: Class
+    @Binding var classData: ClassDetails
     
     var body: some View {
         VStack {
             HStack {
-                Text(classData.name)
+                Text(classData.className)
                 Spacer()
-                Text(String(classData.grade))
+                Text(String(classData.classGrade))
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 23)
@@ -32,11 +32,11 @@ struct SimpleClassView: View {
     }
 }
 
-struct SimpleClassView_Previews: PreviewProvider {
-    
-    @State static private var classData = Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1)
-    
-    static var previews: some View {
-        SimpleClassView(classData: $classData)
-    }
-}
+//struct SimpleClassView_Previews: PreviewProvider {
+//    
+//    @State static private var classData = Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1)
+//    
+//    static var previews: some View {
+//        SimpleClassView(classData: $classData)
+//    }
+//}

@@ -44,9 +44,9 @@ struct HomePage: View {
                     .padding()
                     .font(.title2)
                 
-                ForEach($manager.classes) { classData in
-                    NavigationLink(destination: AssignmentPage()) {
-                        SimpleClassView(classData: classData)
+                ForEach($manager.classes.details) { details in
+                    NavigationLink(destination: AssignmentPage(classDetails: details)) {
+                        SimpleClassView(classData: details)
                     }
                     .tint(.black)
                 }
@@ -74,9 +74,9 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     @StateObject static var manager = AppManager()
-    init(){
-        HomePage_Previews.manager.classes = [Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1.0), Class(name: "AP US History", grade: 78.3, weight: 6, credits: 1.0)]
-    }
+//    init(){
+//        HomePage_Previews.manager.classes = [Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1.0), Class(name: "AP US History", grade: 78.3, weight: 6, credits: 1.0)]
+//    }
     static var previews: some View {
         HomePage()
             .environmentObject(manager)

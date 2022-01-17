@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AssignmentPage: View {
     
-//    @Binding var classDetails: ClassDetails
+    @Binding var classDetails: ClassDetails
     
     var body: some View {
         
@@ -18,8 +18,8 @@ struct AssignmentPage: View {
                 
                 AssignmentHeader()
                 
-                ForEach(0..<3) { grade in
-                    SimpleAssignmentView()
+                ForEach($classDetails.assignments) { assessment in
+                    SimpleAssignmentView(name: assessment.assignment, score: assessment.score)
                 }
                 
                 
@@ -73,8 +73,8 @@ struct InfoDivider: View {
 }
 
 
-struct AssignmentPage_Previews: PreviewProvider {
-    static var previews: some View {
-        AssignmentPage()
-    }
-}
+//struct AssignmentPage_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AssignmentPage()
+//    }
+//}

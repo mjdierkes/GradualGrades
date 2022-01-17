@@ -10,8 +10,7 @@ import Foundation
 class AppManager: ObservableObject {
     
     @Published var student: Student?
-    @Published var classes = [Class]()
-    @Published var classDetails = [ClassDetails]()
+    @Published var classes = (all: [Class](), details: [ClassDetails]())
     @Published var error = ""
     
     var firstName: String {
@@ -27,17 +26,20 @@ class AppManager: ObservableObject {
         
         
         student = loadedResult.studentData
-        classes = loadedClasses.currentClasses
-        classDetails = loadedAssignments.currentClassDetails
+        classes.all = loadedClasses.currentClasses
+        classes.details = loadedAssignments.currentClassDetails
         
-        //TODO: Add preventative measures for crashing
-        for i in 0..<classes.count {
-            classes[i].name = classes[i].name.components(separatedBy: "  ")[2]
-        }
+//        //TODO: Add preventative measures for crashing
         
-        for i in 0..<classes.count {
-            classes[i].name = classes[i].name.components(separatedBy: " S2")[0]
-        }
+//        print(classes.details[0].className.components(separatedBy: "  "))
+        
+//        for i in 0..<classes.details.count {
+//            classes.details[i].className = classes.details[i].className.components(separatedBy: "  ")[1]
+//        }
+//
+//        for i in 0..<classes.all.count {
+//            classes.details[i].className = classes.details[i].className.components(separatedBy: " S2")[0]
+//        }
         
         
     }
