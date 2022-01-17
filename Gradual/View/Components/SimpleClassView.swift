@@ -21,8 +21,10 @@ struct SimpleClassView: View {
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 23)
                     .padding(.vertical, 6)
+                    .frame(width: 100)
                     .background(Color("GradGreen"))
                     .cornerRadius(7)
+
             }
             Divider()
         }

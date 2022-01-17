@@ -38,6 +38,7 @@ struct HomePage: View {
                     .padding(.horizontal)
                 }
                 
+                CardView()
                         
                 Text("Grades")
                     .padding()

@@ -14,11 +14,12 @@ struct Header: View {
                 HStack {
                     Image(systemName: "star.circle.fill")
                     Text("Free Premium")
+                        .font(.system(size: 14))
                 }
                 .foregroundColor(Color("GradGreen"))
             }
-            .padding(.vertical, 8)
-            .padding(.horizontal, 15)
+            .padding(.vertical, 6)
+            .padding(.horizontal, 12)
             .background(Color("LowGreen"))
             .cornerRadius(50)
 

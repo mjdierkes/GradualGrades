@@ -9,19 +9,29 @@ import SwiftUI
 
 struct RecentAssignmentView: View {
 
+    let size = 170.0
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text("Unit Circle Test")
-                    .font(.headline)
                     .bold()
                 Text("100%")
                     .foregroundColor(Color("GradGreen"))
+                    .font(.system(size: 16))
+
                 Spacer()
                 Text("Pre Calculus")
+                    .bold()
+                    .font(.system(size: 14))
+                    .padding(.bottom, 2)
                 HStack {
                     Image(systemName: "arrowtriangle.up.fill")
+                        .resizable()
+                        .frame(width: 10, height: 10)
+                    
                     Text("2.38 (5%)")
+                        .font(.system(size: 16))
                 }
                 .foregroundColor(Color("GradGreen"))
 
@@ -30,7 +40,7 @@ struct RecentAssignmentView: View {
             Spacer()
         }
         .padding(15)
-        .frame(width:150, height: 150)
+        .frame(width: 170, height: 140)
         .cornerRadius(7)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
