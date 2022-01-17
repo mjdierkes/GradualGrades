@@ -78,6 +78,7 @@ struct LoginPage: View {
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .padding()
+            .environmentObject(manager)
 
         }
         .onAppear(perform: {

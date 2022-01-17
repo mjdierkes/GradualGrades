@@ -14,6 +14,8 @@ struct HomePage: View {
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false) {
+            NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
+
             VStack(alignment: .leading){
                 Header()
                 Text("Good \(dayTime()) \(manager.firstName)")

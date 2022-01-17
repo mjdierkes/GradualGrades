@@ -59,6 +59,13 @@ class AppManager: ObservableObject {
         
     }
     
+    func signOut() {
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "password")
+        student = nil
+    }
+    
+    
     
     
 

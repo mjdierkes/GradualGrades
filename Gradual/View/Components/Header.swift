@@ -10,6 +10,7 @@ import SwiftUI
 struct Header: View {
     
     @State private var showingSheet = false
+    @State private var showingAccountPage = false
     
     var body: some View {
         HStack {
@@ -31,14 +32,24 @@ struct Header: View {
             .cornerRadius(50)
 
             Spacer()
-            Image(systemName: "bell")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 25, height: 25)
+                        
+            Button {
+                showingAccountPage.toggle()
+            } label: {
+                Image(systemName: "person")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 25, height: 25)
+            }
+            .tint(.black)
+            
         }
         .scaleEffect(0.9)
         .sheet(isPresented: $showingSheet){
             PremiumPage()
+        }
+        .sheet(isPresented: $showingAccountPage){
+            AccountPage()
         }
 
     }
