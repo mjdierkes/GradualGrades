@@ -13,8 +13,19 @@ class AppManager: ObservableObject {
     @Published var classes = (all: [Class](), details: [ClassDetails]())
     @Published var error = ""
     
+    let defaults = UserDefaults.standard
+
     var firstName: String {
         return student?.studentName.components(separatedBy: " ")[0] ?? "Student"
+    }
+    
+    func loadData() async throws {
+        if let username = defaults.object(forKey: "username") as? String {
+            if let password = defaults.object(forKey: "password") as? String {
+                try await loadData(username: username, password: password)
+            }
+        }
+    
     }
     
     func loadData(username: String, password: String) async throws {
@@ -28,6 +39,10 @@ class AppManager: ObservableObject {
         student = loadedResult.studentData
         classes.all = loadedClasses.currentClasses
         classes.details = loadedAssignments.currentClassDetails
+        
+        defaults.set(username, forKey: "username")
+        defaults.set(password, forKey: "password")
+
         
 //        //TODO: Add preventative measures for crashing
         

@@ -80,6 +80,16 @@ struct LoginPage: View {
             .padding()
 
         }
+        .onAppear(perform: {
+            Task {
+                do {
+                    try await manager.loadData()
+                } catch {
+                    print("Unable to load data from User Defaults")
+                    print(error)
+                }
+            }
+        })
 
 
 
