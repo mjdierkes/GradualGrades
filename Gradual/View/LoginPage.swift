@@ -38,11 +38,11 @@ struct LoginPage: View {
                 Text("Connect to your \nGrades")
                     .font(.largeTitle)
 
-                Picker("District", selection: $selectedDistrict) {
-                    ForEach(LoginPage.districts, id: \.self){
-                        Text($0)
-                    }
-                }
+//                Picker("District", selection: $selectedDistrict) {
+//                    ForEach(LoginPage.districts, id: \.self){
+//                        Text($0)
+//                    }
+//                }
                 
                 VStack {
                     TextField("Username", text: $username)
@@ -65,12 +65,12 @@ struct LoginPage: View {
                         
                     }
 
-                    Button {
-                        
-                    } label: {
-                        Text("Don't see your district?")
-                            .foregroundColor(Color("GradGreen"))
-                    }
+//                    Button {
+//
+//                    } label: {
+//                        Text("Don't see your district?")
+//                            .foregroundColor(Color("GradGreen"))
+//                    }
                 }
                 Spacer()
                     .frame(minHeight: 150)

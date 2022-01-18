@@ -10,43 +10,51 @@ import SwiftUI
 struct AssignmentPage: View {
     
     @Binding var classDetails: ClassDetails
-    
+    @EnvironmentObject var manager: AppManager
+
     var body: some View {
         
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading) {
-                
-                AssignmentHeader()
-                
-                ForEach($classDetails.assignments) { assessment in
-                    SimpleAssignmentView(name: assessment.assignment, score: assessment.score)
-                }
-                
-                
-                Text("Information")
-                    .font(.title3)
-                    .padding(.top, 20)
-                    .padding(.vertical, 20)
-                
-                VStack {
+        VStack {
+            
+            AssignmentHeader(classDetails: $classDetails)
+            
+
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading) {
+                                            
+                         
+                    ForEach($classDetails.assignments) { assessment in
+                        SimpleAssignmentView(assessment: assessment)
+                    }
                     
-                    HStack{
-                        InfoDivider(key: "Credits", value: "1")
-                        InfoDivider(key: "Weighting", value: "5.0")
-                    }
-                    HStack{
-                        InfoDivider(key: "Period", value: "3B")
-                        InfoDivider(key: "Room Number", value: "XC103")
-                    }
+                    
+//                    Text("Information")
+//                        .font(.title3)
+//                        .padding(.top, 20)
+//                        .padding(.vertical, 20)
+//                    
+//                    VStack {
+//                        
+//                        HStack{
+//                            InfoDivider(key: "Credits", value: "1")
+//                            InfoDivider(key: "Weighting", value: "5.0")
+//                        }
+//                        HStack{
+//                            InfoDivider(key: "Period", value: "3B")
+//                            InfoDivider(key: "Room Number", value: "XC103")
+//                        }
+//                    }
+                    
                 }
                 
             }
-            
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+
         }
         .padding()
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-        
+
+                
     }
 }
 

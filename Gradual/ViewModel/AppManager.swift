@@ -42,21 +42,26 @@ class AppManager: ObservableObject {
         
         defaults.set(username, forKey: "username")
         defaults.set(password, forKey: "password")
+        
+        print(classes.details[0].className.components(separatedBy: "  "))
+        
+        for i in 0..<classes.details.count {
+            
+            var name = classes.details[i].className
+            var size = name.count
 
-        
-//        //TODO: Add preventative measures for crashing
-        
-//        print(classes.details[0].className.components(separatedBy: "  "))
-        
-//        for i in 0..<classes.details.count {
-//            classes.details[i].className = classes.details[i].className.components(separatedBy: "  ")[1]
-//        }
-//
-//        for i in 0..<classes.all.count {
-//            classes.details[i].className = classes.details[i].className.components(separatedBy: " S2")[0]
-//        }
-        
-        
+            name = String(name.components(separatedBy: "-")[1])
+            size = name.count
+            
+            name = String(name.suffix(size - 2))
+            size = name.count
+            
+            if name.contains("S2") || name.contains("S1"){
+                name = String(name.prefix(size - 2))
+            }
+                
+            classes.details[i].className = name
+        }
     }
     
     func signOut() {
@@ -65,8 +70,25 @@ class AppManager: ObservableObject {
         student = nil
     }
     
+    func calculatedPercentChange(for newAssignment: Assignment, oldAssignments: [Assignment]) -> Double{
+        var inclusiveAverage = oldAssignments
+        inclusiveAverage.append(newAssignment)
+        
+        return getAverage(for: inclusiveAverage) - getAverage(for: oldAssignments)
+    }
     
     
+    func getAverage(for assignments: [Assignment]) -> Double{
+        var average: Double = 0
+        for assessment in assignments {
+            if let score = Double(assessment.score){
+                average += score
+            }
+        }
+        average /= Double(assignments.count)
+        
+        return average
+    }
     
 
 }

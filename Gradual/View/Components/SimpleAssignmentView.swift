@@ -9,16 +9,15 @@ import SwiftUI
 
 struct SimpleAssignmentView: View {
     
-    @Binding var name: String
-    @Binding var score: String
+    @Binding var assessment: Assignment
     
     var body: some View {
         VStack {
             HStack {
-                Text(name)
+                Text(assessment.assignment)
                 Spacer()
-                Text(score)
-                    .foregroundColor(Color("GradGreen"))
+                Text(assessment.score)
+                    .foregroundColor(assessment.getColor())
             }
             .padding(.vertical, 5)
             Divider()

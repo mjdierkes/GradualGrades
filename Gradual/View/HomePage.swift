@@ -13,51 +13,55 @@ struct HomePage: View {
     
     var body: some View {
         
-        ScrollView(.vertical, showsIndicators: false) {
-            NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
+        VStack {
+            Header()
+            ScrollView(.vertical, showsIndicators: false) {
+                NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
 
-            VStack(alignment: .leading){
-                Header()
-                Text("Good \(dayTime()) \(manager.firstName)")
-                    .padding(.top, 10)
-                    .padding(.horizontal)
-                    .font(.title2)
-                Text("3.98")
-                    .font(.largeTitle)
-                    .padding(.horizontal)
-                
-                
-                ScrollView(.horizontal, showsIndicators: false){
-                    HStack {
-                        RecentAssignmentView()
-                            .padding(2)
-                        RecentAssignmentView()
-                            .padding(2)
-                        RecentAssignmentView()
-                            .padding(2)
-
+                VStack(alignment: .leading){
+                    Text("Good \(dayTime()) \(manager.firstName)")
+                        .padding(.top, 10)
+                        .padding(.horizontal)
+                        .font(.title2)
+//                    Text("3.98")
+//                        .font(.largeTitle)
+//                        .padding(.horizontal)
+                    
+//                    
+//                    ScrollView(.horizontal, showsIndicators: false){
+//                        HStack {
+//                            RecentAssignmentView()
+//                                .padding(2)
+//                            RecentAssignmentView()
+//                                .padding(2)
+//                            RecentAssignmentView()
+//                                .padding(2)
+//
+//                        }
+//                        .padding(.horizontal)
+//                    }
+//                    
+//                    CardView()
+                            
+                    Text("Grades")
+                        .padding()
+                        .font(.title2)
+                    
+                    ForEach($manager.classes.details) { details in
+                        NavigationLink(destination: AssignmentPage(classDetails: details)) {
+                            SimpleClassView(classData: details)
+                        }
+                        .tint(.black)
                     }
-                    .padding(.horizontal)
+                    
                 }
-                
-                CardView()
-                        
-                Text("Grades")
-                    .padding()
-                    .font(.title2)
-                
-                ForEach($manager.classes.details) { details in
-                    NavigationLink(destination: AssignmentPage(classDetails: details)) {
-                        SimpleClassView(classData: details)
-                    }
-                    .tint(.black)
-                }
-                
             }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
         
+                
     }
     
     func dayTime() -> String {
@@ -66,7 +70,7 @@ struct HomePage: View {
         switch hour {
         case 1..<12 :
             return "Morning"
-        case 13..<22 :
+        case 12..<22 :
             return "Afternoon"
         default:
             return ""

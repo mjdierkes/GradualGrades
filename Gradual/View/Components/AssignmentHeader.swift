@@ -10,6 +10,7 @@ import SwiftUI
 struct AssignmentHeader: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    @Binding var classDetails: ClassDetails
 
     var body: some View {
         HStack {
@@ -23,13 +24,14 @@ struct AssignmentHeader: View {
                     .frame(width: 20, height: 20)
             }
             Spacer()
-            Text("Mobile App")
+            Text(classDetails.className)
                 .font(.title3)
+                .multilineTextAlignment(.center)
             Spacer()
             Button {
                 
             } label: {
-                Image(systemName: "square.and.arrow.up")
+                Image(systemName: "s")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 25, height: 25)
@@ -40,8 +42,8 @@ struct AssignmentHeader: View {
     }
 }
 
-struct AssignmentHeader_Previews: PreviewProvider {
-    static var previews: some View {
-        AssignmentHeader()
-    }
-}
+//struct AssignmentHeader_Previews: PreviewProvider {
+//    static var previews: some View {
+////        AssignmentHeader()
+//    }
+//}

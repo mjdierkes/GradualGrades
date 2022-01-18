@@ -9,19 +9,23 @@ import SwiftUI
 
 struct RecentAssignmentView: View {
 
+    @EnvironmentObject var manager: AppManager
+    @Binding var className: String
+    @Binding var assignment: Assignment
+    
     let size = 170.0
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Unit Circle Test")
+                Text(assignment.assignment)
                     .bold()
-                Text("100%")
+                Text(assignment.score)
                     .foregroundColor(Color("GradGreen"))
                     .font(.system(size: 16))
 
                 Spacer()
-                Text("Pre Calculus")
+                Text(className)
                     .bold()
                     .font(.system(size: 14))
                     .padding(.bottom, 2)
@@ -49,8 +53,8 @@ struct RecentAssignmentView: View {
     }
 }
 
-struct RecentAssignmentView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecentAssignmentView()
-    }
-}
+//struct RecentAssignmentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RecentAssignmentView()
+//    }
+//}

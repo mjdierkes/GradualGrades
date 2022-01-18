@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // TODO: Refactor and clean up codable objects
 
@@ -54,6 +55,27 @@ struct ClassDetails: Codable, Identifiable {
     private enum CodingKeys: String, CodingKey {
         case className, classGrade, assignments
     }
+    
+    func getColor() -> Color {
+        
+        if let score = Double(classGrade) {
+            switch score {
+            case _ where score < 80:
+                return Color("DefaultFailing")
+                
+            case _ where score < 90:
+                return Color("Default-B")
+                
+            case _ where score < 100:
+                return Color("GradGreen")
+                
+            default: return Color.blue
+            }
+        }
+        
+        return Color.black
+        
+    }
 }
 
 struct Assignment: Codable, Identifiable {
@@ -69,5 +91,26 @@ struct Assignment: Codable, Identifiable {
     
     private enum CodingKeys: String, CodingKey {
         case dateDue, dateAssigned, assignment, category, score, totalPoints
+    }
+    
+    func getColor() -> Color {
+        
+        if let score = Double(score) {
+            switch score {
+            case _ where score < 80:
+                return Color("DefaultFailing")
+                
+            case _ where score < 90:
+                return Color("Default-B")
+                
+            case _ where score < 110:
+                return Color("GradGreen")
+                
+            default: return Color.blue
+            }
+        }
+        
+        return Color.black
+        
     }
 }

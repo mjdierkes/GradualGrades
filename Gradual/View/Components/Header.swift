@@ -51,6 +51,7 @@ struct Header: View {
         .sheet(isPresented: $showingAccountPage){
             AccountPage()
         }
+        .background(Color.white)
 
     }
 }

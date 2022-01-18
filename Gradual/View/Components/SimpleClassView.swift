@@ -14,6 +14,7 @@ struct SimpleClassView: View {
     var body: some View {
         VStack {
             HStack {
+                let _ = print(classData.classGrade)
                 Text(classData.className)
                 Spacer()
                 Text(String(classData.classGrade))
@@ -22,7 +23,7 @@ struct SimpleClassView: View {
                     .padding(.horizontal, 23)
                     .padding(.vertical, 6)
                     .frame(width: 100)
-                    .background(Color("GradGreen"))
+                    .background(classData.getColor())
                     .cornerRadius(7)
 
             }
