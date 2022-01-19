@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AssignmentPage: View {
     
-    @Binding var classDetails: ClassDetails
+    @Binding var classDetails: Class
     @EnvironmentObject var manager: AppManager
 
     var body: some View {

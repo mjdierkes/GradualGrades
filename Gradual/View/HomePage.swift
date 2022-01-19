@@ -47,7 +47,8 @@ struct HomePage: View {
                         .padding()
                         .font(.title2)
                     
-                    ForEach($manager.classes.details) { details in
+                    let _ = print(manager.classes)
+                    ForEach($manager.classes) { details in
                         NavigationLink(destination: AssignmentPage(classDetails: details)) {
                             SimpleClassView(classData: details)
                         }

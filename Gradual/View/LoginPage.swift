@@ -81,16 +81,17 @@ struct LoginPage: View {
             .environmentObject(manager)
 
         }
-        .onAppear(perform: {
-            Task {
-                do {
-                    try await manager.loadData()
-                } catch {
-                    print("Unable to load data from User Defaults")
-                    print(error)
-                }
-            }
-        })
+//        .onAppear(perform: {
+//            Task {
+//                do {
+//                    print("loading")
+//                    try await manager.loadData()
+//                } catch {
+//                    print("Unable to load data from User Defaults")
+////                    print(error)
+//                }
+//            }
+//        })
 
 
 
@@ -102,6 +103,7 @@ struct LoginPage: View {
             try await manager.loadData(username: username, password: password)
         } catch {
             manager.error = error.localizedDescription
+            print(manager.error)
         }
     }
 }

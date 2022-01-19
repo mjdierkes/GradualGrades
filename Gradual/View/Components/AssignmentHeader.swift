@@ -10,7 +10,7 @@ import SwiftUI
 struct AssignmentHeader: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    @Binding var classDetails: ClassDetails
+    @Binding var classDetails: Class
 
     var body: some View {
         HStack {
@@ -24,7 +24,7 @@ struct AssignmentHeader: View {
                     .frame(width: 20, height: 20)
             }
             Spacer()
-            Text(classDetails.className)
+            Text(classDetails.name)
                 .font(.title3)
                 .multilineTextAlignment(.center)
             Spacer()

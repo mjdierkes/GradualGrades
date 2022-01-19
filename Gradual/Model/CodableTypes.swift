@@ -11,17 +11,13 @@ import SwiftUI
 // TODO: Refactor and clean up codable objects
 
 
-struct Result: Codable {
-    var studentData: Student
-}
 
 struct Student: Codable {
-    let studentID: String
-    let studentName: String
     let studentBirthDate: String
-    let studentCounselor: String
     let studentBuilding: String
     let studentGrade: String
+    let studentID: String
+    let studentName: String
 }
 
 struct Classes: Codable {
@@ -32,33 +28,18 @@ struct Class: Codable, Identifiable {
     let id = UUID()
     
     var name: String
-    let grade: Double
-    let weight: Int
-    let credits: Double
-    
-    private enum CodingKeys: String, CodingKey {
-        case name, grade, weight, credits
-    }
-}
-
-struct AllGrades: Codable {
-    let currentClassDetails: [ClassDetails]
-}
-
-struct ClassDetails: Codable, Identifiable {
-    let id = UUID()
-    
-    var className: String
-    let classGrade: String
+    let grade: String
+    let weight: String
+    let credits: String
     var assignments: [Assignment]
-    
+
     private enum CodingKeys: String, CodingKey {
-        case className, classGrade, assignments
+        case name, grade, weight, credits, assignments
     }
     
     func getColor() -> Color {
         
-        if let score = Double(classGrade) {
+        if let score = Double(grade) {
             switch score {
             case _ where score < 80:
                 return Color("DefaultFailing")

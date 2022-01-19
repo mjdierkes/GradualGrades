@@ -20,6 +20,13 @@ class GradeService {
 
 extension GradeService {
     @MainActor
+    
+    func fetchStudent() async throws -> Student {
+        await store.loadStudent()
+        let student: Student = try await fetchData()
+        return student
+    }
+    
     func fetchData<T>() async throws -> T where T: Decodable {
         isFetching = true
         defer { isFetching = false }
@@ -36,42 +43,54 @@ private actor GradeServiceStore {
     private let username: String
     private let password: String
     private let queryParams: [String: String]
+    private var path = "/students/currentclasses"
     
     private var url: URL {
-        urlComponents.url!
+//        urlComponents.url!
+        return Bundle.main.url(forResource: "SampleGradeData", withExtension: "json")!
     }
+    private var testURL = Bundle.main.url(forResource: "SampleGradeData", withExtension: "json")!
     
     public init(username: String, password: String) {
         self.username = username
         self.password = password
         
         queryParams = [
-            "username" : username,
-            "password" : password
+            "password" : password,
+            "username" : username
         ]
     }
     
     private var urlComponents: URLComponents {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "private-cornwall-affairs-landscape.trycloudflare.com"
-        components.path = "/students/info"
+        components.host = "gradualgrades.herokuapp.com"
+        components.path = path
         components.setQueryItems(with: queryParams)
         return components
     }
     
     func load<T>() async throws -> T where T: Decodable {
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
-        else {
-            throw DownloadError.statusNotOK
-        }
+                
+        let (data, response) = try await URLSession.shared.data(from: testURL)
+//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
+//        else {
+//            throw DownloadError.statusNotOK
+//        }
+
+        print(response)
+
         do{
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
             print("Error \(error)")
             throw DownloadError.decoderError
         }
+        
+    }
+    
+    func loadStudent() {
+        testURL = Bundle.main.url(forResource: "SampleStudentData", withExtension: "json")!
     }
     
 }

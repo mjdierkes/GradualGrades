@@ -10,7 +10,8 @@ import Foundation
 class AppManager: ObservableObject {
     
     @Published var student: Student?
-    @Published var classes = (all: [Class](), details: [ClassDetails]())
+    @Published var classes = [Class]()
+    
     @Published var error = ""
     
     let defaults = UserDefaults.standard
@@ -20,34 +21,32 @@ class AppManager: ObservableObject {
     }
     
     func loadData() async throws {
-        if let username = defaults.object(forKey: "username") as? String {
-            if let password = defaults.object(forKey: "password") as? String {
-                try await loadData(username: username, password: password)
+            if let username = defaults.object(forKey: "username") as? String {
+                if let password = defaults.object(forKey: "password") as? String {
+                    try await loadData(username: username, password: password)
+                }
             }
+        
         }
-    
-    }
     
     func loadData(username: String, password: String) async throws {
         let gradeService = GradeService(username, password)
         
-        let loadedResult: Result = try await gradeService.fetchData()
         let loadedClasses: Classes = try await gradeService.fetchData()
-        let loadedAssignments: AllGrades = try await gradeService.fetchData()
+        let loadedStudent: Student = try await gradeService.fetchStudent()
         
+        classes = loadedClasses.currentClasses
         
-        student = loadedResult.studentData
-        classes.all = loadedClasses.currentClasses
-        classes.details = loadedAssignments.currentClassDetails
+        student = loadedStudent
         
-        defaults.set(username, forKey: "username")
-        defaults.set(password, forKey: "password")
+//        defaults.set(username, forKey: "username")
+//        defaults.set(password, forKey: "password")
         
-        print(classes.details[0].className.components(separatedBy: "  "))
+//        print(classes.details[0].name.components(separatedBy: "  "))
         
-        for i in 0..<classes.details.count {
+        for i in 0..<classes.count {
             
-            var name = classes.details[i].className
+            var name = classes[i].name
             var size = name.count
 
             name = String(name.components(separatedBy: "-")[1])
@@ -56,11 +55,18 @@ class AppManager: ObservableObject {
             name = String(name.suffix(size - 2))
             size = name.count
             
-            if name.contains("S2") || name.contains("S1"){
+            if name.contains("@CTE") {
+                name = String(name.prefix(size - 7))
+            }
+            
+            else if name.contains("S2") || name.contains("S1"){
                 name = String(name.prefix(size - 2))
             }
+            
+            print(name)
+            
                 
-            classes.details[i].className = name
+            classes[i].name = name
         }
     }
     

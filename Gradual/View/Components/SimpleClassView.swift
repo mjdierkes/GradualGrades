@@ -9,15 +9,15 @@ import SwiftUI
 
 struct SimpleClassView: View {
     
-    @Binding var classData: ClassDetails
+    @Binding var classData: Class
     
     var body: some View {
         VStack {
             HStack {
-                let _ = print(classData.classGrade)
-                Text(classData.className)
+                let _ = print(classData.grade)
+                Text(classData.name)
                 Spacer()
-                Text(String(classData.classGrade))
+                Text(String(classData.grade))
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 23)
