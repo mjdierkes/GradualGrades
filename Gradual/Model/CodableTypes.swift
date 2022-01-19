@@ -54,8 +54,8 @@ struct Class: Codable, Identifiable {
             }
         }
         
-        return Color.black
-        
+        return Color("EmptyGrade")
+
     }
 }
 
@@ -91,7 +91,7 @@ struct Assignment: Codable, Identifiable {
             }
         }
         
-        return Color.black
+        return Color("EmptyGrade")
         
     }
 }

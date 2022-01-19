@@ -39,10 +39,9 @@ class AppManager: ObservableObject {
         
         student = loadedStudent
         
-//        defaults.set(username, forKey: "username")
-//        defaults.set(password, forKey: "password")
+        defaults.set(username, forKey: "username")
+        defaults.set(password, forKey: "password")
         
-//        print(classes.details[0].name.components(separatedBy: "  "))
         
         for i in 0..<classes.count {
             

@@ -12,12 +12,14 @@ struct SimpleClassView: View {
     @Binding var classData: Class
     
     var body: some View {
+        
+        let isActive = classData.grade == ""
+        
         VStack {
             HStack {
-                let _ = print(classData.grade)
                 Text(classData.name)
                 Spacer()
-                Text(String(classData.grade))
+                Text( (isActive) ?  "-" : String(classData.grade))
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 23)
