@@ -18,41 +18,68 @@ struct AssignmentPage: View {
             
             AssignmentHeader(classDetails: $classDetails)
             
+            if classDetails.assignments.count == 0 {
+                Spacer()
+                Text("No Assignments Yet")
+                Spacer()
+            }
+            
+            else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading) {
+                                          
+                        
+                        if classDetails.getGrades(ofType: .major).count > 1{
+                            Text("Major")
+                                .font(.title2)
+                                .bold()
 
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading) {
-                                            
-                         
-                    ForEach($classDetails.assignments) { assessment in
-                        SimpleAssignmentView(assessment: assessment)
+                            ForEach(classDetails.getGrades(ofType: GradeType.major)) { assessment in
+                                SimpleAssignmentView(assessment: assessment)
+                            }
+                            
+                            Spacer()
+                                .frame(height: 40)
+                        }
+                        
+                        if classDetails.getGrades(ofType: .minor).count > 1{
+                            Text("Minor")
+                                .font(.title2)
+                                .bold()
+                        
+                            ForEach(classDetails.getGrades(ofType: GradeType.minor)) { assessment in
+                                SimpleAssignmentView(assessment: assessment)
+                            }
+                        }
+                        
+                        
+    //                    Text("Information")
+    //                        .font(.title3)
+    //                        .padding(.top, 20)
+    //                        .padding(.vertical, 20)
+    //
+    //                    VStack {
+    //
+    //                        HStack{
+    //                            InfoDivider(key: "Credits", value: "1")
+    //                            InfoDivider(key: "Weighting", value: "5.0")
+    //                        }
+    //                        HStack{
+    //                            InfoDivider(key: "Period", value: "3B")
+    //                            InfoDivider(key: "Room Number", value: "XC103")
+    //                        }
+    //                    }
+                        
                     }
                     
-                    
-//                    Text("Information")
-//                        .font(.title3)
-//                        .padding(.top, 20)
-//                        .padding(.vertical, 20)
-//                    
-//                    VStack {
-//                        
-//                        HStack{
-//                            InfoDivider(key: "Credits", value: "1")
-//                            InfoDivider(key: "Weighting", value: "5.0")
-//                        }
-//                        HStack{
-//                            InfoDivider(key: "Period", value: "3B")
-//                            InfoDivider(key: "Room Number", value: "XC103")
-//                        }
-//                    }
-                    
                 }
-                
             }
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+           
 
         }
         .padding()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
 
                 
     }

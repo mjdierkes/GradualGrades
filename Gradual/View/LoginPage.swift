@@ -14,8 +14,8 @@ struct LoginPage: View {
     @State private var selectedDistrict = ""
     
     /// For testing purposes
-    @State private var username = "john"
-    @State private var password = "doe"
+    @State private var username = ""
+    @State private var password = ""
     
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]

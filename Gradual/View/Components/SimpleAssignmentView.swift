@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SimpleAssignmentView: View {
     
-    @Binding var assessment: Assignment
+    var assessment: Assignment
     
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct SimpleAssignmentView: View {
                 Text(assessment.score)
                     .foregroundColor(assessment.getColor())
             }
-            .padding(.vertical, 5)
+            .padding(.vertical, 7)
             Divider()
         }
         

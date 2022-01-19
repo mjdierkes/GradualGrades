@@ -46,18 +46,16 @@ private actor GradeServiceStore {
     private var path = "/students/currentclasses"
     
     private var url: URL {
-//        urlComponents.url!
-        return Bundle.main.url(forResource: "SampleGradeData", withExtension: "json")!
+        urlComponents.url!
     }
-    private var testURL = Bundle.main.url(forResource: "SampleGradeData", withExtension: "json")!
     
     public init(username: String, password: String) {
         self.username = username
         self.password = password
         
         queryParams = [
-            "password" : password,
-            "username" : username
+            "username" : username,
+            "password" : password
         ]
     }
     
@@ -72,11 +70,11 @@ private actor GradeServiceStore {
     
     func load<T>() async throws -> T where T: Decodable {
                 
-        let (data, response) = try await URLSession.shared.data(from: testURL)
-//        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
-//        else {
-//            throw DownloadError.statusNotOK
-//        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
+        else {
+            throw DownloadError.statusNotOK
+        }
 
         print(response)
 
@@ -90,7 +88,7 @@ private actor GradeServiceStore {
     }
     
     func loadStudent() {
-        testURL = Bundle.main.url(forResource: "SampleStudentData", withExtension: "json")!
+        path = "/students/info"
     }
     
 }

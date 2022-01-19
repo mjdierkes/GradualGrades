@@ -13,11 +13,11 @@ import SwiftUI
 
 
 struct Student: Codable {
-    let studentBirthDate: String
-    let studentBuilding: String
-    let studentGrade: String
-    let studentID: String
-    let studentName: String
+    let birthdate: String
+    let campus: String
+    let grade: String
+    let id: String
+    let name: String
 }
 
 struct Classes: Codable {
@@ -57,6 +57,16 @@ struct Class: Codable, Identifiable {
         return Color("EmptyGrade")
 
     }
+    
+    func getGrades(ofType type: GradeType) -> [Assignment] {
+        var output = [Assignment]()
+        for assessment in assignments {
+            if assessment.gradeType == type {
+                output.append(assessment)
+            }
+        }
+        return output
+    }
 }
 
 struct Assignment: Codable, Identifiable {
@@ -69,6 +79,10 @@ struct Assignment: Codable, Identifiable {
     let category: String
     var score: String
     let totalPoints: String
+    
+    var gradeType: GradeType {
+        GradeType(rawValue: category) ?? .none
+    }
     
     private enum CodingKeys: String, CodingKey {
         case dateDue, dateAssigned, assignment, category, score, totalPoints
@@ -94,4 +108,10 @@ struct Assignment: Codable, Identifiable {
         return Color("EmptyGrade")
         
     }
+}
+
+enum GradeType: String {
+    case minor = "Minor Grades"
+    case major = "Major Grades"
+    case none  = "Non Graded"
 }
