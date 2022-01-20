@@ -17,6 +17,9 @@ struct LoginPage: View {
     @State private var username = ""
     @State private var password = ""
     
+    @KeychainStorage("username") var savedUsername = ""
+    @KeychainStorage("password") var savedPasword = ""
+    
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]
     
@@ -47,7 +50,7 @@ struct LoginPage: View {
                 VStack {
                     TextField("Username", text: $username)
                         .textFieldStyle(.roundedBorder)
-                    TextField("Password", text: $password)
+                    SecureField("Password", text: $password)
                         .textFieldStyle(.roundedBorder)
                         .textContentType(.password)
                         .padding(.bottom, 60)
@@ -85,7 +88,7 @@ struct LoginPage: View {
             Task {
                 do {
                     print("loading")
-                    try await manager.loadData()
+                    try await manager.loadData(username: savedUsername, password: savedPasword)
                 } catch {
                     print("Unable to load data from User Defaults")
 //                    print(error)
@@ -99,6 +102,8 @@ struct LoginPage: View {
     }
     
     func loadData() async {
+        savedUsername =  username
+        savedPasword = password
         do {
             try await manager.loadData(username: username, password: password)
         } catch {
