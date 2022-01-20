@@ -11,10 +11,12 @@ import KeychainAccess
 @propertyWrapper
 struct KeychainStorage: DynamicProperty {
     let key: String
+    let keychain = Keychain(service: "credentials")
+    
     @State private var value: String
     init(wrappedValue: String = "", _ key: String) {
         self.key = key
-        let initialValue = (try? Keychain().get(key)) ?? wrappedValue
+        let initialValue = (try? keychain.get(key)) ?? wrappedValue
         self._value = State<String>(initialValue: initialValue)
     }
     var wrappedValue: String {
@@ -23,7 +25,7 @@ struct KeychainStorage: DynamicProperty {
         nonmutating set {
             value = newValue
             do {
-                try Keychain().set(value, key: key)
+                try keychain.set(value, key: key)
             } catch let error {
                 fatalError("\(error)")
             }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import KeychainAccess
 
 class AppManager: ObservableObject {
     
@@ -17,7 +18,7 @@ class AppManager: ObservableObject {
     let defaults = UserDefaults.standard
 
     var firstName: String {
-        return student?.studentName.components(separatedBy: " ")[0] ?? "Student"
+        return student?.name.components(separatedBy: " ")[0] ?? "Student"
     }
     
     func loadData() async throws {
@@ -70,8 +71,13 @@ class AppManager: ObservableObject {
     }
     
     func signOut() {
-        defaults.removeObject(forKey: "username")
-        defaults.removeObject(forKey: "password")
+        let keychain = Keychain(service: "credentials")
+        do {
+            try keychain.remove("username")
+            try keychain.remove("password")
+        } catch let error {
+            print("error: \(error)")
+        }
         student = nil
     }
     

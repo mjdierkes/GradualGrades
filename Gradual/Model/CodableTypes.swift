@@ -13,11 +13,11 @@ import SwiftUI
 
 
 struct Student: Codable {
-    let studentBirthDate: String
-    let studentBuilding: String
-    let studentGrade: String
-    let studentID: String
-    let studentName: String
+    let birthdate: String
+    let campus: String
+    let grade: String
+    let id: String
+    let name: String
 }
 
 struct Classes: Codable {
