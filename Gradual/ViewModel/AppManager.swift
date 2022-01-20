@@ -17,7 +17,7 @@ class AppManager: ObservableObject {
     let defaults = UserDefaults.standard
 
     var firstName: String {
-        return student?.name.components(separatedBy: " ")[2] ?? "Student"
+        return student?.studentName.components(separatedBy: " ")[0] ?? "Student"
     }
     
     func loadData() async throws {

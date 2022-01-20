@@ -42,7 +42,6 @@ private actor GradeServiceStore {
     
     private let username: String
     private let password: String
-    private let queryParams: [String: String]
     private var path = "/students/currentclasses"
     
     private var url: URL {
@@ -53,18 +52,15 @@ private actor GradeServiceStore {
         self.username = username
         self.password = password
         
-        queryParams = [
-            "username" : username,
-            "password" : password
-        ]
+        
+        print(url)
     }
     
     private var urlComponents: URLComponents {
         var components = URLComponents()
-        components.scheme = "https"
-        components.host = "gradualgrades.herokuapp.com"
-        components.path = path
-        components.setQueryItems(with: queryParams)
+        components.scheme = "http"
+        components.host = "gradualgrades-env.eba-dkw3kc3t.us-east-2.elasticbeanstalk.com"
+        components.path = path + "/\(username)/\(password)"
         return components
     }
     
@@ -76,6 +72,7 @@ private actor GradeServiceStore {
             throw DownloadError.statusNotOK
         }
 
+        print(url)
         print(response)
 
         do{

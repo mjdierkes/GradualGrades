@@ -14,8 +14,8 @@ struct LoginPage: View {
     @State private var selectedDistrict = ""
     
     /// For testing purposes
-    @State private var username = ""
-    @State private var password = ""
+    @State private var username = "john"
+    @State private var password = "doe"
     
     @KeychainStorage("username") var savedUsername = ""
     @KeychainStorage("password") var savedPasword = ""
