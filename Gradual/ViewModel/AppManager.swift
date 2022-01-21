@@ -13,7 +13,7 @@ import KeychainAccess
     @Published var student: Student?
     @Published var classes = [Class]()
     @Published var gpa: GPA?
-
+    @Published var nextSAT = ""
     @Published var error = ""
     
     let defaults = UserDefaults.standard
@@ -34,11 +34,15 @@ import KeychainAccess
     func loadData(username: String, password: String) async throws {
         let gradeService = GradeService(username, password)
         
-        let loadedClasses: Classes = try await gradeService.fetchData()
+        let loadedClasses: Classes = try await gradeService.fetchClasses()
         let loadedStudent: Student = try await gradeService.fetchStudent()
+        let loadedSATs: UpcomingSATs = try await gradeService.fetchSats()
         let loadedGPA: GPA = try await gradeService.fetchGPA()
         
         classes = loadedClasses.currentClasses
+        
+        nextSAT = loadedSATs.liveDates[0]
+        
         student = loadedStudent
         gpa = loadedGPA
         

@@ -26,6 +26,17 @@ extension GradeService {
         let student: Student = try await fetchData()
         return student
     }
+    func fetchSats() async throws -> UpcomingSATs {
+        await store.loadSATs()
+        let sats: UpcomingSATs = try await fetchData()
+        return sats
+    }
+    
+    func fetchClasses() async throws -> Classes {
+        await store.loadClasses()
+        let classes: Classes = try await fetchData()
+        return classes
+    }
     
     func fetchGPA() async throws -> GPA {
         await store.loadGPA()
@@ -48,7 +59,7 @@ private actor GradeServiceStore {
     
     private let username: String
     private let password: String
-    private var path = "/students/currentclasses"
+    private var path = "/students/currentclasses" 
     
     private var url: URL {
         urlComponents.url!
@@ -63,7 +74,7 @@ private actor GradeServiceStore {
         var components = URLComponents()
         components.scheme = "http"
         components.host = "gradualgrades-env.eba-dkw3kc3t.us-east-2.elasticbeanstalk.com"
-        components.path = path + "/\(username)/\(password)"
+        components.path = path
         return components
     }
     
@@ -77,6 +88,7 @@ private actor GradeServiceStore {
 
         print(url)
         print(response)
+        print(httpResponse.statusCode)
 
         do{
             return try JSONDecoder().decode(T.self, from: data)
@@ -87,14 +99,21 @@ private actor GradeServiceStore {
         
     }
     
+    func loadClasses() {
+        path = "/students/currentclasses"  + "/\(username)/\(password)"
+    }
+    
     func loadStudent() {
-        path = "/students/info"
+        path = "/students/info" + "/\(username)/\(password)"
     }
     
     func loadGPA() {
-        path = "/students/gpa"
+        path = "/students/gpa" + "/\(username)/\(password)"
     }
     
+    func loadSATs() {
+        path = "/satdates"
+    }
 }
 
 enum DownloadError: Error {

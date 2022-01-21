@@ -123,6 +123,34 @@ struct Assignment: Codable, Identifiable, Hashable {
     
 }
 
+struct UpcomingSATs: Codable {
+    var dates: [String]
+    
+    var liveDates: [String]{
+        var output = [String]()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        let stringFormatter = DateFormatter()
+        stringFormatter.dateStyle = .full
+        let today = Date()
+        print(today)
+        for date in dates {
+            if let date = dateFormatter.date(from: date) {
+                if date > today {
+                    output.append(stringFormatter.string(from: date))
+                }
+                print(date)
+            } else {
+                print("Can not convert date\(date)")
+            }
+        }
+        return output
+    }
+    
+}
+
+
 enum GradeType: String {
     case minor = "Minor Grades"
     case major = "Major Grades"

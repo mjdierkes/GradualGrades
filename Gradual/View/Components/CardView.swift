@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CardView: View {
+    
+    @EnvironmentObject var manager: AppManager
+    
     var body: some View {
         
         ZStack {
@@ -17,7 +20,11 @@ struct CardView: View {
                     .foregroundColor(Color.white)
                 
                 VStack(alignment: .leading) {
-                    Text("Upcoming SAT March 14th at Frisco High School")
+                    Image("CollegeBoard-Logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 25)
+                    Text("Upcoming SAT \(manager.nextSAT)")
                         .font(.title2)
                     Spacer()
                     Button {
@@ -38,7 +45,7 @@ struct CardView: View {
                         Circle()
                             .frame(width: 30, height: 30)
                             .foregroundColor(Color("GradGreen"))
-                        Text("3")
+                        Text("5")
                             .foregroundColor(Color.white)
                             .bold()
                     }
@@ -52,8 +59,8 @@ struct CardView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardView()
+//    }
+//}

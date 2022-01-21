@@ -74,6 +74,7 @@
 		F70E67932795AAA400D6D60E /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
 				F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */,
 			);
 			path = Modifiers;
@@ -121,8 +122,8 @@
 		F74DDE212793AF4000894237 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F74DDE2A2793BC1700894237 /* GradeService.swift */,
 				F74DDE2E279433A500894237 /* CodableTypes.swift */,
+				F74DDE2A2793BC1700894237 /* GradeService.swift */,
 				F7C419842798C95600753637 /* ParentalControls.swift */,
 				F7C419892798EF4A00753637 /* KeychainStorage.swift */,
 			);
@@ -132,14 +133,9 @@
 		F74DDE222793AF4500894237 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F7E58658279B0F6600438E66 /* Pages */,
 				F70E67932795AAA400D6D60E /* Modifiers */,
 				F74DDE38279488CF00894237 /* Components */,
-				F74DDE3027943DC400894237 /* LoginPage.swift */,
-				F74DDE34279467B600894237 /* HomePage.swift */,
-				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
-				F78C33152795158E00596478 /* AssignmentPage.swift */,
-				F70E67A12795BC3000D6D60E /* PremiumPage.swift */,
-				F77288D0279600EF000B5F3B /* AccountPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +159,18 @@
 				F70E679F2795B47900D6D60E /* AssignmentHeader.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F7E58658279B0F6600438E66 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				F74DDE3027943DC400894237 /* LoginPage.swift */,
+				F74DDE34279467B600894237 /* HomePage.swift */,
+				F78C33152795158E00596478 /* AssignmentPage.swift */,
+				F70E67A12795BC3000D6D60E /* PremiumPage.swift */,
+				F77288D0279600EF000B5F3B /* AccountPage.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
