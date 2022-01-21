@@ -40,7 +40,6 @@ struct HomePage: View {
 //                                .padding(2)
 //                            RecentAssignmentView()
 //                                .padding(2)
-//
 //                        }
 //                        .padding(.horizontal)
 //                    }
@@ -87,9 +86,6 @@ struct HomePage: View {
 
 struct HomePage_Previews: PreviewProvider {
     @StateObject static var manager = AppManager()
-//    init(){
-//        HomePage_Previews.manager.classes = [Class(name: "Mobile Apps", grade: 98.3, weight: 5, credits: 1.0), Class(name: "AP US History", grade: 78.3, weight: 6, credits: 1.0)]
-//    }
     static var previews: some View {
         HomePage()
             .environmentObject(manager)

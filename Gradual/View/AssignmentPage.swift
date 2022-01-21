@@ -57,23 +57,11 @@ struct AssignmentPage: View {
                     }
                     .padding()
                     ClassInformation()
-
-
-                    
-                    
                 }
-                
-
             }
-
-            
-           
-
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-
-                
     }
 }
 
@@ -91,9 +79,7 @@ struct InfoDivider: View {
                 Spacer()
                 Text(value)
                     .font(.system(size: 16))
-
             }
-
             Divider()
         }
     }

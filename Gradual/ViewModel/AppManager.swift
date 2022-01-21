@@ -8,7 +8,7 @@
 import Foundation
 import KeychainAccess
 
-class AppManager: ObservableObject {
+@MainActor class AppManager: ObservableObject {
     
     @Published var student: Student?
     @Published var classes = [Class]()
@@ -19,7 +19,6 @@ class AppManager: ObservableObject {
     let defaults = UserDefaults.standard
 
     var firstName: String {
-        print(student?.name)
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
@@ -61,9 +60,6 @@ class AppManager: ObservableObject {
             else if name.contains("S2") || name.contains("S1"){
                 name = String(name.prefix(size - 2))
             }
-            
-            print(name)
-            
                 
             classes[i].name = name
         }
@@ -100,23 +96,6 @@ class AppManager: ObservableObject {
         
         return average
     }
-//    
-//    func getNewAssignments(from assignments: [Assignment]) -> [Assignment] {
-//        
-//        
-//        let oldClasses: Classes = defaults.object(forKey: "classes") as! Classes
-//        
-//        if oldClasses.hashValue != assignments.hashValue {
-//            print("Assignments have been updated")
-//            
-//            for assessment in assignments {
-//                let hashed = assessment.hashValue
-//                
-//            }
-//        }
-//
-//    }
-//    
     
 
 }

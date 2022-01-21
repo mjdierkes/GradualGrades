@@ -14,8 +14,6 @@ struct AccountPage: View {
     
     var body: some View {
         VStack{
-            
-            
             HStack {
                 Spacer()
                 Button {
@@ -38,9 +36,6 @@ struct AccountPage: View {
                     Text("Sign Out")
                 }
             })
-            
-            
-            
             Spacer()
            
         }

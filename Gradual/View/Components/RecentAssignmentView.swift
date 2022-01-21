@@ -38,9 +38,7 @@ struct RecentAssignmentView: View {
                         .font(.system(size: 16))
                 }
                 .foregroundColor(Color("GradGreen"))
-
             }
-            
             Spacer()
         }
         .padding(15)

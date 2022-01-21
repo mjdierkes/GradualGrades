@@ -8,10 +8,6 @@
 import Foundation
 import SwiftUI
 
-// TODO: Refactor and clean up codable objects
-
-
-
 struct Student: Codable {
     let birthdate: String
     let campus: String

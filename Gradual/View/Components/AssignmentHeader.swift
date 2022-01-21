@@ -31,10 +31,10 @@ struct AssignmentHeader: View {
             Button {
                 
             } label: {
-                Image(systemName: "s")
+                Image(systemName: "gearshape")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 25, height: 25)
+                    .frame(width: 20, height: 20)
                 
             }
         }

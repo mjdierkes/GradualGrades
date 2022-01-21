@@ -10,7 +10,6 @@
 		F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */; };
 		F70E67A02795B47900D6D60E /* AssignmentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679F2795B47900D6D60E /* AssignmentHeader.swift */; };
 		F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E67A12795BC3000D6D60E /* PremiumPage.swift */; };
-		F7216AD227978B860067B3CA /* SampleGradeData.json in Resources */ = {isa = PBXBuildFile; fileRef = F7216AD127978B860067B3CA /* SampleGradeData.json */; };
 		F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE0E27939AB100894237 /* GradualApp.swift */; };
 		F74DDE1127939AB100894237 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE1027939AB100894237 /* ContentView.swift */; };
 		F74DDE1327939AB300894237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74DDE1227939AB300894237 /* Assets.xcassets */; };
@@ -25,7 +24,6 @@
 		F74DDE3C27949B6D00894237 /* RecentAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */; };
 		F74DDE3F2794A02200894237 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3E2794A02200894237 /* Header.swift */; };
 		F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77288D0279600EF000B5F3B /* AccountPage.swift */; };
-		F77DD9A82797BFC500497D43 /* SampleStudentData.json in Resources */ = {isa = PBXBuildFile; fileRef = F77DD9A72797BFC500497D43 /* SampleStudentData.json */; };
 		F78C33142794EF3000596478 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33132794EF3000596478 /* CardView.swift */; };
 		F78C33162795158E00596478 /* AssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33152795158E00596478 /* AssignmentPage.swift */; };
 		F7C419852798C95600753637 /* ParentalControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C419842798C95600753637 /* ParentalControls.swift */; };
@@ -38,7 +36,6 @@
 		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
 		F70E679F2795B47900D6D60E /* AssignmentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentHeader.swift; sourceTree = "<group>"; };
 		F70E67A12795BC3000D6D60E /* PremiumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPage.swift; sourceTree = "<group>"; };
-		F7216AD127978B860067B3CA /* SampleGradeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleGradeData.json; sourceTree = "<group>"; };
 		F74DDE0B27939AB100894237 /* Gradual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gradual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74DDE0E27939AB100894237 /* GradualApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradualApp.swift; sourceTree = "<group>"; };
 		F74DDE1027939AB100894237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,7 +51,6 @@
 		F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAssignmentView.swift; sourceTree = "<group>"; };
 		F74DDE3E2794A02200894237 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		F77288D0279600EF000B5F3B /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
-		F77DD9A72797BFC500497D43 /* SampleStudentData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SampleStudentData.json; sourceTree = "<group>"; };
 		F78C33132794EF3000596478 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F78C33152795158E00596478 /* AssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPage.swift; sourceTree = "<group>"; };
 		F7C419842798C95600753637 /* ParentalControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalControls.swift; sourceTree = "<group>"; };
@@ -103,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				F7C4198B27999AD900753637 /* Info.plist */,
-				F77DD9A72797BFC500497D43 /* SampleStudentData.json */,
-				F7216AD127978B860067B3CA /* SampleGradeData.json */,
 				F74DDE0E27939AB100894237 /* GradualApp.swift */,
 				F74DDE1027939AB100894237 /* ContentView.swift */,
 				F74DDE212793AF4000894237 /* Model */,
@@ -236,8 +230,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F74DDE1627939AB300894237 /* Preview Assets.xcassets in Resources */,
-				F77DD9A82797BFC500497D43 /* SampleStudentData.json in Resources */,
-				F7216AD227978B860067B3CA /* SampleGradeData.json in Resources */,
 				F74DDE1327939AB300894237 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
