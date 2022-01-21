@@ -16,7 +16,7 @@ struct SimpleAssignmentView: View {
             HStack {
                 Text(assessment.assignment)
                 Spacer()
-                Text(assessment.score)
+                Text(assessment.calculatedScore + ((Double(assessment.calculatedScore) ?? 0 > 0) ? "%" : " "))
                     .foregroundColor(assessment.getColor())
             }
             .padding(.vertical, 7)

@@ -52,6 +52,7 @@ struct Header: View {
             AccountPage()
         }
         .background(Color.white)
+        .padding(.vertical)
 
     }
 }

@@ -27,6 +27,12 @@ extension GradeService {
         return student
     }
     
+    func fetchGPA() async throws -> GPA {
+        await store.loadGPA()
+        let gpa: GPA = try await fetchData()
+        return gpa
+    }
+    
     func fetchData<T>() async throws -> T where T: Decodable {
         isFetching = true
         defer { isFetching = false }
@@ -86,6 +92,10 @@ private actor GradeServiceStore {
     
     func loadStudent() {
         path = "/students/info"
+    }
+    
+    func loadGPA() {
+        path = "/students/gpa"
     }
     
 }

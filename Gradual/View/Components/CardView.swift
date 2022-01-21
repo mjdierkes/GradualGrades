@@ -12,6 +12,7 @@ struct CardView: View {
         
         ZStack {
             
+            
             Color("BackgroundGray")
 
             ZStack {
@@ -37,11 +38,32 @@ struct CardView: View {
                     }
                     .tint(Color("GradGreen"))
                 }
-                .padding()
-                
+                .padding(.vertical)
+                .padding(.trailing, 19)
                
             }
             .padding()
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    ZStack {
+                        Circle()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color("GradGreen"))
+                        
+                        Text("3")
+                            .foregroundColor(Color.white)
+                            .bold()
+                        
+                    }
+                    
+
+                }
+                Spacer()
+            }
+            .offset(x: -8, y: 10)
             
             
         }

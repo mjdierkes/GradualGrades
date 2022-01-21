@@ -14,8 +14,8 @@ struct LoginPage: View {
     @State private var selectedDistrict = ""
     
     /// For testing purposes
-    @State private var username = "john"
-    @State private var password = "doe"
+    @State private var username = ""
+    @State private var password = ""
     
     @KeychainStorage("username") var savedUsername = ""
     @KeychainStorage("password") var savedPasword = ""
@@ -84,6 +84,8 @@ struct LoginPage: View {
             .environmentObject(manager)
 
         }
+        .navigationBarHidden(true)
+        .navigationBarColor(backgroundColor: Color("BackgroundGray"), tintColor: .black)
         .onAppear(perform: {
             Task {
                 do {

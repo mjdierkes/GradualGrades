@@ -17,10 +17,12 @@ struct AssignmentPage: View {
         VStack {
             
             AssignmentHeader(classDetails: $classDetails)
+                .padding()
             
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
+                ClassInformation()
                 Spacer()
             }
             
@@ -30,7 +32,7 @@ struct AssignmentPage: View {
                                           
                         
                         if classDetails.getGrades(ofType: .major).count > 1{
-                            Text("Major")
+                            Text("Majors")
                                 .font(.title2)
                                 .bold()
 
@@ -43,7 +45,7 @@ struct AssignmentPage: View {
                         }
                         
                         if classDetails.getGrades(ofType: .minor).count > 1{
-                            Text("Minor")
+                            Text("Minors")
                                 .font(.title2)
                                 .bold()
                         
@@ -52,32 +54,22 @@ struct AssignmentPage: View {
                             }
                         }
                         
-                        
-    //                    Text("Information")
-    //                        .font(.title3)
-    //                        .padding(.top, 20)
-    //                        .padding(.vertical, 20)
-    //
-    //                    VStack {
-    //
-    //                        HStack{
-    //                            InfoDivider(key: "Credits", value: "1")
-    //                            InfoDivider(key: "Weighting", value: "5.0")
-    //                        }
-    //                        HStack{
-    //                            InfoDivider(key: "Period", value: "3B")
-    //                            InfoDivider(key: "Room Number", value: "XC103")
-    //                        }
-    //                    }
-                        
                     }
+                    .padding()
+                    ClassInformation()
+
+
+                    
                     
                 }
+                
+
             }
+
+            
            
 
         }
-        .padding()
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
 
@@ -104,6 +96,30 @@ struct InfoDivider: View {
 
             Divider()
         }
+    }
+}
+
+
+struct ClassInformation: View {
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+
+            Text("Information")
+                .font(.title3)
+                .padding(.bottom)
+            
+            HStack{
+                InfoDivider(key: "Credits", value: "1")
+                InfoDivider(key: "Weighting", value: "5.0")
+            }
+            HStack{
+                InfoDivider(key: "Period", value: "3B")
+                InfoDivider(key: "Room Number", value: "XC103")
+            }
+        }
+        .padding()
+        .padding(.vertical, 5)
     }
 }
 

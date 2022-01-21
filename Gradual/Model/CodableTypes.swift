@@ -20,11 +20,20 @@ struct Student: Codable {
     let name: String
 }
 
-struct Classes: Codable {
+struct GPA: Codable {
+    let unweightedGPA: String
+    let weightedGPA: String
+    
+    var roundedWeightedGPA: String {
+        String(Double(weightedGPA)?.roundTo(places: 2) ?? 0)
+    }
+}
+
+struct Classes: Codable, Hashable {
     let currentClasses: [Class]
 }
 
-struct Class: Codable, Identifiable {
+struct Class: Codable, Identifiable, Hashable {
     let id = UUID()
     
     var name: String
@@ -69,7 +78,7 @@ struct Class: Codable, Identifiable {
     }
 }
 
-struct Assignment: Codable, Identifiable {
+struct Assignment: Codable, Identifiable, Hashable {
     
     let id = UUID()
     
@@ -84,13 +93,20 @@ struct Assignment: Codable, Identifiable {
         GradeType(rawValue: category) ?? .none
     }
     
+    var calculatedScore: String {
+        let newScore = Double(score) ?? 0
+        let totalPoints = Double(totalPoints) ?? 0
+        let calculatedScore = (newScore / totalPoints) * 100
+        return String(calculatedScore.roundTo(places: 0))
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case dateDue, dateAssigned, assignment, category, score, totalPoints
     }
     
     func getColor() -> Color {
         
-        if let score = Double(score) {
+        if let score = Double(calculatedScore) {
             switch score {
             case _ where score < 80:
                 return Color("DefaultFailing")
@@ -108,10 +124,18 @@ struct Assignment: Codable, Identifiable {
         return Color("EmptyGrade")
         
     }
+    
 }
 
 enum GradeType: String {
     case minor = "Minor Grades"
     case major = "Major Grades"
     case none  = "Non Graded"
+}
+
+extension Double {
+    func roundTo(places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }

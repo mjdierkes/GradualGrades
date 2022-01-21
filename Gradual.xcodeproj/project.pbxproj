@@ -31,6 +31,7 @@
 		F7C419852798C95600753637 /* ParentalControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C419842798C95600753637 /* ParentalControls.swift */; };
 		F7C419882798EF2D00753637 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F7C419872798EF2D00753637 /* KeychainAccess */; };
 		F7C4198A2798EF4A00753637 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C419892798EF4A00753637 /* KeychainStorage.swift */; };
+		F7C4198D2799BBBC00753637 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		F7C419842798C95600753637 /* ParentalControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentalControls.swift; sourceTree = "<group>"; };
 		F7C419892798EF4A00753637 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		F7C4198B27999AD900753637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		F70E67932795AAA400D6D60E /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				F70E67A02795B47900D6D60E /* AssignmentHeader.swift in Sources */,
 				F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */,
 				F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */,
+				F7C4198D2799BBBC00753637 /* NavigationBarColor.swift in Sources */,
 				F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,
 				F74DDE2F279433A500894237 /* CodableTypes.swift in Sources */,

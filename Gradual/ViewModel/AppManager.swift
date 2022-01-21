@@ -12,13 +12,15 @@ class AppManager: ObservableObject {
     
     @Published var student: Student?
     @Published var classes = [Class]()
-    
+    @Published var gpa: GPA?
+
     @Published var error = ""
     
     let defaults = UserDefaults.standard
 
     var firstName: String {
-        return student?.name.components(separatedBy: " ")[0] ?? "Student"
+        print(student?.name)
+        return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
     func loadData() async throws {
@@ -35,14 +37,11 @@ class AppManager: ObservableObject {
         
         let loadedClasses: Classes = try await gradeService.fetchData()
         let loadedStudent: Student = try await gradeService.fetchStudent()
+        let loadedGPA: GPA = try await gradeService.fetchGPA()
         
         classes = loadedClasses.currentClasses
-        
         student = loadedStudent
-        
-        defaults.set(username, forKey: "username")
-        defaults.set(password, forKey: "password")
-        
+        gpa = loadedGPA
         
         for i in 0..<classes.count {
             
@@ -52,7 +51,7 @@ class AppManager: ObservableObject {
             name = String(name.components(separatedBy: "-")[1])
             size = name.count
             
-            name = String(name.suffix(size - 2))
+            name = String(name.suffix(size - 6))
             size = name.count
             
             if name.contains("@CTE") {
@@ -68,6 +67,7 @@ class AppManager: ObservableObject {
                 
             classes[i].name = name
         }
+        
     }
     
     func signOut() {
@@ -100,6 +100,23 @@ class AppManager: ObservableObject {
         
         return average
     }
+//    
+//    func getNewAssignments(from assignments: [Assignment]) -> [Assignment] {
+//        
+//        
+//        let oldClasses: Classes = defaults.object(forKey: "classes") as! Classes
+//        
+//        if oldClasses.hashValue != assignments.hashValue {
+//            print("Assignments have been updated")
+//            
+//            for assessment in assignments {
+//                let hashed = assessment.hashValue
+//                
+//            }
+//        }
+//
+//    }
+//    
     
 
 }

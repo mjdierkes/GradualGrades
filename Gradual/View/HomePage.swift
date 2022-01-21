@@ -23,11 +23,15 @@ struct HomePage: View {
                         .padding(.top, 10)
                         .padding(.horizontal)
                         .font(.title2)
-//                    Text("3.98")
-//                        .font(.largeTitle)
-//                        .padding(.horizontal)
+                        .font(.system(.body, design: .rounded))
                     
-//                    
+                    Text(manager.gpa?.roundedWeightedGPA ?? "ERROR")
+                        .font(.largeTitle)
+                        .font(.system(.body, design: .rounded))
+                        .fontWeight(.medium)
+                        .padding(.horizontal)
+                        .padding(.vertical, 1)
+//
 //                    ScrollView(.horizontal, showsIndicators: false){
 //                        HStack {
 //                            RecentAssignmentView()
@@ -41,11 +45,13 @@ struct HomePage: View {
 //                        .padding(.horizontal)
 //                    }
 //                    
-//                    CardView()
+                    CardView()
                             
                     Text("Grades")
                         .padding()
                         .font(.title2)
+                        .font(.system(.body, design: .rounded))
+
                     
                     let _ = print(manager.classes)
                     ForEach($manager.classes) { details in
@@ -71,7 +77,7 @@ struct HomePage: View {
         switch hour {
         case 1..<12 :
             return "Morning"
-        case 12..<22 :
+        case 12..<24 :
             return "Afternoon"
         default:
             return ""
