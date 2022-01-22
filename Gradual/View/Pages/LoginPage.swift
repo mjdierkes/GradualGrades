@@ -16,7 +16,7 @@ struct LoginPage: View {
     
     @KeychainStorage("username") var savedUsername = ""
     @KeychainStorage("password") var savedPassword = ""
-    
+
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]
     

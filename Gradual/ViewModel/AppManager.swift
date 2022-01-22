@@ -16,6 +16,7 @@ import KeychainAccess
     
     @Published var nextSAT = ""
     @Published var error = ""
+
     
     let defaults = UserDefaults.standard
     
@@ -30,10 +31,19 @@ import KeychainAccess
         let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
         classes = loadedClasses.currentClasses
 
-        student = try await gradeService.fetchData(from: .studentInfo)
         gpa = try await gradeService.fetchData(from: .GPA)
         
+        let loadedSATs: UpcomingSATs = try await gradeService.fetchData(from: .satDates)
+        if !loadedSATs.liveDates.isEmpty {
+            nextSAT = loadedSATs.liveDates[0]
+            defaults.set(loadedSATs.liveDates[0], forKey: "SAT-Date")
+        } else {
+            nextSAT = defaults.object(forKey: "SAT-Date") as! String
+            print("SAT Loaded from defaults")
+        }
+        
         filterClassnames()
+        student = try await gradeService.fetchData(from: .studentInfo)
     }
     
     /// Invalidates the users credentials and removes all stored data.

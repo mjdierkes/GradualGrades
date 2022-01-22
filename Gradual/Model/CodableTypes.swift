@@ -17,6 +17,27 @@ struct Student: Codable {
     let grade: String
     let id: String
     let name: String
+    
+    var fullName: String {
+        let lastName = name.components(separatedBy: ",")[0]
+        let firstName = name.components(separatedBy: " ")[1]
+        
+        return firstName + " " + lastName
+    }
+    
+    var longBirthdate: String {
+        let dateFormatter = DateFormatter()
+        let stringFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        stringFormatter.dateStyle = .medium
+        
+        if let date = dateFormatter.date(from: birthdate){
+            return stringFormatter.string(from: date)
+        }
+        return birthdate
+    }
+    
+    
 }
 
 /// A wrapper that contains the students GPA.
@@ -144,10 +165,8 @@ struct UpcomingSATs: Codable {
         var output = [String]()
         let dateFormatter = DateFormatter()
         let stringFormatter = DateFormatter()
-        
         dateFormatter.dateFormat = "MM/dd/yyyy"
         stringFormatter.dateStyle = .full
-        
         let today = Date()
         for date in dates {
             if let date = dateFormatter.date(from: date) {
@@ -160,6 +179,7 @@ struct UpcomingSATs: Codable {
         }
         return output
     }
+    
 }
 
 

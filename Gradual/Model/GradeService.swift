@@ -70,7 +70,6 @@ private actor GradeServiceStore {
         else { throw DownloadError.statusNotOK }
         
         print(url)
-        print(response)
         do {
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
