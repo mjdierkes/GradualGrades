@@ -9,21 +9,15 @@ import SwiftUI
 
 struct About: View {
     var body: some View {
-        
         VStack {
             VStack(alignment: .leading, spacing: 15){
-                
                 GradualLogo()
-                
                 Text("An easy way to manage your school work")
                     .font(.largeTitle)
                     
                 Text("Everything you could ever need from a grade app and more.")
                 
                 Spacer()
-                
-               
-                
             }
             
             Button {
@@ -38,9 +32,6 @@ struct About: View {
             .buttonStyle(.borderedProminent)
         }
         .padding()
-
-        
-        
     }
 }
 

@@ -11,14 +11,11 @@ struct LoginPage: View {
     
     @EnvironmentObject var manager: AppManager
     
-    @State private var selectedDistrict = ""
-    
-    /// For testing purposes
     @State private var username = ""
     @State private var password = ""
     
     @KeychainStorage("username") var savedUsername = ""
-    @KeychainStorage("password") var savedPasword = ""
+    @KeychainStorage("password") var savedPassword = ""
     
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]
@@ -34,12 +31,6 @@ struct LoginPage: View {
                 
                 Text("Connect to your \nGrades")
                     .font(.largeTitle)
-
-//                Picker("District", selection: $selectedDistrict) {
-//                    ForEach(LoginPage.districts, id: \.self){
-//                        Text($0)
-//                    }
-//                }
                 
                 VStack {
                     TextField("Username", text: $username)
@@ -49,7 +40,7 @@ struct LoginPage: View {
                         .textContentType(.password)
                         .padding(.bottom, 60)
                     
-    
+                    
                     AsyncButton("Sign In", action: loadData)
                         .font(.headline)
                         .foregroundColor(Color.white)
@@ -58,12 +49,10 @@ struct LoginPage: View {
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                     
-                    NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {
-                        
-                    }
-
+                    NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {}
+                    
                     Button {
-
+                        
                     } label: {
                         Text("I'm a parent")
                             .foregroundColor(Color("GradGreen"))
@@ -71,35 +60,28 @@ struct LoginPage: View {
                 }
                 Spacer()
                     .frame(minHeight: 150)
-
+                
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
             .padding()
             .environmentObject(manager)
-
+            
         }
         .navigationBarHidden(true)
-//        .navigationBarColor(backgroundColor: Color("BackgroundGray"), tintColor: .black)
         .onAppear(perform: {
             Task {
                 do {
-                    print("loading")
-                    try await manager.loadData(username: savedUsername, password: savedPasword)
+                    try await manager.loadData(username: savedUsername, password: savedPassword)
                 } catch {
-                    print("Unable to load data from User Defaults")
-//                    print(error)
+                    print("Unable to load data from Keynanchain")
                 }
             }
         })
-
-
-
-        
     }
     
     func loadData() async {
         savedUsername =  username
-        savedPasword = password
+        savedPassword = password
         do {
             try await manager.loadData(username: username, password: password)
         } catch {
@@ -111,9 +93,7 @@ struct LoginPage: View {
 
 
 struct GradualLogo: View {
-    
     var body: some View {
-        
         HStack {
             Image(systemName: "graduationcap")
                 .foregroundColor(Color("GradGreen"))
@@ -121,10 +101,7 @@ struct GradualLogo: View {
                 .font(.title2)
         }
         .padding(.bottom, 5)
-        
     }
-    
-    
 }
 
 

@@ -78,6 +78,7 @@
 		F70E67932795AAA400D6D60E /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				F7C419892798EF4A00753637 /* KeychainStorage.swift */,
 				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
 				F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */,
 			);
@@ -129,7 +130,6 @@
 				F74DDE2E279433A500894237 /* CodableTypes.swift */,
 				F74DDE2A2793BC1700894237 /* GradeService.swift */,
 				F7C419842798C95600753637 /* ParentalControls.swift */,
-				F7C419892798EF4A00753637 /* KeychainStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

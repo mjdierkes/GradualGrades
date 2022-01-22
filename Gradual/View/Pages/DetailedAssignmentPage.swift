@@ -20,8 +20,6 @@ struct DetailedAssignmentPage: View {
             Text(assessment.dateDue)
             
             HStack {
-                
-                
                 ZStack{
                     
                     Text("Better than 80%")
@@ -34,16 +32,12 @@ struct DetailedAssignmentPage: View {
                 .background(Color("LowGreen"))
                 .cornerRadius(50)
                 
-                
                 Spacer()
                 
                 Text(assessment.calculatedScore)
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .foregroundColor(Color("GradGreen"))
-                
-                
-                
             }
             
             Spacer()

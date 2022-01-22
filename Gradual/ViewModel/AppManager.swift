@@ -13,46 +13,64 @@ import KeychainAccess
     @Published var student: Student?
     @Published var classes = [Class]()
     @Published var gpa: GPA?
-    @Published var liveGPA: LiveGPA?
     
     @Published var nextSAT = ""
     @Published var error = ""
     
     let defaults = UserDefaults.standard
-
+    
     var firstName: String {
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
-    func loadData() async throws {
-            if let username = defaults.object(forKey: "username") as? String {
-                if let password = defaults.object(forKey: "password") as? String {
-                    try await loadData(username: username, password: password)
-                }
-            }
-        
-        }
-    
+    /// Attempts to access the API and initialize stored properties.
     func loadData(username: String, password: String) async throws {
         let gradeService = GradeService(username, password)
         
-        let loadedClasses: Classes = try await gradeService.fetchClasses()
-        let loadedStudent: Student = try await gradeService.fetchStudent()
-        let loadedSATs: UpcomingSATs = try await gradeService.fetchSats()
-        let loadedGPA: GPA = try await gradeService.fetchGPA()
-        
+        let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
         classes = loadedClasses.currentClasses
+
+        student = try await gradeService.fetchData(from: .studentInfo)
+        gpa = try await gradeService.fetchData(from: .GPA)
         
-        nextSAT = loadedSATs.liveDates[0]
-        
-        student = loadedStudent
-        gpa = loadedGPA
-        
+        filterClassnames()
+    }
+    
+    /// Invalidates the users credentials and removes all stored data.
+    func signOut() {
+        let keychain = Keychain(service: "credentials")
+        do {
+            try keychain.remove("username")
+            try keychain.remove("password")
+        } catch let error {
+            print("error: \(error)")
+        }
+        student = nil
+    }
+
+    
+    /// Calculates the new average score for assignments.
+    /// This is used for the Doomsday calculator.
+    ///
+    /// Make sure to pass in Minor and Major grades separately.
+    func getAverage(for assignments: [Assignment]) -> Double{
+        var average: Double = 0
+        for assessment in assignments {
+            if let score = Double(assessment.score){
+                average += score
+            }
+        }
+        average /= Double(assignments.count)
+
+        return average
+    }
+    
+    /// Cleans up the class names by removing unnecessary info.
+    private func filterClassnames() {
         for i in 0..<classes.count {
-            
             var name = classes[i].name
             var size = name.count
-
+            
             name = String(name.components(separatedBy: "-")[1])
             size = name.count
             
@@ -66,45 +84,10 @@ import KeychainAccess
             else if name.contains("S2") || name.contains("S1"){
                 name = String(name.prefix(size - 2))
             }
-                
+            
             classes[i].name = name
         }
-        
-        liveGPA = LiveGPA(weightedGPA: Double(gpa!.weightedGPA)!, unweightedGPA: Double(gpa!.unweightedGPA)!, studentGrade: Int(student!.grade)!, classes: classes)
-        
-        
-    }
-    
-    func signOut() {
-        let keychain = Keychain(service: "credentials")
-        do {
-            try keychain.remove("username")
-            try keychain.remove("password")
-        } catch let error {
-            print("error: \(error)")
-        }
-        student = nil
-    }
-    
-    func calculatedPercentChange(for newAssignment: Assignment, oldAssignments: [Assignment]) -> Double{
-        var inclusiveAverage = oldAssignments
-        inclusiveAverage.append(newAssignment)
-        
-        return getAverage(for: inclusiveAverage) - getAverage(for: oldAssignments)
     }
     
     
-    func getAverage(for assignments: [Assignment]) -> Double{
-        var average: Double = 0
-        for assessment in assignments {
-            if let score = Double(assessment.score){
-                average += score
-            }
-        }
-        average /= Double(assignments.count)
-        
-        return average
-    }
-    
-
 }

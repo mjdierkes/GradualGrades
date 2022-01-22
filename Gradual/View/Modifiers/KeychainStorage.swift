@@ -8,6 +8,7 @@
 import SwiftUI
 import KeychainAccess
 
+/// Syncs data between views and the Keychain storage.
 @propertyWrapper
 struct KeychainStorage: DynamicProperty {
     let key: String
@@ -21,7 +22,6 @@ struct KeychainStorage: DynamicProperty {
     }
     var wrappedValue: String {
         get  { value }
-        
         nonmutating set {
             value = newValue
             do {

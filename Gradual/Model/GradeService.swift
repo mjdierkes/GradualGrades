@@ -8,58 +8,35 @@
 import Foundation
 
 
+/// Provides an easy way to interact with the API.
 class GradeService {
-    private(set) var isFetching = false
-    
     private let store: GradeServiceStore
+    private(set) var isFetching = false
     
     public init(_ username: String, _ password: String) {
         store = GradeServiceStore(username: username, password: password)
     }
 }
 
-extension GradeService {
-    @MainActor
-    
-    func fetchStudent() async throws -> Student {
-        await store.loadStudent()
-        let student: Student = try await fetchData()
-        return student
-    }
-    func fetchSats() async throws -> UpcomingSATs {
-        await store.loadSATs()
-        let sats: UpcomingSATs = try await fetchData()
-        return sats
-    }
-    
-    func fetchClasses() async throws -> Classes {
-        await store.loadClasses()
-        let classes: Classes = try await fetchData()
-        return classes
-    }
-    
-    func fetchGPA() async throws -> GPA {
-        await store.loadGPA()
-        let gpa: GPA = try await fetchData()
-        return gpa
-    }
-    
-    func fetchData<T>() async throws -> T where T: Decodable {
+@MainActor extension GradeService {
+    /// Returns the decoded value of the type provided.
+    /// To implement set your variable to the value that fetch data returns.
+    /// Make sure to pass in the correct root or this function will throw an error.
+    func fetchData<T>(from root: AvailableRoot) async throws -> T where T: Decodable {
         isFetching = true
         defer { isFetching = false }
-        
-        let loadedPackage: T = try await store.load()
+        let loadedPackage: T = try await store.load(with: root)
         return loadedPackage
     }
 }
 
 
-
+/// Holds the credentials of the user to send up to the server.
 private actor GradeServiceStore {
     
     private let username: String
     private let password: String
-    private var path = "/students/currentclasses" 
+    private var path = ""
     
     private var url: URL {
         urlComponents.url!
@@ -70,6 +47,7 @@ private actor GradeServiceStore {
         self.password = password
     }
     
+    /// Builds a URL to connect to the API sever.
     private var urlComponents: URLComponents {
         var components = URLComponents()
         components.scheme = "http"
@@ -78,49 +56,47 @@ private actor GradeServiceStore {
         return components
     }
     
-    func load<T>() async throws -> T where T: Decodable {
+    /// Attempts to decode the data returned from the server.
+    func load<T>(with root: AvailableRoot) async throws -> T where T: Decodable {
+        
+        self.path = root.rawValue
+        if root != .satDates {
+            path += "/\(username)/\(password)"
+        }
                 
         let (data, response) = try await URLSession.shared.data(from: url)
+        
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
-        else {
-            throw DownloadError.statusNotOK
-        }
-
+        else { throw DownloadError.statusNotOK }
+        
         print(url)
         print(response)
-        print(httpResponse.statusCode)
-
-        do{
+        do {
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
             print("Error \(error)")
             throw DownloadError.decoderError
         }
-        
-    }
-    
-    func loadClasses() {
-        path = "/students/currentclasses"  + "/\(username)/\(password)"
-    }
-    
-    func loadStudent() {
-        path = "/students/info" + "/\(username)/\(password)"
-    }
-    
-    func loadGPA() {
-        path = "/students/gpa" + "/\(username)/\(password)"
-    }
-    
-    func loadSATs() {
-        path = "/satdates"
     }
 }
 
+/// All the available roots on the server.
+enum AvailableRoot: String {
+    case currentClasses = "/students/currentclasses"
+    case studentInfo = "/students/info"
+    case GPA = "/students/gpa"
+    case satDates = "/satdates"
+}
+
+
+//  MARK: ERROR Handling
+/// The most common errors that the JSON data can throw.
 enum DownloadError: Error {
     case statusNotOK
     case decoderError
 }
 
+/// Adds a description to the error.
 extension DownloadError: LocalizedError {
     public var errorDescription: String? {
         switch self {
@@ -135,12 +111,6 @@ extension DownloadError: LocalizedError {
                 comment: ""
             )
             return String(format: format)
-            }
         }
-    }
-
-extension URLComponents {
-    mutating func setQueryItems(with parameters: [String: String]) {
-        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value)}
     }
 }

@@ -17,7 +17,7 @@ struct SimpleAssignmentView: View {
                 Text(assessment.assignment)
                 Spacer()
                 Text(assessment.calculatedScore + ((Double(assessment.calculatedScore) ?? 0 > 0) ? "%" : " "))
-                    .foregroundColor(assessment.getColor())
+                    .foregroundColor(assessment.scoreColor())
             }
             .padding(.vertical, 7)
             Divider()

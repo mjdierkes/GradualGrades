@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+/// All student information.
+/// Helps make decisions on what content to show the user.
+/// A middle school student will not be shown SAT dates.
 struct Student: Codable {
     let birthdate: String
     let campus: String
@@ -16,6 +19,7 @@ struct Student: Codable {
     let name: String
 }
 
+/// A wrapper that contains the students GPA.
 struct GPA: Codable {
     let unweightedGPA: String
     let weightedGPA: String
@@ -25,25 +29,26 @@ struct GPA: Codable {
     }
 }
 
+/// Wrapper object to send for Live GPA calculations.
 struct LiveGPA: Codable {
-
     let weightedGPA: Double
     let unweightedGPA: Double
     let studentGrade: Int
     let classes: [Class]
-
 }
 
+/// Data received from the Live GPA calculations.
 struct NewGPA: Codable {
     let finalWeightedGPA: String
     let finalUnweightedGPA: String
 }
 
-struct Classes: Codable, Hashable {
+/// Wrapper for all of the students classes.
+struct Classes: Codable {
     let currentClasses: [Class]
 }
 
-struct Class: Codable, Identifiable, Hashable {
+struct Class: Codable, Identifiable {
     let id = UUID()
     
     var name: String
@@ -51,32 +56,21 @@ struct Class: Codable, Identifiable, Hashable {
     let weight: String
     let credits: String
     var assignments: [Assignment]
+    
+    let formatter = GradeFormatter()
 
     private enum CodingKeys: String, CodingKey {
         case name, grade, weight, credits, assignments
     }
     
-    func getColor() -> Color {
-        
+    func scoreColor() -> Color {
         if let score = Double(grade) {
-            switch score {
-            case _ where score < 80:
-                return Color("DefaultFailing")
-                
-            case _ where score < 90:
-                return Color("Default-B")
-                
-            case _ where score < 100:
-                return Color("GradGreen")
-                
-            default: return Color.blue
-            }
+            return formatter.getColor(from: score)
+        } else {
+            return Color("EmptyGrade")
         }
-        
-        return Color("EmptyGrade")
-
     }
-    
+    /// Separates minor grades from major grades.
     func getGrades(ofType type: GradeType) -> [Assignment] {
         var output = [Assignment]()
         for assessment in assignments {
@@ -88,8 +82,15 @@ struct Class: Codable, Identifiable, Hashable {
     }
 }
 
-struct Assignment: Codable, Identifiable, Hashable {
-    
+/// Manages what kind of grade the assignment is.
+enum GradeType: String {
+    case minor = "Minor Grades"
+    case major = "Major Grades"
+    case none  = "Non Graded"
+}
+
+/// Holds the data for a class assignment.
+struct Assignment: Codable, Identifiable {
     let id = UUID()
     
     let dateDue: String
@@ -99,54 +100,54 @@ struct Assignment: Codable, Identifiable, Hashable {
     var score: String
     let totalPoints: String
     
+    let formatter = GradeFormatter()
+
     var gradeType: GradeType {
         GradeType(rawValue: category) ?? .none
     }
     
+    /// Ensures every score is out of a 100 when
+    /// teachers are lazy and put in how many you got correct.
+    ///
+    /// If the score can't be converted to a number it displays
+    /// the original value.
     var calculatedScore: String {
-        let newScore = Double(score) ?? 0
-        let totalPoints = Double(totalPoints) ?? 0
-        let calculatedScore = (newScore / totalPoints) * 100
-        return String(calculatedScore.roundTo(places: 0))
+        if let score = Double(score){
+            if let totalPoints = Double(totalPoints){
+                return String((score / totalPoints) * 100)
+            }
+        }
+        return score
     }
     
+    /// Tries to convert the score and get the color.
+    func scoreColor() -> Color {
+        if let score = Double(calculatedScore) {
+            return formatter.getColor(from: score)
+        } else {
+            return Color("EmptyGrade")
+        }
+    }
+    
+    /// Only these keys will be codable
     private enum CodingKeys: String, CodingKey {
         case dateDue, dateAssigned, assignment, category, score, totalPoints
     }
-    
-    func getColor() -> Color {
-        
-        if let score = Double(calculatedScore) {
-            switch score {
-            case _ where score < 80:
-                return Color("DefaultFailing")
-                
-            case _ where score < 90:
-                return Color("Default-B")
-                
-            case _ where score < 110:
-                return Color("GradGreen")
-                
-            default: return Color.blue
-            }
-        }
-        
-        return Color("EmptyGrade")
-        
-    }
-    
 }
 
+/// Revives upcoming SATs from the server.
 struct UpcomingSATs: Codable {
     var dates: [String]
     
+    /// Sorts through all the SAT dates and finds the next one.
     var liveDates: [String]{
         var output = [String]()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        
         let stringFormatter = DateFormatter()
+        
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         stringFormatter.dateStyle = .full
+        
         let today = Date()
         for date in dates {
             if let date = dateFormatter.date(from: date) {
@@ -159,16 +160,30 @@ struct UpcomingSATs: Codable {
         }
         return output
     }
-    
 }
 
 
-enum GradeType: String {
-    case minor = "Minor Grades"
-    case major = "Major Grades"
-    case none  = "Non Graded"
+/// Helps format how grades are displayed.
+struct GradeFormatter {
+    /// Returns a color based on the users score in that class.
+    func getColor(from score: Double) -> Color {
+        switch score {
+        case _ where score < 80:
+            return Color("DefaultFailing")
+            
+        case _ where score < 90:
+            return Color("Default-B")
+            
+        case _ where score < 100:
+            return Color("GradGreen")
+            
+        default: return Color("PerfectlyInsane")
+        }
+    }
 }
 
+
+/// Helps remove decimals from grades.
 extension Double {
     func roundTo(places: Int) -> Double {
         let divisor = pow(10.0, Double(places))

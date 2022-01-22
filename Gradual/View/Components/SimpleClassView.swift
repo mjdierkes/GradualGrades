@@ -18,7 +18,6 @@ struct SimpleClassView: View {
         VStack {
             HStack {
                 Text(classData.name)
-//                let _ = print(classData.name)
                 Spacer()
                 Text( (isActive) ?  "-" : String(classData.grade))
                     .fontWeight(.heavy)
@@ -26,7 +25,7 @@ struct SimpleClassView: View {
                     .padding(.horizontal, 23)
                     .padding(.vertical, 6)
                     .frame(width: 100)
-                    .background(classData.getColor())
+                    .background(classData.scoreColor())
                     .cornerRadius(7)
 
             }
