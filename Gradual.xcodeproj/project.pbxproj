@@ -30,6 +30,8 @@
 		F7C419882798EF2D00753637 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F7C419872798EF2D00753637 /* KeychainAccess */; };
 		F7C4198A2798EF4A00753637 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C419892798EF4A00753637 /* KeychainStorage.swift */; };
 		F7C4198D2799BBBC00753637 /* NavigationBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */; };
+		F7E5865F279B862200438E66 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5865E279B862200438E66 /* About.swift */; };
+		F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,8 @@
 		F7C419892798EF4A00753637 /* KeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		F7C4198B27999AD900753637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F7C4198C2799BBBB00753637 /* NavigationBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarColor.swift; sourceTree = "<group>"; };
+		F7E5865E279B862200438E66 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
+		F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAssignmentPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +155,8 @@
 		F74DDE38279488CF00894237 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F74DDE392794890400894237 /* SimpleClassView.swift */,
 				F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */,
+				F74DDE392794890400894237 /* SimpleClassView.swift */,
 				F74DDE3E2794A02200894237 /* Header.swift */,
 				F78C33132794EF3000596478 /* CardView.swift */,
 				F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */,
@@ -164,13 +168,23 @@
 		F7E58658279B0F6600438E66 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				F7E5865D279B860400438E66 /* Onboarding */,
 				F74DDE3027943DC400894237 /* LoginPage.swift */,
 				F74DDE34279467B600894237 /* HomePage.swift */,
 				F78C33152795158E00596478 /* AssignmentPage.swift */,
 				F70E67A12795BC3000D6D60E /* PremiumPage.swift */,
 				F77288D0279600EF000B5F3B /* AccountPage.swift */,
+				F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */,
 			);
 			path = Pages;
+			sourceTree = "<group>";
+		};
+		F7E5865D279B860400438E66 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F7E5865E279B862200438E66 /* About.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +270,7 @@
 				F74DDE2B2793BC1700894237 /* GradeService.swift in Sources */,
 				F74DDE3327944BAC00894237 /* AppManager.swift in Sources */,
 				F78C33162795158E00596478 /* AssignmentPage.swift in Sources */,
+				F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */,
 				F74DDE3F2794A02200894237 /* Header.swift in Sources */,
 				F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */,
 				F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */,
@@ -265,6 +280,7 @@
 				F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */,
 				F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */,
 				F7C4198D2799BBBC00753637 /* NavigationBarColor.swift in Sources */,
+				F7E5865F279B862200438E66 /* About.swift in Sources */,
 				F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,
 				F74DDE2F279433A500894237 /* CodableTypes.swift in Sources */,
@@ -405,7 +421,7 @@
 				INFOPLIST_FILE = Gradual/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -436,7 +452,7 @@
 				INFOPLIST_FILE = Gradual/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

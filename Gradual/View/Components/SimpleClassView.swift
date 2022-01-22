@@ -18,7 +18,7 @@ struct SimpleClassView: View {
         VStack {
             HStack {
                 Text(classData.name)
-                let _ = print(classData.name)
+//                let _ = print(classData.name)
                 Spacer()
                 Text( (isActive) ?  "-" : String(classData.grade))
                     .fontWeight(.heavy)

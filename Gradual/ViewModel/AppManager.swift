@@ -13,6 +13,8 @@ import KeychainAccess
     @Published var student: Student?
     @Published var classes = [Class]()
     @Published var gpa: GPA?
+    @Published var liveGPA: LiveGPA?
+    
     @Published var nextSAT = ""
     @Published var error = ""
     
@@ -67,6 +69,9 @@ import KeychainAccess
                 
             classes[i].name = name
         }
+        
+        liveGPA = LiveGPA(weightedGPA: Double(gpa!.weightedGPA)!, unweightedGPA: Double(gpa!.unweightedGPA)!, studentGrade: Int(student!.grade)!, classes: classes)
+        
         
     }
     

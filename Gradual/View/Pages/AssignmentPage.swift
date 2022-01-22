@@ -22,7 +22,7 @@ struct AssignmentPage: View {
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
-                ClassInformation()
+                ClassInformation(classDetails: $classDetails)
                 Spacer()
             }
             
@@ -37,7 +37,10 @@ struct AssignmentPage: View {
                                 .bold()
 
                             ForEach(classDetails.getGrades(ofType: GradeType.major)) { assessment in
-                                SimpleAssignmentView(assessment: assessment)
+                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
+                                    SimpleAssignmentView(assessment: assessment)
+                                }
+                                .tint(.black)
                             }
                             
                             Spacer()
@@ -50,13 +53,16 @@ struct AssignmentPage: View {
                                 .bold()
                         
                             ForEach(classDetails.getGrades(ofType: GradeType.minor)) { assessment in
-                                SimpleAssignmentView(assessment: assessment)
+                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
+                                    SimpleAssignmentView(assessment: assessment)
+                                }
+                                .tint(.black)
                             }
                         }
                         
                     }
                     .padding()
-                    ClassInformation()
+                    ClassInformation(classDetails: $classDetails)
                 }
             }
         }
@@ -88,16 +94,37 @@ struct InfoDivider: View {
 
 struct ClassInformation: View {
     
+    @Binding var classDetails: Class
     var body: some View {
         VStack(alignment: .leading) {
 
-            Text("Information")
-                .font(.title3)
-                .padding(.bottom)
+            HStack(alignment: .center) {
+                
+                Text("Information")
+                    .font(.title3)
+                    .padding(.bottom)
+                
+                Spacer()
+                
+                ZStack{
+                    Button {
+                        
+                    } label: {
+                        Text("Doomsday Calculator")
+                            .font(.system(size: 14))
+                            .foregroundColor(Color("GradGreen"))
+                    }
+                }
+                .padding(.vertical, 6)
+                .padding(.horizontal, 12)
+                .background(Color("LowGreen"))
+                .cornerRadius(50)
+            }
+            
             
             HStack{
-                InfoDivider(key: "Credits", value: "1")
-                InfoDivider(key: "Weighting", value: "5.0")
+                InfoDivider(key: "Credits", value: classDetails.credits)
+                InfoDivider(key: "Weighting", value: classDetails.weight)
             }
             HStack{
                 InfoDivider(key: "Period", value: "3B")

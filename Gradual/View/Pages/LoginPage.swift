@@ -30,13 +30,7 @@ struct LoginPage: View {
                 
                 Text(manager.error)
                 
-                HStack {
-                    Image(systemName: "graduationcap")
-                        .foregroundColor(Color("GradGreen"))
-                    Text("Gradual")
-                        .font(.title2)
-                }
-                .padding(.bottom, 5)
+                GradualLogo()
                 
                 Text("Connect to your \nGrades")
                     .font(.largeTitle)
@@ -68,12 +62,12 @@ struct LoginPage: View {
                         
                     }
 
-//                    Button {
-//
-//                    } label: {
-//                        Text("Don't see your district?")
-//                            .foregroundColor(Color("GradGreen"))
-//                    }
+                    Button {
+
+                    } label: {
+                        Text("I'm a parent")
+                            .foregroundColor(Color("GradGreen"))
+                    }
                 }
                 Spacer()
                     .frame(minHeight: 150)
@@ -85,7 +79,7 @@ struct LoginPage: View {
 
         }
         .navigationBarHidden(true)
-        .navigationBarColor(backgroundColor: Color("BackgroundGray"), tintColor: .black)
+//        .navigationBarColor(backgroundColor: Color("BackgroundGray"), tintColor: .black)
         .onAppear(perform: {
             Task {
                 do {
@@ -114,6 +108,25 @@ struct LoginPage: View {
         }
     }
 }
+
+
+struct GradualLogo: View {
+    
+    var body: some View {
+        
+        HStack {
+            Image(systemName: "graduationcap")
+                .foregroundColor(Color("GradGreen"))
+            Text("Gradual")
+                .font(.title2)
+        }
+        .padding(.bottom, 5)
+        
+    }
+    
+    
+}
+
 
 struct LoginPage_Previews: PreviewProvider {
     static var previews: some View {

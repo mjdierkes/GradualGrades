@@ -25,6 +25,20 @@ struct GPA: Codable {
     }
 }
 
+struct LiveGPA: Codable {
+
+    let weightedGPA: Double
+    let unweightedGPA: Double
+    let studentGrade: Int
+    let classes: [Class]
+
+}
+
+struct NewGPA: Codable {
+    let finalWeightedGPA: String
+    let finalUnweightedGPA: String
+}
+
 struct Classes: Codable, Hashable {
     let currentClasses: [Class]
 }
@@ -134,13 +148,11 @@ struct UpcomingSATs: Codable {
         let stringFormatter = DateFormatter()
         stringFormatter.dateStyle = .full
         let today = Date()
-        print(today)
         for date in dates {
             if let date = dateFormatter.date(from: date) {
                 if date > today {
                     output.append(stringFormatter.string(from: date))
                 }
-                print(date)
             } else {
                 print("Can not convert date\(date)")
             }
