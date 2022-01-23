@@ -80,6 +80,22 @@ struct Class: Codable, Identifiable {
     
     let formatter = GradeFormatter()
 
+    var majorGrades: [Assignment] {
+        return getGrades(ofType: .major)
+    }
+    
+    var minorGrades: [Assignment] {
+        return getGrades(ofType: .minor)
+    }
+    
+    var majorAverage: Double {
+        formatter.getAverage(for: majorGrades).roundTo(places: 2)
+    }
+    
+    var minorAverage: Double {
+        formatter.getAverage(for: minorGrades).roundTo(places: 2)
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case name, grade, weight, credits, assignments
     }
@@ -91,6 +107,14 @@ struct Class: Codable, Identifiable {
             return Color("EmptyGrade")
         }
     }
+    
+    func minorColor() -> Color {
+        formatter.getColor(from: minorAverage)
+    }
+    func majorColor() -> Color {
+        formatter.getColor(from: majorAverage)
+    }
+    
     /// Separates minor grades from major grades.
     func getGrades(ofType type: GradeType) -> [Assignment] {
         var output = [Assignment]()
@@ -200,6 +224,23 @@ struct GradeFormatter {
         default: return Color("PerfectlyInsane")
         }
     }
+    
+    /// Calculates the new average score for assignments.
+    /// This is used for the Doomsday calculator.
+    ///
+    /// Make sure to pass in Minor and Major grades separately.
+    func getAverage(for assignments: [Assignment]) -> Double{
+        var average: Double = 0
+        for assessment in assignments {
+            if let score = Double(assessment.score){
+                average += score
+            }
+        }
+        average /= Double(assignments.count)
+
+        return average
+    }
+    
 }
 
 

@@ -32,6 +32,9 @@ struct HomePage: View {
                         .padding(.horizontal)
                         .padding(.vertical, 1)
                     
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        
+                    }
                     
                     if manager.cards.count > 0 {
                         ZStack {

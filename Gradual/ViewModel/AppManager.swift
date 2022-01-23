@@ -61,21 +61,7 @@ import KeychainAccess
     }
 
     
-    /// Calculates the new average score for assignments.
-    /// This is used for the Doomsday calculator.
-    ///
-    /// Make sure to pass in Minor and Major grades separately.
-    func getAverage(for assignments: [Assignment]) -> Double{
-        var average: Double = 0
-        for assessment in assignments {
-            if let score = Double(assessment.score){
-                average += score
-            }
-        }
-        average /= Double(assignments.count)
 
-        return average
-    }
     
     /// Cleans up the class names by removing unnecessary info.
     private func filterClassnames() {

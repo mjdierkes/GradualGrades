@@ -10,8 +10,8 @@ import SwiftUI
 struct RecentAssignmentView: View {
 
     @EnvironmentObject var manager: AppManager
-    @Binding var className: String
-    @Binding var assignment: Assignment
+    var className: String
+    var assignment: Assignment
     
     let size = 170.0
     

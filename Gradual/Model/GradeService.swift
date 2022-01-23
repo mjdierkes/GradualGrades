@@ -66,10 +66,11 @@ private actor GradeServiceStore {
                 
         let (data, response) = try await URLSession.shared.data(from: url)
         
+        print(url)
+
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200
         else { throw DownloadError.statusNotOK }
         
-        print(url)
         do {
             return try JSONDecoder().decode(T.self, from: data)
         } catch {

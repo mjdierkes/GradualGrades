@@ -31,12 +31,21 @@ struct AssignmentPage: View {
                     VStack(alignment: .leading) {
                                           
                         
-                        if classDetails.getGrades(ofType: .major).count > 1{
-                            Text("Majors")
-                                .font(.title2)
-                                .bold()
+                        if classDetails.majorGrades.count > 1{
+                            
+                            HStack {
+                                Text("Majors")
+                                    .font(.title2)
+                                    .bold()
+                                Spacer()
+                                Text(String(classDetails.majorAverage))
+                                    .foregroundColor(classDetails.majorColor())
+                                    .font(.headline)
 
-                            ForEach(classDetails.getGrades(ofType: GradeType.major)) { assessment in
+                            }
+                            
+
+                            ForEach(classDetails.majorGrades) { assessment in
                                 NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
                                     SimpleAssignmentView(assessment: assessment)
                                 }
@@ -47,12 +56,19 @@ struct AssignmentPage: View {
                                 .frame(height: 40)
                         }
                         
-                        if classDetails.getGrades(ofType: .minor).count > 1{
-                            Text("Minors")
-                                .font(.title2)
-                                .bold()
+                        if classDetails.minorGrades.count > 1{
+                            HStack  {
+                                Text("Minors")
+                                    .font(.title2)
+                                    .bold()
+                                Spacer()
+                                Text(String(classDetails.minorAverage))
+                                    .foregroundColor(classDetails.minorColor())
+                                    .font(.headline)
+                            }
+                            
                         
-                            ForEach(classDetails.getGrades(ofType: GradeType.minor)) { assessment in
+                            ForEach(classDetails.minorGrades) { assessment in
                                 NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
                                     SimpleAssignmentView(assessment: assessment)
                                 }

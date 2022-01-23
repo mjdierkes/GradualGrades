@@ -29,8 +29,7 @@ struct CardView: View {
                     Text("Upcoming SAT \(manager.nextSAT)")
                         .font(.title2)
                     Spacer()
-                    Button {
-                    } label: {
+                    NavigationLink(destination: UpcomingAssignmentPage()) {
                         Text("Learn More")
                     }
                     .tint(Color("GradGreen"))
