@@ -11,7 +11,6 @@ struct HomePage: View {
     
     @EnvironmentObject var manager: AppManager
     @State private var liveGPA = ""
-    
     var body: some View {
         
         VStack {
@@ -33,7 +32,22 @@ struct HomePage: View {
                         .padding(.horizontal)
                         .padding(.vertical, 1)
                     
-                    CardView()
+                    
+                    if manager.cards.count > 0 {
+                        ZStack {
+                            Color("BackgroundGray")
+                            ForEach(0..<manager.cards.count, id: \.self) { index in
+                                CardView() {
+                                    withAnimation {
+                                        manager.removeCard(at: index)
+                                    }
+                                }
+                            }
+                        }
+                        .frame(height: 200)
+                    }
+                    
+                   
                     
                     Text("Grades")
                         .padding()

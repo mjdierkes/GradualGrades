@@ -17,6 +17,8 @@ import KeychainAccess
     @Published var nextSAT = ""
     @Published var error = ""
 
+    @Published var cards = [String](repeating: "Testing", count: 10)
+
     
     let defaults = UserDefaults.standard
     
@@ -98,6 +100,12 @@ import KeychainAccess
             classes[i].name = name
         }
     }
+    
+    
+    func removeCard(at index: Int) {
+        cards.remove(at: index)
+    }
+    
     
     
 }

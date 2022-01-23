@@ -10,11 +10,13 @@ import SwiftUI
 struct CardView: View {
     
     @EnvironmentObject var manager: AppManager
+    @State private var offset = CGSize.zero
     
+    var removal: (() -> Void)? = nil
+
     var body: some View {
         
         ZStack {
-            Color("BackgroundGray")
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
                     .foregroundColor(Color.white)
@@ -37,25 +39,41 @@ struct CardView: View {
                 .padding(.trailing, 19)
             }
             .padding()
-            
-            VStack {
-                HStack {
-                    Spacer()
-                    ZStack {
-                        Circle()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color("GradGreen"))
-                        Text("5")
-                            .foregroundColor(Color.white)
-                            .bold()
+            .rotationEffect(.degrees(Double(offset.width / 10)))
+            .offset(x: offset.width * 1, y: 0)
+            .opacity(2 - Double(abs(offset.width / 100)))
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        offset = gesture.translation
                     }
-                }
-                Spacer()
-            }
-            .offset(x: -8, y: 10)
+                    .onEnded { _ in
+                        if abs(offset.width) > 100 {
+                            removal?()
+                        } else {
+                            withAnimation {
+                                offset = .zero
+                            }
+                        }
+                    }
+            )
+//            VStack {
+//                HStack {
+//                    Spacer()
+//                    ZStack {
+//                        Circle()
+//                            .frame(width: 30, height: 30)
+//                            .foregroundColor(Color("GradGreen"))
+//                        Text("5")
+//                            .foregroundColor(Color.white)
+//                            .bold()
+//                    }
+//                }
+//                Spacer()
+//            }
+//            .offset(x: -8, y: 10)
         }
-        .background(Color("BackgroundGray"))
-        .frame(height: 200)
+        
     }
 }
 
