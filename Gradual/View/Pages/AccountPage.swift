@@ -10,129 +10,130 @@ import SwiftUI
 struct AccountPage: View {
     
     @Environment(\.dismiss) var dismiss
+
     @EnvironmentObject var manager: AppManager
-    
-    @State private var faceID = false
+    @State private var preferences = PreferencesManager()
     @State private var showingAlert = false
     
     var body: some View {
         
-        VStack {
-            VStack(alignment: .leading){
-                HStack {
-                    Spacer()
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 25, height: 25)
-                    }
-                    .tint(.black)
-                }
-                
-                
-                Text("Hi \(manager.student?.fullName ?? "ERROR")")
-                    .font(.title)
-                
-                Spacer()
-                
-                Text("Security")
-                    .font(.title2)
-                
-                VStack {
-                    Toggle("Face ID", isOn: $faceID)
-                    Divider()
-                }
-                .padding(.bottom)
-                
-                
-                HStack {
-                    Text("Accounts")
-                        .font(.title2)
+        NavigationView {
+            VStack {
+               
+
+                Form {
                     
-                    Spacer()
-                    Button {
-                        
-                    } label: {
-                        Text("Add Account")
-                    }
-                    .tint(Color("GradGreen"))
-                }
-                
-                VStack {
-                    HStack {
-                        Text("Mason Dierkes")
-                        Spacer()
-                        Button {
-                            
-                        } label: {
-                            Text("Sign In")
+                    NavigationLink(destination: AccountDetailPage()) {
+                        ZStack {
+                            VStack {
+                                Circle()
+                                    .frame(width: 75, height: 75)
+                                
+                                if let student = manager.student {
+                                    Text(student.fullName)
+                                        .font(.title2.weight(.semibold))
+                                    Text("Student")
+                                }
+                               
+                            }
+                            .frame(height: 175)
+                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                         }
-                        .tint(Color("GradGreen"))
                     }
-                    Divider()
-                    HStack {
-                        Text("John Doe")
-                        Spacer()
-                        Button {
-                            
-                        } label: {
-                            Text("Signed In")
-                        }
-                        .tint(Color("BorderGray"))
-                    }
-                    Divider()
-                }
-                .padding(.vertical)
-                
-            }
-            
-            if let student = manager.student {
-                VStack {
-                    HStack{
-                        InfoDivider(key: "Student ID", value: student.id)
-                        InfoDivider(key: "Grade", value: student.grade)
-                    }
+                    
+
+//                    Section("Security") {
+//                        Toggle(isOn: $preferences.requireFaceID) {
+//                            Text("Face ID")
+//                        }
+//
+//                    }
+//
+//                    Section("Appearance") {
+//
+//                        Toggle(isOn: $preferences.showColors) {
+//                            Text("Style Grades")
+//                        }
                         
-                    InfoDivider(key: "Campus", value: student.campus)
-                    InfoDivider(key: "Birthdate", value: student.longBirthdate)
+//                        Picker("Appearance", selection: $preferences.appearance) {
+//                            ForEach(Appearance.allCases) { section in
+//                                Text(section.displayName)
+//                                    .tag(section)
+//                            }
+//                        }
+                        
+                        
+                        
+//
+//                    }
+//
+//                    Section("Accounts") {
+//
+//                        HStack {
+//                            Text("Mason Dierkes")
+//                            Spacer()
+//                            Text("Signed In")
+//                                .foregroundColor(Color("BorderGray"))
+//                        }
+//
+//                        HStack {
+//                            Text("John Doe")
+//                            Spacer()
+//                            Button {
+//
+//                            } label: {
+//                                Text("Sign In")
+//                                    .foregroundColor(Color("GradGreen"))
+//                            }
+//                        }
+//
+//                    }
+                
+                    Section {
+                        Button {
+                            showingAlert = true
+                        } label: {
+                            Text("Sign out")
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+
+                        }
+                        .tint(.red)
+                        .alert(isPresented:$showingAlert) {
+                            Alert(
+                                title: Text("Are you sure you want to sign out?"),
+                                primaryButton: .destructive(Text("Sign out")) {
+                                    manager.signOut()
+                                    dismiss()
+                                },
+                                secondaryButton: .cancel()
+                            )
+                        }
+                    }
+                    
+                    
                 }
-                .padding(.vertical)
             }
-            
-            
-            NavigationLink(destination: LoginPage(), label: {
-                Button {
-                    showingAlert = true
-                } label: {
-                    Text("Sign out")
-                }
-                .tint(.red)
-                .alert(isPresented:$showingAlert) {
-                    Alert(
-                        title: Text("Are you sure you want to sign out?"),
-                        primaryButton: .destructive(Text("Sign out")) {
-                            manager.signOut()
-                            dismiss()
-                        },
-                        secondaryButton: .cancel()
-                    )
-                }
-            })
-            
-           
-           
-            
+            .navigationTitle("Account")
         }
         
-        .padding()
+        
+        
+        
+        
     }
 }
 
-//struct UserPage_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AccountPage()
-//    }
-//}
+enum Appearance: String, Identifiable, CaseIterable {
+    case light, dark, system
+    
+    var displayName: String { rawValue.capitalized }
+    
+    var id: String { self.rawValue }
+}
+    
+
+struct UserPage_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountPage()
+    }
+}

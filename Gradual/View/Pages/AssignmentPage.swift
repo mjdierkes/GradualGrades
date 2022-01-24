@@ -16,9 +16,6 @@ struct AssignmentPage: View {
         
         VStack {
             
-            AssignmentHeader(classDetails: $classDetails)
-                .padding()
-            
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
@@ -40,9 +37,12 @@ struct AssignmentPage: View {
                                 Spacer()
                                 Text(String(classDetails.majorAverage))
                                     .foregroundColor(classDetails.majorColor())
-                                    .font(.headline)
+                                    .font(.title2)
+                                    .bold()
 
                             }
+                            .padding(.bottom)
+
                             
 
                             ForEach(classDetails.majorGrades) { assessment in
@@ -64,8 +64,10 @@ struct AssignmentPage: View {
                                 Spacer()
                                 Text(String(classDetails.minorAverage))
                                     .foregroundColor(classDetails.minorColor())
-                                    .font(.headline)
+                                    .font(.title2)
+                                    .bold()
                             }
+                            .padding(.bottom)
                             
                         
                             ForEach(classDetails.minorGrades) { assessment in
@@ -82,8 +84,9 @@ struct AssignmentPage: View {
                 }
             }
         }
-        .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle(classDetails.name)
+        .navigationBarTitleDisplayMode(.inline)
+        
     }
 }
 

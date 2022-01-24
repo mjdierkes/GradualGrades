@@ -63,6 +63,8 @@ struct UpcomingAssignmentPage: View {
             
         }
         .padding()
+        .navigationBarTitleDisplayMode(.inline)
+
     }
 }
 

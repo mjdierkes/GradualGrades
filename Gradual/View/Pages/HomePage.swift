@@ -11,16 +11,17 @@ struct HomePage: View {
     
     @EnvironmentObject var manager: AppManager
     @State private var liveGPA = ""
+    @State private var showingSheet = false
+    @State private var showingAccountPage = false
+
     var body: some View {
         
         VStack {
-            Header()
             ScrollView(.vertical, showsIndicators: false) {
                 NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
                 
                 VStack(alignment: .leading){
                     Text("Good \(dayTime()) \(manager.firstName)")
-                        .padding(.top, 10)
                         .padding(.horizontal)
                         .font(.title2)
                         .font(.system(.body, design: .rounded))
@@ -30,7 +31,14 @@ struct HomePage: View {
                         .font(.system(.body, design: .rounded))
                         .fontWeight(.medium)
                         .padding(.horizontal)
-                        .padding(.vertical, 1)
+                        .padding(.top, 1)
+                    
+                    Text("Live GPA")
+                        .bold()
+                        .foregroundColor(Color("GradGreen"))
+                        .padding(.horizontal)
+                        .padding(.bottom, 1)
+                    
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         
@@ -50,7 +58,7 @@ struct HomePage: View {
                         .frame(height: 200)
                     }
                     
-                   
+                    
                     
                     Text("Grades")
                         .padding()
@@ -66,8 +74,51 @@ struct HomePage: View {
                     
                 }
             }
-            .navigationBarHidden(true)
+            .toolbar {
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        showingSheet.toggle()
+                    } label: {
+                        ZStack {
+                            HStack {
+                                Image(systemName: "star.circle.fill")
+                                Text("Free Premium")
+                                    .font(.system(size: 14))
+                            }
+                            .foregroundColor(Color("GradGreen"))
+                            .padding(.vertical, 3)
+                            .padding(.horizontal, 12)
+                            .background(Color("LowGreen"))
+                            .cornerRadius(50)
+                        }
+                    }
+
+                }
+                
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingAccountPage.toggle()
+                    } label: {
+                        Image(systemName: "person")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 25, height: 25)
+                    }
+                    .tint(.black)
+                    .scaleEffect(0.9)
+                    .padding(.trailing)
+                }
+                
+            }
             .navigationBarBackButtonHidden(true)
+            .sheet(isPresented: $showingSheet){
+                PremiumPage()
+            }
+            .sheet(isPresented: $showingAccountPage){
+                AccountPage()
+            }
         }
         
     }
