@@ -176,7 +176,7 @@ struct Assignment: Codable, Identifiable {
     var calculatedScore: String {
         if let score = Double(score){
             if let totalPoints = Double(totalPoints){
-                return String((score / totalPoints) * 100)
+                return String(((score / totalPoints) * 100).roundTo(places: 1))
             }
         }
         return score

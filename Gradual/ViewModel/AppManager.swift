@@ -20,10 +20,17 @@ import KeychainAccess
     @Published var cards = [String](repeating: "Testing", count: 1)
 
     
+    @KeychainStorage("username") var savedUsername = ""
+    @KeychainStorage("password") var savedPassword = ""
+    
     let defaults = UserDefaults.standard
     
     var firstName: String {
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
+    }
+    
+    func reload() async throws {
+        try await loadData(username: savedUsername, password: savedPassword)
     }
     
     /// Attempts to access the API and initialize stored properties.
@@ -32,6 +39,7 @@ import KeychainAccess
         
         let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
         classes = loadedClasses.currentClasses
+        filterClassnames()
 
         gpa = try await gradeService.fetchData(from: .GPA)
         
@@ -44,7 +52,6 @@ import KeychainAccess
             print("SAT Loaded from defaults")
         }
         
-        filterClassnames()
         student = try await gradeService.fetchData(from: .studentInfo)
     }
     

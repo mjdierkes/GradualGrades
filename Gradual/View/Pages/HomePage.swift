@@ -96,6 +96,18 @@ struct HomePage: View {
 
                 }
                 
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    AsyncButton(systemImageName: "arrow.clockwise", action: {
+                        do {
+                            try await manager.reload()
+                        } catch {
+                            print("Unable to reload")
+                        }
+                    })
+                        .tint(Color("Text"))
+
+                }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {

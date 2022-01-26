@@ -71,6 +71,7 @@ struct UpcomingAssignmentPage: View {
         .navigationBarTitleDisplayMode(.inline)
         .fullScreenCover(isPresented: $showSafari, content: {
                 SFSafariViewWrapper(url: URL(string: "https://satsuite.collegeboard.org/sat/registration")!)
+                .ignoresSafeArea()
         })
         .sheet(isPresented: $showingGoalPage){
             GoalSetPage()
