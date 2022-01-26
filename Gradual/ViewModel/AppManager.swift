@@ -46,7 +46,6 @@ import KeychainAccess
         
         filterClassnames()
         student = try await gradeService.fetchData(from: .studentInfo)
-        print(student)
     }
     
     /// Invalidates the users credentials and removes all stored data.

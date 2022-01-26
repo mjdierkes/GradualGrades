@@ -35,10 +35,13 @@ struct AssignmentPage: View {
                                     .font(.title2)
                                     .bold()
                                 Spacer()
-                                Text(String(classDetails.majorAverage))
-                                    .foregroundColor(classDetails.majorColor())
-                                    .font(.title2)
-                                    .bold()
+                                if let average = classDetails.majorAverage {
+                                    Text(String(average) + "%")
+                                        .foregroundColor(classDetails.majorColor())
+                                        .font(.title2)
+                                        .bold()
+                                }
+                                
 
                             }
                             .padding(.bottom)
@@ -62,10 +65,13 @@ struct AssignmentPage: View {
                                     .font(.title2)
                                     .bold()
                                 Spacer()
-                                Text(String(classDetails.minorAverage))
-                                    .foregroundColor(classDetails.minorColor())
-                                    .font(.title2)
-                                    .bold()
+                                if let average = classDetails.minorAverage {
+                                    Text(String(average) + "%")
+                                        .foregroundColor(classDetails.minorColor())
+                                        .font(.title2)
+                                        .bold()
+                                }
+                                
                             }
                             .padding(.bottom)
                             

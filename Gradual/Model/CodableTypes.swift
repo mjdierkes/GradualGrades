@@ -88,12 +88,20 @@ struct Class: Codable, Identifiable {
         return getGrades(ofType: .minor)
     }
     
-    var majorAverage: Double {
-        formatter.getAverage(for: majorGrades).roundTo(places: 2)
+    var majorAverage: Double? {
+        let average = formatter.getAverage(for: majorGrades).roundTo(places: 2)
+        if average.isNaN{
+            return nil
+        }
+        return average
     }
     
-    var minorAverage: Double {
-        formatter.getAverage(for: minorGrades).roundTo(places: 2)
+    var minorAverage: Double? {
+        let average = formatter.getAverage(for: minorGrades).roundTo(places: 2)
+        if average.isNaN {
+            return nil
+        }
+        return average
     }
     
     var roundedGrade: String {
@@ -219,19 +227,22 @@ struct UpcomingSATs: Codable {
 /// Helps format how grades are displayed.
 struct GradeFormatter {
     /// Returns a color based on the users score in that class.
-    func getColor(from score: Double) -> Color {
-        switch score {
-        case _ where score < 80:
-            return Color("DefaultFailing")
-            
-        case _ where score < 90:
-            return Color("Default-B")
-            
-        case _ where score < 100:
-            return Color("GradGreen")
-            
-        default: return Color("PerfectlyInsane")
+    func getColor(from score: Double?) -> Color {
+        if let score = score {
+            switch score {
+            case _ where score < 80:
+                return Color("DefaultFailing")
+                
+            case _ where score < 90:
+                return Color("Default-B")
+                
+            case _ where score < 100:
+                return Color("GradGreen")
+                
+            default: return Color("PerfectlyInsane")
+            }
         }
+        return Color("PerfectlyInsane")
     }
     
     /// Calculates the new average score for assignments.
@@ -240,12 +251,16 @@ struct GradeFormatter {
     /// Make sure to pass in Minor and Major grades separately.
     func getAverage(for assignments: [Assignment]) -> Double{
         var average: Double = 0
+        var count = Double(assignments.count)
+        
         for assessment in assignments {
             if let score = Double(assessment.score){
                 average += score
+            } else {
+                count -= 1
             }
         }
-        average /= Double(assignments.count)
+        average /= count
 
         return average
     }
