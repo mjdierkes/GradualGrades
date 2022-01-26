@@ -10,6 +10,8 @@ import SwiftUI
 struct UpcomingAssignmentPage: View {
     
     @State private var showSafari: Bool = false
+    @State private var showingGoalPage = false
+    @EnvironmentObject var preferences: PreferencesManager
 
     var body: some View {
         VStack {
@@ -28,9 +30,9 @@ struct UpcomingAssignmentPage: View {
                 HStack {
                     ZStack{
                         Button {
-                            
+                            showingGoalPage.toggle()
                         } label: {
-                            Text("Goal 1600")
+                            Text("Goal \(preferences.testGoal)")
                                 .font(.system(size: 14))
                                 .foregroundColor(Color("GradGreen"))
                         }
@@ -70,6 +72,9 @@ struct UpcomingAssignmentPage: View {
         .fullScreenCover(isPresented: $showSafari, content: {
                 SFSafariViewWrapper(url: URL(string: "https://satsuite.collegeboard.org/sat/registration")!)
         })
+        .sheet(isPresented: $showingGoalPage){
+            GoalSetPage()
+        }
 
     }
 }

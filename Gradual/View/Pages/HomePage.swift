@@ -106,7 +106,7 @@ struct HomePage: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25)
                     }
-                    .tint(.black)
+                    .tint(Color("Text"))
                     .scaleEffect(0.9)
                     .padding(.trailing)
                 }
@@ -120,6 +120,7 @@ struct HomePage: View {
                 AccountPage()
             }
         }
+        .background(Color("Background"))
         
     }
     

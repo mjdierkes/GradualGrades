@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var manager = AppManager()
+    @StateObject var preferences = PreferencesManager()
+
     @State private var dataLoaded = false
     @KeychainStorage("username") var savedUsername = ""
     @KeychainStorage("password") var savedPassword = ""
@@ -17,6 +19,7 @@ struct ContentView: View {
     var body: some View {
         LoginPage()
             .environmentObject(manager)
+            .environmentObject(preferences)
     }
 }
 

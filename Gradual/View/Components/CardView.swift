@@ -19,7 +19,7 @@ struct CardView: View {
         ZStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color("Background"))
                 
                 VStack(alignment: .leading) {
                     Image("CollegeBoard-Logo")

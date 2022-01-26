@@ -13,6 +13,7 @@ class PreferencesManager: ObservableObject{
     @Published var requireFaceID = false
     @Published var showColors = true
     @Published var appearance = Appearance.light
+    @Published var testGoal = "1600"
     
     init() {
         loadDefaults()

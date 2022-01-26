@@ -18,10 +18,11 @@ struct SimpleClassView: View {
         VStack {
             HStack {
                 Text(classData.name)
+                    .foregroundColor(Color("Text"))
                 Spacer()
                 Text( (isActive) ?  "-" : String(classData.roundedGrade))
                     .fontWeight(.heavy)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(.white)
                     .padding(.horizontal, 23)
                     .padding(.vertical, 6)
                     .frame(width: 100)

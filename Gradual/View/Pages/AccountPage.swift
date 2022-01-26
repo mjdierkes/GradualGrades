@@ -12,7 +12,7 @@ struct AccountPage: View {
     @Environment(\.dismiss) var dismiss
 
     @EnvironmentObject var manager: AppManager
-    @State private var preferences = PreferencesManager()
+    @EnvironmentObject var preferences: PreferencesManager
     @State private var showingAlert = false
     
     var body: some View {
