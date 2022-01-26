@@ -19,7 +19,7 @@ struct SimpleClassView: View {
             HStack {
                 Text(classData.name)
                 Spacer()
-                Text( (isActive) ?  "-" : String(classData.grade))
+                Text( (isActive) ?  "-" : String(classData.roundedGrade))
                     .fontWeight(.heavy)
                     .foregroundColor(Color.white)
                     .padding(.horizontal, 23)

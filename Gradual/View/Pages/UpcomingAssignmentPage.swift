@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct UpcomingAssignmentPage: View {
+    
+    @State private var showSafari: Bool = false
+
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
@@ -49,7 +52,7 @@ struct UpcomingAssignmentPage: View {
             HStack {
                 Spacer()
                 Button {
-                    
+                    showSafari.toggle()
                 } label: {
                     Text("Register")
                         .font(.headline)
@@ -64,6 +67,9 @@ struct UpcomingAssignmentPage: View {
         }
         .padding()
         .navigationBarTitleDisplayMode(.inline)
+        .fullScreenCover(isPresented: $showSafari, content: {
+                SFSafariViewWrapper(url: URL(string: "https://satsuite.collegeboard.org/sat/registration")!)
+        })
 
     }
 }

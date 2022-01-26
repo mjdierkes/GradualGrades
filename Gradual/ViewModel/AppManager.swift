@@ -17,7 +17,7 @@ import KeychainAccess
     @Published var nextSAT = ""
     @Published var error = ""
 
-    @Published var cards = [String](repeating: "Testing", count: 10)
+    @Published var cards = [String](repeating: "Testing", count: 1)
 
     
     let defaults = UserDefaults.standard
@@ -46,6 +46,7 @@ import KeychainAccess
         
         filterClassnames()
         student = try await gradeService.fetchData(from: .studentInfo)
+        print(student)
     }
     
     /// Invalidates the users credentials and removes all stored data.

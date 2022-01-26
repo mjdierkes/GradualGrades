@@ -96,6 +96,15 @@ struct Class: Codable, Identifiable {
         formatter.getAverage(for: minorGrades).roundTo(places: 2)
     }
     
+    var roundedGrade: String {
+        if let score = Double(grade){
+            if score >= 100 {
+                return String(Int(score.roundTo(places: 0)))
+            }
+            return String(score.roundTo(places: 2))
+        }
+        return grade
+    }
     private enum CodingKeys: String, CodingKey {
         case name, grade, weight, credits, assignments
     }
