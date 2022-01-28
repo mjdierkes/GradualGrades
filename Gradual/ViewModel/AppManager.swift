@@ -37,7 +37,7 @@ import KeychainAccess
             guard let username = try self.keychain.get("username") else { return }
             guard let password = try self.keychain.get("password") else { return }
         
-            try await loadData(username: username, password: password)Z
+            try await loadData(username: username, password: password)
         } catch {
             print("ERROR", error)
         }
