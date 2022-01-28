@@ -19,9 +19,9 @@ import KeychainAccess
 
     @Published var cards = [String](repeating: "Testing", count: 1)
 
-    
-    @KeychainStorage("username") var savedUsername = ""
-    @KeychainStorage("password") var savedPassword = ""
+
+    let keychain = Keychain(service: "life.gradual.api")
+
     
     let defaults = UserDefaults.standard
     
@@ -29,18 +29,31 @@ import KeychainAccess
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
-    func reload() async throws {
-        try await loadData(username: savedUsername, password: savedPassword)
+    /// Attempt to fetch username and password, then load data from server.
+    /// Call this function user login and reload button.
+    func reload() async throws{
+        print("RELOAD")
+        do {
+            guard let username = try self.keychain.get("username") else { return }
+            guard let password = try self.keychain.get("password") else { return }
+        
+            try await loadData(username: username, password: password)Z
+        } catch {
+            print("ERROR", error)
+        }
     }
     
     /// Attempts to access the API and initialize stored properties.
-    func loadData(username: String, password: String) async throws {
+    func loadData(username: String, password: String, newSignIn: Bool = false) async throws {
         let gradeService = GradeService(username, password)
-        
         let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
+        
+        if(newSignIn){
+            saveCredentials(username: username, password: password)
+        }
+        
         classes = loadedClasses.currentClasses
         filterClassnames()
-
         gpa = try await gradeService.fetchData(from: .GPA)
         
         let loadedSATs: UpcomingSATs = try await gradeService.fetchData(from: .satDates)
@@ -57,17 +70,42 @@ import KeychainAccess
     
     /// Invalidates the users credentials and removes all stored data.
     func signOut() {
-        let keychain = Keychain(service: "credentials")
+        let keychain = Keychain(service: "life.gradual.api")
         do {
             try keychain.remove("username")
             try keychain.remove("password")
-        } catch let error {
+        } catch {
             print("error: \(error)")
         }
         student = nil
     }
-
     
+    func saveCredentials(username: String, password: String){
+        print("SIGN IN")
+
+        DispatchQueue.global().async {
+            do {
+                try self.keychain
+                    .set(username, key: "username")
+                
+                guard let requireFaceID = self.defaults.object(forKey: "FaceID") else { return }
+                print(requireFaceID)
+                if requireFaceID as? Bool ?? false {
+                    print("FaceID", requireFaceID)
+                    try self.keychain
+                        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
+                        .set(password, key: "password")
+                }
+                else {
+                    try self.keychain
+                        .set(password, key: "password")
+                }
+                
+            } catch {
+                print(error)
+            }
+        }
+    }
 
     
     /// Cleans up the class names by removing unnecessary info.
@@ -98,7 +136,5 @@ import KeychainAccess
     func removeCard(at index: Int) {
         cards.remove(at: index)
     }
-    
-    
     
 }

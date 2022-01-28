@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 class PreferencesManager: ObservableObject{
     
     @Published var requireFaceID = false
     @Published var showColors = true
-    @Published var appearance = Appearance.light
+    @Published var appearance: ColorScheme? = nil
     @Published var testGoal = "1600"
     
     init() {

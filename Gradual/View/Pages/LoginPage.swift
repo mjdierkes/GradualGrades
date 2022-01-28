@@ -14,9 +14,6 @@ struct LoginPage: View {
     @State private var username = ""
     @State private var password = ""
     
-    @KeychainStorage("username") var savedUsername = ""
-    @KeychainStorage("password") var savedPassword = ""
-
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]
     
@@ -71,7 +68,7 @@ struct LoginPage: View {
         .onAppear(perform: {
             Task {
                 do {
-                    try await manager.loadData(username: savedUsername, password: savedPassword)
+                    try await manager.reload()
                 } catch {
                     print("Unable to load data from Keynanchain")
                 }
@@ -80,10 +77,8 @@ struct LoginPage: View {
     }
     
     func loadData() async {
-        savedUsername =  username
-        savedPassword = password
         do {
-            try await manager.loadData(username: username, password: password)
+            try await manager.loadData(username: username, password: password, newSignIn: true)
         } catch {
             manager.error = error.localizedDescription
             print(manager.error)

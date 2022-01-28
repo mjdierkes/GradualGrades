@@ -15,6 +15,8 @@ struct AccountPage: View {
     @EnvironmentObject var preferences: PreferencesManager
     @State private var showingAlert = false
     
+    @AppStorage("FaceID") var requireFaceID: Bool = false
+    
     var body: some View {
         
         NavigationView {
@@ -42,30 +44,44 @@ struct AccountPage: View {
                     }
                     
 
-//                    Section("Security") {
-//                        Toggle(isOn: $preferences.requireFaceID) {
-//                            Text("Face ID")
-//                        }
+                    Section("Security") {
+                        Toggle(isOn: $requireFaceID) {
+                            Text("Face ID")
+                        }
+
+                    }
+                    
+                    Button {
+                        preferences.appearance = .dark
+                    } label: {
+                        Text("Dark")
+                    }
 //
-//                    }
-//
-//                    Section("Appearance") {
-//
-//                        Toggle(isOn: $preferences.showColors) {
-//                            Text("Style Grades")
-//                        }
+                    Section("Appearance") {
+
+                        Toggle(isOn: $preferences.showColors) {
+                            Text("Style Grades")
+                        }
                         
-//                        Picker("Appearance", selection: $preferences.appearance) {
+                        Picker("Appearance", selection: $preferences.appearance) {
 //                            ForEach(Appearance.allCases) { section in
 //                                Text(section.displayName)
 //                                    .tag(section)
 //                            }
-//                        }
+                            Text("Light")
+                                .tag(ColorScheme.light)
+                            
+                            Text("Dark")
+                                .tag(ColorScheme.dark)
+                            
+                            Text("System")
+                        }
+
                         
                         
                         
-//
-//                    }
+
+                    }
 //
 //                    Section("Accounts") {
 //
@@ -114,6 +130,8 @@ struct AccountPage: View {
                 }
             }
             .navigationTitle("Account")
+            .preferredColorScheme(preferences.appearance)
+
         }
         
         
@@ -123,13 +141,13 @@ struct AccountPage: View {
     }
 }
 
-enum Appearance: String, Identifiable, CaseIterable {
-    case light, dark, system
-    
-    var displayName: String { rawValue.capitalized }
-    
-    var id: String { self.rawValue }
-}
+//enum Appearance: String, Identifiable, CaseIterable {
+//    case light, dark, system
+//    
+//    var displayName: String { rawValue.capitalized }
+//    
+//    var id: String { self.rawValue }
+//}
     
 
 struct UserPage_Previews: PreviewProvider {

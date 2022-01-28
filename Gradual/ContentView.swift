@@ -13,8 +13,6 @@ struct ContentView: View {
     @StateObject var preferences = PreferencesManager()
 
     @State private var dataLoaded = false
-    @KeychainStorage("username") var savedUsername = ""
-    @KeychainStorage("password") var savedPassword = ""
     
     var body: some View {
         LoginPage()
