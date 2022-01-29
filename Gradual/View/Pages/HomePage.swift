@@ -147,6 +147,7 @@ struct HomePage: View {
                 
             }
             .navigationBarBackButtonHidden(true)
+            
             .sheet(isPresented: $showingSheet){
                 PremiumPage()
             }

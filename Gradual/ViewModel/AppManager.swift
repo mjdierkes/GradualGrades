@@ -33,14 +33,10 @@ import KeychainAccess
     /// Call this function user login and reload button.
     func reload() async throws{
         print("RELOAD")
-        do {
-            guard let username = try self.keychain.get("username") else { return }
-            guard let password = try self.keychain.get("password") else { return }
-        
-            try await loadData(username: username, password: password)
-        } catch {
-            print("ERROR", error)
-        }
+        guard let username = try self.keychain.get("username") else { return }
+        guard let password = try self.keychain.get("password") else { return }
+    
+        try await loadData(username: username, password: password)
     }
     
     /// Attempts to access the API and initialize stored properties.

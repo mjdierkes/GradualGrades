@@ -10,15 +10,17 @@ import SwiftUI
 struct AccountPage: View {
     
     @Environment(\.dismiss) var dismiss
-
+//    @Environment(\.colorScheme) var
+    
     @EnvironmentObject var manager: AppManager
     @EnvironmentObject var preferences: PreferencesManager
     @State private var showingAlert = false
     
     @AppStorage("FaceID") var requireFaceID: Bool = false
     @AppStorage("StyleGrades") var styleGrades: Bool = true
-    @AppStorage("ColorScheme") var isDarkMode: Appearance = .light
+    @AppStorage("ColorScheme") var preferredAppearance: Appearance = .light
     
+    @State private var selectedAppearance = 1
     
     var body: some View {
         
@@ -54,12 +56,6 @@ struct AccountPage: View {
 
                     }
                     
-                    Button {
-                        preferences.appearance = .dark
-                    } label: {
-                        Text("Dark")
-                    }
-//
                     Section("Appearance") {
 
                         Toggle(isOn: $styleGrades) {
@@ -68,36 +64,28 @@ struct AccountPage: View {
                         
                         
                         
-                        Picker("Mode", selection: $preferences.appearance){
-                            ForEach(Appearance.allCases) { option in
-                                Text(option.rawValue)
-                              }
+                        Picker(selection: $selectedAppearance, label: Text("Appearance")) {
+                            Text("System Default").tag(1)
+                            Text("Light").tag(2)
+                            Text("Dark").tag(3)
+                        }
+                        .onChange(of: selectedAppearance) { value in
+                            print(selectedAppearance)
+                            switch selectedAppearance {
+                            case 1:
+                                preferences.appearance = nil
+                            case 2:
+                                preferences.appearance = .light
+                            case 3:
+                                preferences.appearance = .dark
+                            default:
+                                break
+                            }
                         }
 
-                    }
-//
-//                    Section("Accounts") {
-//
-//                        HStack {
-//                            Text("Mason Dierkes")
-//                            Spacer()
-//                            Text("Signed In")
-//                                .foregroundColor(Color("BorderGray"))
-//                        }
-//
-//                        HStack {
-//                            Text("John Doe")
-//                            Spacer()
-//                            Button {
-//
-//                            } label: {
-//                                Text("Sign In")
-//                                    .foregroundColor(Color("GradGreen"))
-//                            }
-//                        }
-//
-//                    }
-                
+                    
+                }
+                    
                     Section {
                         Button {
                             showingAlert = true
@@ -118,9 +106,6 @@ struct AccountPage: View {
                             )
                         }
                     }
-                    
-                    
-                }
             }
             .navigationTitle("Account")
             .preferredColorScheme(preferences.appearance)
@@ -129,7 +114,19 @@ struct AccountPage: View {
                     try await manager.reload()
                 }
             }
-
+            .onAppear {
+                switch preferences.appearance {
+                        case .none:
+                            selectedAppearance = 1
+                        case .light:
+                            selectedAppearance = 2
+                        case .dark:
+                            selectedAppearance = 3
+                        default:
+                            break
+                        }
+                    }
+            }
         }
         
         

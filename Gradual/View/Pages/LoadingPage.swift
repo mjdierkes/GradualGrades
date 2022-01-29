@@ -8,10 +8,39 @@
 import SwiftUI
 
 struct LoadingPage: View {
+    
+    @EnvironmentObject var manager: AppManager
+    @State private var finishedLoading = false
     var body: some View {
         VStack {
-            ProgressView()
+            if manager.student != nil {
+                NavigationView{
+                    HomePage()
+                }
+            }
+            
+            else {
+                ZStack {
+                    Color("GradGreen")
+                        .ignoresSafeArea()
+                    Image("GradHat")
+                }
+            }
         }
+        .onAppear(perform: {
+            Task {
+                do {
+                    try await manager.reload()
+                    withAnimation {
+                        finishedLoading = true
+                    }
+                    print(finishedLoading)
+                } catch {
+                    print("Unable to load data from Keynanchain")
+                }
+            }
+        })
+ 
     }
 }
 

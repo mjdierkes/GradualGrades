@@ -11,13 +11,14 @@ struct ContentView: View {
     
     @StateObject var manager = AppManager()
     @StateObject var preferences = PreferencesManager()
-
+    
     @State private var dataLoaded = false
     
     var body: some View {
         LoginPage()
             .environmentObject(manager)
             .environmentObject(preferences)
+            .preferredColorScheme(preferences.appearance)
     }
 }
 

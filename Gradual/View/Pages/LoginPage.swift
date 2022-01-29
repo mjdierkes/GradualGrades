@@ -69,6 +69,9 @@ struct LoginPage: View {
             Task {
                 do {
                     try await manager.reload()
+                    username = ""
+                    password = ""
+                    manager.error = ""
                 } catch {
                     print("Unable to load data from Keynanchain")
                 }
@@ -79,6 +82,9 @@ struct LoginPage: View {
     func loadData() async {
         do {
             try await manager.loadData(username: username, password: password, newSignIn: true)
+            username = ""
+            password = ""
+            manager.error = ""
         } catch {
             manager.error = error.localizedDescription
             print(manager.error)

@@ -93,6 +93,7 @@ struct AssignmentPage: View {
         .navigationBarTitle(classDetails.name)
         .navigationBarTitleDisplayMode(.inline)
         
+        
     }
 }
 

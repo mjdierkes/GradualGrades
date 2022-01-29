@@ -138,6 +138,9 @@ struct Class: Codable, Identifiable {
             if styleGrades as? Bool == false {
                 return Color("FlippedText")
             }
+            else {
+                return Color("FlippedText")
+            }
         }
         return Color("Text")
     }
