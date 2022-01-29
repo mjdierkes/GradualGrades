@@ -22,7 +22,7 @@ struct SimpleClassView: View {
                 Spacer()
                 Text( (isActive) ?  "-" : String(classData.roundedGrade))
                     .fontWeight(.heavy)
-                    .foregroundColor(.white)
+                    .foregroundColor(classData.textColor())
                     .padding(.horizontal, 23)
                     .padding(.vertical, 6)
                     .frame(width: 100)

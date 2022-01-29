@@ -79,6 +79,7 @@ struct Class: Codable, Identifiable {
     var assignments: [Assignment]
     
     let formatter = GradeFormatter()
+    let defaults = UserDefaults()
 
     var majorGrades: [Assignment] {
         return getGrades(ofType: .major)
@@ -130,6 +131,15 @@ struct Class: Codable, Identifiable {
     }
     func majorColor() -> Color {
         formatter.getColor(from: majorAverage)
+    }
+    
+    func textColor() -> Color {
+        if let styleGrades = defaults.object(forKey: "StyleGrades"){
+            if styleGrades as? Bool == false {
+                return Color("FlippedText")
+            }
+        }
+        return Color("Text")
     }
     
     /// Separates minor grades from major grades.
@@ -228,6 +238,15 @@ struct UpcomingSATs: Codable {
 struct GradeFormatter {
     /// Returns a color based on the users score in that class.
     func getColor(from score: Double?) -> Color {
+        
+        let defaults = UserDefaults()
+        
+        if let styleGrades = defaults.object(forKey: "StyleGrades"){
+            if styleGrades as? Bool == false {
+                return Color("Text")
+            }
+        }
+         
         if let score = score {
             switch score {
             case _ where score < 80:
@@ -242,6 +261,9 @@ struct GradeFormatter {
             default: return Color("PerfectlyInsane")
             }
         }
+        
+        
+        
         return Color("PerfectlyInsane")
     }
     

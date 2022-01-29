@@ -13,7 +13,9 @@ struct HomePage: View {
     @State private var liveGPA = ""
     @State private var showingSheet = false
     @State private var showingAccountPage = false
-
+    
+    @AppStorage("ShowGPA") var showGPA = true
+    
     var body: some View {
         
         VStack {
@@ -21,23 +23,43 @@ struct HomePage: View {
                 NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
                 
                 VStack(alignment: .leading){
+                    
                     Text("Good \(dayTime()) \(manager.firstName)")
                         .padding(.horizontal)
                         .font(.title2)
                         .font(.system(.body, design: .rounded))
+                        .onTapGesture(count: 2) {
+                            withAnimation {
+                                showGPA.toggle()
+                            }
+                            }
                     
-                    Text(manager.gpa?.roundedWeightedGPA ?? "ERROR")
-                        .font(.largeTitle)
-                        .font(.system(.body, design: .rounded))
-                        .fontWeight(.medium)
-                        .padding(.horizontal)
-                        .padding(.top, 1)
                     
-                    Text("Live GPA")
-                        .bold()
-                        .foregroundColor(Color("GradGreen"))
-                        .padding(.horizontal)
-                        .padding(.bottom, 1)
+                    if showGPA {
+                        
+                        VStack {
+                            Text(manager.gpa?.roundedWeightedGPA ?? "ERROR")
+                                .font(.largeTitle)
+                                .font(.system(.body, design: .rounded))
+                                .fontWeight(.medium)
+                                .padding(.horizontal)
+                                .padding(.top, 1)
+                            
+                            
+                            Text("Live GPA")
+                                .bold()
+                                .foregroundColor(Color("GradGreen"))
+                                .padding(.horizontal)
+                                .padding(.bottom, 1)
+                        }
+                        .onTapGesture(count: 2) {
+                            withAnimation {
+                                showGPA.toggle()
+                            }
+                        }
+                            
+                    }
+                    
                     
                     
                     ScrollView(.horizontal, showsIndicators: false) {

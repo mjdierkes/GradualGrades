@@ -16,6 +16,9 @@ struct AccountPage: View {
     @State private var showingAlert = false
     
     @AppStorage("FaceID") var requireFaceID: Bool = false
+    @AppStorage("StyleGrades") var styleGrades: Bool = true
+    @AppStorage("ColorScheme") var isDarkMode: Appearance = .light
+    
     
     var body: some View {
         
@@ -59,27 +62,17 @@ struct AccountPage: View {
 //
                     Section("Appearance") {
 
-                        Toggle(isOn: $preferences.showColors) {
+                        Toggle(isOn: $styleGrades) {
                             Text("Style Grades")
                         }
                         
-                        Picker("Appearance", selection: $preferences.appearance) {
-//                            ForEach(Appearance.allCases) { section in
-//                                Text(section.displayName)
-//                                    .tag(section)
-//                            }
-                            Text("Light")
-                                .tag(ColorScheme.light)
-                            
-                            Text("Dark")
-                                .tag(ColorScheme.dark)
-                            
-                            Text("System")
+                        
+                        
+                        Picker("Mode", selection: $preferences.appearance){
+                            ForEach(Appearance.allCases) { option in
+                                Text(option.rawValue)
+                              }
                         }
-
-                        
-                        
-                        
 
                     }
 //
@@ -131,6 +124,11 @@ struct AccountPage: View {
             }
             .navigationTitle("Account")
             .preferredColorScheme(preferences.appearance)
+            .onChange(of: styleGrades) { _ in
+                Task {
+                    try await manager.reload()
+                }
+            }
 
         }
         
@@ -141,13 +139,13 @@ struct AccountPage: View {
     }
 }
 
-//enum Appearance: String, Identifiable, CaseIterable {
-//    case light, dark, system
-//    
-//    var displayName: String { rawValue.capitalized }
-//    
-//    var id: String { self.rawValue }
-//}
+enum Appearance: String, Identifiable, CaseIterable {
+    case light, dark, system
+    
+    var displayName: String { rawValue.capitalized }
+    
+    var id: String { self.rawValue }
+}
     
 
 struct UserPage_Previews: PreviewProvider {
