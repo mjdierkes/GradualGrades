@@ -26,6 +26,7 @@ struct HomePage: View {
                     
                     Text("Good \(dayTime()) \(manager.firstName)")
                         .padding(.horizontal)
+                        .padding(.top)
                         .font(.title2)
                         .font(.system(.body, design: .rounded))
                         .onTapGesture(count: 2) {
@@ -35,10 +36,10 @@ struct HomePage: View {
                             }
                     
                     
-                    if showGPA {
-                        
-                        VStack {
-                            Text(manager.gpa?.roundedWeightedGPA ?? "ERROR")
+                    if let gpa = manager.gpa?.roundedWeightedGPA {
+                        if showGPA {
+                        VStack(alignment: .leading) {
+                            Text(gpa)
                                 .font(.largeTitle)
                                 .font(.system(.body, design: .rounded))
                                 .fontWeight(.medium)
@@ -57,9 +58,8 @@ struct HomePage: View {
                                 showGPA.toggle()
                             }
                         }
-                            
                     }
-                    
+                }
                     
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -98,27 +98,27 @@ struct HomePage: View {
             }
             .toolbar {
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        showingSheet.toggle()
-                    } label: {
-                        ZStack {
-                            HStack {
-                                Image(systemName: "star.circle.fill")
-                                Text("Free Premium")
-                                    .font(.system(size: 14))
-                            }
-                            .foregroundColor(Color("GradGreen"))
-                            .padding(.vertical, 3)
-                            .padding(.horizontal, 12)
-                            .background(Color("LowGreen"))
-                            .cornerRadius(50)
-                        }
-                    }
-
-                }
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button {
+//                        showingSheet.toggle()
+//                    } label: {
+//                        ZStack {
+//                            HStack {
+//                                Image(systemName: "star.circle.fill")
+//                                Text("Free Premium")
+//                                    .font(.system(size: 14))
+//                            }
+//                            .foregroundColor(Color("GradGreen"))
+//                            .padding(.vertical, 3)
+//                            .padding(.horizontal, 12)
+//                            .background(Color("LowGreen"))
+//                            .cornerRadius(50)
+//                        }
+//                    }
+//
+//                }
                 
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     
                     AsyncButton(systemImageName: "arrow.clockwise", action: {
                         do {
@@ -128,6 +128,7 @@ struct HomePage: View {
                         }
                     })
                         .tint(Color("Text"))
+                        .padding(.leading)
 
                 }
                 
@@ -156,6 +157,7 @@ struct HomePage: View {
             }
         }
         .background(Color("Background"))
+        .navigationBarTitleDisplayMode(.inline)
         
     }
     

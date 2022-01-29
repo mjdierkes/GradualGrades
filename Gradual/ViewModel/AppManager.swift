@@ -50,8 +50,13 @@ import KeychainAccess
         
         classes = loadedClasses.currentClasses
         filterClassnames()
-        gpa = try await gradeService.fetchData(from: .GPA)
         
+        do {
+            gpa = try await gradeService.fetchData(from: .GPA)
+        } catch {
+            print("Unable to load GPA")
+        }
+//
         let loadedSATs: UpcomingSATs = try await gradeService.fetchData(from: .satDates)
         if !loadedSATs.liveDates.isEmpty {
             nextSAT = loadedSATs.liveDates[0]
@@ -60,7 +65,7 @@ import KeychainAccess
             nextSAT = defaults.object(forKey: "SAT-Date") as! String
             print("SAT Loaded from defaults")
         }
-        
+//
         student = try await gradeService.fetchData(from: .studentInfo)
     }
     

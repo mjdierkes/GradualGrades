@@ -10,7 +10,6 @@ import SwiftUI
 struct AccountPage: View {
     
     @Environment(\.dismiss) var dismiss
-//    @Environment(\.colorScheme) var
     
     @EnvironmentObject var manager: AppManager
     @EnvironmentObject var preferences: PreferencesManager
