@@ -13,6 +13,7 @@ struct LoginPage: View {
     
     @State private var username = ""
     @State private var password = ""
+    @State private var dataLoading = true
     
     // TODO: Dynamically update list
     static let districts = ["Frisco ISD", "Plano ISD"]
@@ -20,50 +21,68 @@ struct LoginPage: View {
     var body: some View {
         
         NavigationView {
-            VStack(alignment: .leading) {
-                
-                Text(manager.error)
-                
-                GradualLogo()
-                
-                Text("Connect to your \nGrades")
-                    .font(.largeTitle)
-                
-                VStack {
-                    TextField("Username", text: $username)
-                        .textFieldStyle(.roundedBorder)
-                    SecureField("Password", text: $password)
-                        .textFieldStyle(.roundedBorder)
-                        .textContentType(.password)
-                        .padding(.bottom, 60)
-                    
-                    
-                    AsyncButton("Sign In", action: loadData)
-                        .font(.headline)
-                        .foregroundColor(Color.white)
-                        .padding(.vertical)
-                        .tint(.black)
-                        .buttonStyle(.borderedProminent)
-                        .controlSize(.large)
-                    
-                    NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {}
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("I'm a parent")
-                            .foregroundColor(Color("GradGreen"))
+            
+            ZStack {
+                if dataLoading {
+                    ZStack {
+                        Color("GradGreen")
+                        Image("GradHat")
                     }
+                    .ignoresSafeArea()
                 }
-                Spacer()
-                    .frame(minHeight: 150)
+                
+                else if manager.student != nil {
+                    HomePage()
+                }
+                
+                else {
+                    VStack(alignment: .leading) {
+                        
+                        Text(manager.error)
+                        
+                        GradualLogo()
+                        
+                        Text("Connect to your \nGrades")
+                            .font(.largeTitle)
+                        
+                        VStack {
+                            TextField("Username", text: $username)
+                                .textFieldStyle(.roundedBorder)
+                            SecureField("Password", text: $password)
+                                .textFieldStyle(.roundedBorder)
+                                .textContentType(.password)
+                                .padding(.bottom, 60)
+                            
+                            
+                            AsyncButton("Sign In", action: loadData)
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .padding(.vertical)
+                                .tint(.black)
+                                .buttonStyle(.borderedProminent)
+                                .controlSize(.large)
+                            
+//                            NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {}
+                            
+                            Button {
+                                
+                            } label: {
+                                Text("I'm a parent")
+                                    .foregroundColor(Color("GradGreen"))
+                            }
+                        }
+                        Spacer()
+                            .frame(minHeight: 150)
+                        
+                    }
+                    .ignoresSafeArea(.keyboard, edges: .bottom)
+                    .padding()
+                .environmentObject(manager)
+                }
                 
             }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
-            .padding()
-            .environmentObject(manager)
-            
         }
+           
         .navigationBarHidden(true)
         .onAppear(perform: {
             Task {
@@ -72,8 +91,14 @@ struct LoginPage: View {
                     username = ""
                     password = ""
                     manager.error = ""
+                    withAnimation {
+                        dataLoading = false
+                    }
                 } catch {
                     print("Unable to load data from Keynanchain")
+                    withAnimation {
+                        dataLoading = false
+                    }
                 }
             }
         })

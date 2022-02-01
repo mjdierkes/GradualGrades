@@ -27,24 +27,24 @@ struct UpcomingAssignmentPage: View {
                 
                 Text("The SAT is an entrance exam used by most colleges and universities to make admissions decisions. ")
                 
-                HStack {
-                    ZStack{
-                        Button {
-                            showingGoalPage.toggle()
-                        } label: {
-                            Text("Goal \(preferences.testGoal)")
-                                .font(.system(size: 14))
-                                .foregroundColor(Color("GradGreen"))
-                        }
-                    }
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 25)
-                    .background(Color("LowGreen"))
-                    .cornerRadius(50)
-                    
-                    Text("Current 1290")
-                    
-                }
+//                HStack {
+//                    ZStack{
+//                        Button {
+//                            showingGoalPage.toggle()
+//                        } label: {
+//                            Text("Goal \(preferences.testGoal)")
+//                                .font(.system(size: 14))
+//                                .foregroundColor(Color("GradGreen"))
+//                        }
+//                    }
+//                    .padding(.vertical, 6)
+//                    .padding(.horizontal, 25)
+//                    .background(Color("LowGreen"))
+//                    .cornerRadius(50)
+//                    
+//                    Text("Current 1290")
+//                    
+//                }
                 
                 Spacer()
             

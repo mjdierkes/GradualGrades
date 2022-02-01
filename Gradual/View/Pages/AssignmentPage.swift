@@ -19,7 +19,7 @@ struct AssignmentPage: View {
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
-                ClassInformation(classDetails: $classDetails)
+//                ClassInformation(classDetails: $classDetails)
                 Spacer()
             }
             
@@ -49,9 +49,9 @@ struct AssignmentPage: View {
                             
 
                             ForEach(classDetails.majorGrades) { assessment in
-                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
+//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
                                     SimpleAssignmentView(assessment: assessment)
-                                }
+//                                }
                                 .tint(.black)
                             }
                             
@@ -77,16 +77,16 @@ struct AssignmentPage: View {
                             
                         
                             ForEach(classDetails.minorGrades) { assessment in
-                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
+//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
                                     SimpleAssignmentView(assessment: assessment)
-                                }
+//                                }
                                 .tint(.black)
                             }
                         }
                         
                     }
                     .padding()
-                    ClassInformation(classDetails: $classDetails)
+//                    ClassInformation(classDetails: $classDetails)
                 }
             }
         }

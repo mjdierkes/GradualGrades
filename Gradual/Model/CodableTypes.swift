@@ -77,6 +77,7 @@ struct Class: Codable, Identifiable {
     let weight: String
     let credits: String
     var assignments: [Assignment]
+    var roomNumber: String?
     
     let formatter = GradeFormatter()
     let defaults = UserDefaults()
@@ -292,6 +293,21 @@ struct GradeFormatter {
     
 }
 
+struct Schedule: Codable {
+    let schedule: [ClassMeta]
+}
+
+struct ClassMeta: Codable{
+    let building: String
+    let courseCode: String
+    let courseName: String
+    let days: String
+    let markingPeriods: String
+    let periods: String
+    let room: String
+    let status: String
+    let teacher: String
+}
 
 /// Helps remove decimals from grades.
 extension Double {

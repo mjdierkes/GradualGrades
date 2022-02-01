@@ -21,7 +21,7 @@ import KeychainAccess
 
 
     let keychain = Keychain(service: "life.gradual.api")
-
+    var schedule: [ClassMeta]?
     
     let defaults = UserDefaults.standard
     
@@ -43,20 +43,23 @@ import KeychainAccess
     func loadData(username: String, password: String, newSignIn: Bool = false) async throws {
         let gradeService = GradeService(username, password)
         let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
+        let schedule: Schedule = try await gradeService.fetchData(from: .schedule)
         
+        self.schedule = schedule.schedule
         if(newSignIn){
             saveCredentials(username: username, password: password)
         }
         
         classes = loadedClasses.currentClasses
         filterClassnames()
+        sortClasses()
         
         do {
             gpa = try await gradeService.fetchData(from: .GPA)
         } catch {
             print("Unable to load GPA")
         }
-//
+
         let loadedSATs: UpcomingSATs = try await gradeService.fetchData(from: .satDates)
         if !loadedSATs.liveDates.isEmpty {
             nextSAT = loadedSATs.liveDates[0]
@@ -65,7 +68,7 @@ import KeychainAccess
             nextSAT = defaults.object(forKey: "SAT-Date") as! String
             print("SAT Loaded from defaults")
         }
-//
+
         student = try await gradeService.fetchData(from: .studentInfo)
     }
     
@@ -130,6 +133,24 @@ import KeychainAccess
             }
             
             classes[i].name = name
+        }
+    }
+    
+    private func sortClasses() {
+        if let schedule = schedule {
+            for i in 0..<schedule.count {
+                let name = schedule[i].courseName
+                
+                for j in 0..<classes.count {
+                    let studentClass = classes[j]
+                    print("Student Class", studentClass.name)
+                    print("Name", name)
+                    if studentClass.name == name {
+                        classes[j].roomNumber = schedule[i].room
+                        print("ASSIGNED")
+                    }
+                }
+            }
         }
     }
     

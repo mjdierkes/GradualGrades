@@ -83,6 +83,7 @@ private actor GradeServiceStore {
 /// All the available roots on the server.
 enum AvailableRoot: String {
     case currentClasses = "/students/currentclasses"
+    case schedule = "/students/schedule"
     case studentInfo = "/students/info"
     case GPA = "/students/gpa"
     case satDates = "/satdates"
