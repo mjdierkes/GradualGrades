@@ -16,15 +16,4 @@ class PreferencesManager: ObservableObject{
     @Published var appearance: ColorScheme? = nil
     @Published var testGoal = "1600"
     
-    init() {
-        loadDefaults()
-    }
-    
-    private func loadDefaults() {
-        
-        
-        
-    }
-    
-    
 }

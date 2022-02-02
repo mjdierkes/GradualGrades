@@ -52,7 +52,6 @@ import KeychainAccess
         
         classes = loadedClasses.currentClasses
         filterClassnames()
-        sortClasses()
         
         do {
             gpa = try await gradeService.fetchData(from: .GPA)
@@ -135,25 +134,6 @@ import KeychainAccess
             classes[i].name = name
         }
     }
-    
-    private func sortClasses() {
-        if let schedule = schedule {
-            for i in 0..<schedule.count {
-                let name = schedule[i].courseName
-                
-                for j in 0..<classes.count {
-                    let studentClass = classes[j]
-                    print("Student Class", studentClass.name)
-                    print("Name", name)
-                    if studentClass.name == name {
-                        classes[j].roomNumber = schedule[i].room
-                        print("ASSIGNED")
-                    }
-                }
-            }
-        }
-    }
-    
     
     func removeCard(at index: Int) {
         cards.remove(at: index)
