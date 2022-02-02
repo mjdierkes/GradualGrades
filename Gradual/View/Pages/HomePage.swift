@@ -8,172 +8,30 @@
 import SwiftUI
 
 struct HomePage: View {
-    
-    @EnvironmentObject var manager: AppManager
-    @State private var liveGPA = ""
-    @State private var showingSheet = false
-    @State private var showingAccountPage = false
-    
-    @AppStorage("ShowGPA") var showGPA = true
-    
     var body: some View {
-        
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
-                NavigationLink(destination: LoginPage(), isActive: .constant(manager.student == nil)) {}
-                
                 VStack(alignment: .leading){
-                    
-                    Text("Good \(dayTime()) \(manager.firstName)")
-                        .padding(.horizontal)
-                        .padding(.top)
-                        .font(.title2)
-                        .font(.system(.body, design: .rounded))
-                        .onTapGesture(count: 2) {
-                            withAnimation {
-                                showGPA.toggle()
-                            }
-                            }
-                    
-                    
-                    if let gpa = manager.gpa?.roundedWeightedGPA {
-                        if showGPA {
-                        VStack(alignment: .leading) {
-                            Text(gpa)
-                                .font(.largeTitle)
-                                .font(.system(.body, design: .rounded))
-                                .fontWeight(.medium)
-                                .padding(.horizontal)
-                                .padding(.top, 1)
-                            
-                            
-                            Text("Live GPA")
-                                .bold()
-                                .foregroundColor(Color("GradGreen"))
-                                .padding(.horizontal)
-                                .padding(.bottom, 1)
-                        }
-                        .onTapGesture(count: 2) {
-                            withAnimation {
-                                showGPA.toggle()
-                            }
-                        }
-                    }
+                    GreetingView()
+                    CardStackView()
+                    ClassGradesView()
                 }
-                    
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        
-                    }
-                    
-                    if manager.cards.count > 0 {
-                        ZStack {
-                            Color("BackgroundGray")
-                            ForEach(0..<manager.cards.count, id: \.self) { index in
-                                CardView() {
-                                    withAnimation {
-                                        manager.removeCard(at: index)
-                                    }
-                                }
-                            }
-                        }
-                        .frame(height: 200)
-                    }
-                    
-                    
-                    
-                    Text("Grades")
-                        .padding()
-                        .font(.title2)
-                        .font(.system(.body, design: .rounded))
-                    
-                    ForEach($manager.classes) { details in
-                        NavigationLink(destination: AssignmentPage(classDetails: details)) {
-                            SimpleClassView(classData: details)
-                        }
-                        .tint(.black)
-                    }
-                    
-                }
-            }
-            .toolbar {
-                
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        showingSheet.toggle()
-//                    } label: {
-//                        ZStack {
-//                            HStack {
-//                                Image(systemName: "star.circle.fill")
-//                                Text("Free Premium")
-//                                    .font(.system(size: 14))
-//                            }
-//                            .foregroundColor(Color("GradGreen"))
-//                            .padding(.vertical, 3)
-//                            .padding(.horizontal, 12)
-//                            .background(Color("LowGreen"))
-//                            .cornerRadius(50)
-//                        }
-//                    }
-//
-//                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    
-                    AsyncButton(systemImageName: "arrow.clockwise", action: {
-                        do {
-                            try await manager.reload()
-                        } catch {
-                            print("Unable to reload")
-                        }
-                    })
-                        .tint(Color("Text"))
-                        .padding(.leading)
-
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        showingAccountPage.toggle()
-                    } label: {
-                        Image(systemName: "person")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 25, height: 25)
-                    }
-                    .tint(Color("Text"))
-                    .scaleEffect(0.9)
-                    .padding(.trailing)
-                }
-                
-            }
-            .navigationBarBackButtonHidden(true)
-            
-            .sheet(isPresented: $showingSheet){
-                PremiumPage()
-            }
-            .sheet(isPresented: $showingAccountPage){
-                AccountPage()
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                RefreshToolButton()
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                AccountToolButton()
+            }
+        }
+        .navigationBarBackButtonHidden(true)
         .background(Color("Background"))
         .navigationBarTitleDisplayMode(.inline)
-        
+
     }
-    
-    func dayTime() -> String {
-        let hour = Calendar.current.component(.hour, from: Date())
-        
-        switch hour {
-        case 0..<12 :
-            return "Morning"
-        case 12..<24 :
-            return "Afternoon"
-        default:
-            return "Day"
-        }
-    }
-    
 }
 
 struct HomePage_Previews: PreviewProvider {

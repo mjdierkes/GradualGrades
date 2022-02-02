@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct CardView: View {
     
     @EnvironmentObject var manager: AppManager
