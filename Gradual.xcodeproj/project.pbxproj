@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F709DE2227AC8102007ECFDC /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709DE2127AC8102007ECFDC /* NotificationView.swift */; };
 		F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */; };
 		F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E67A12795BC3000D6D60E /* PremiumPage.swift */; };
 		F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE0E27939AB100894237 /* GradualApp.swift */; };
@@ -44,6 +45,7 @@
 		F7A742B827AC18EC00A9E56E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B727AC18EC00A9E56E /* NotificationService.swift */; };
 		F7A742BD27AC2C0C00A9E56E /* EasyStash in Frameworks */ = {isa = PBXBuildFile; productRef = F7A742BC27AC2C0C00A9E56E /* EasyStash */; };
 		F7A742BF27AC2C9300A9E56E /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742BE27AC2C9300A9E56E /* CacheService.swift */; };
+		F7A742C227AC7FBA00A9E56E /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = F7A742C127AC7FBA00A9E56E /* Popovers */; };
 		F7BE1508279EF6A70079A0E3 /* AccountDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BE1507279EF6A70079A0E3 /* AccountDetailPage.swift */; };
 		F7C419882798EF2D00753637 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F7C419872798EF2D00753637 /* KeychainAccess */; };
 		F7E5865F279B862200438E66 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5865E279B862200438E66 /* About.swift */; };
@@ -51,6 +53,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F709DE2127AC8102007ECFDC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
 		F70E67A12795BC3000D6D60E /* PremiumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPage.swift; sourceTree = "<group>"; };
 		F74DDE0B27939AB100894237 /* Gradual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gradual.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7A742C227AC7FBA00A9E56E /* Popovers in Frameworks */,
 				F7A742BD27AC2C0C00A9E56E /* EasyStash in Frameworks */,
 				F7C419882798EF2D00753637 /* KeychainAccess in Frameworks */,
 			);
@@ -245,6 +249,7 @@
 				F77E770627AA2DF000CA2F98 /* ClassGradesView.swift */,
 				F7A742B127AB742000A9E56E /* PreferencesView.swift */,
 				F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */,
+				F709DE2127AC8102007ECFDC /* NotificationView.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -301,6 +306,7 @@
 			packageProductDependencies = (
 				F7C419872798EF2D00753637 /* KeychainAccess */,
 				F7A742BC27AC2C0C00A9E56E /* EasyStash */,
+				F7A742C127AC7FBA00A9E56E /* Popovers */,
 			);
 			productName = Gradual;
 			productReference = F74DDE0B27939AB100894237 /* Gradual.app */;
@@ -333,6 +339,7 @@
 			packageReferences = (
 				F7C419862798EF2D00753637 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */,
+				F7A742C027AC7FBA00A9E56E /* XCRemoteSwiftPackageReference "Popovers" */,
 			);
 			productRefGroup = F74DDE0C27939AB100894237 /* Products */;
 			projectDirPath = "";
@@ -377,6 +384,7 @@
 				F78C33162795158E00596478 /* AssignmentPage.swift in Sources */,
 				F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */,
 				F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */,
+				F709DE2227AC8102007ECFDC /* NotificationView.swift in Sources */,
 				F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */,
 				F74DDE3127943DC400894237 /* SplashScreen.swift in Sources */,
 				F7A742B627AC0D4800A9E56E /* LoginPage.swift in Sources */,
@@ -525,7 +533,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Gradual/Preview Content\"";
 				DEVELOPMENT_TEAM = 92Z6CXGJ35;
 				ENABLE_PREVIEWS = YES;
@@ -558,7 +566,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.2;
+				CURRENT_PROJECT_VERSION = 1.4;
 				DEVELOPMENT_ASSET_PATHS = "\"Gradual/Preview Content\"";
 				DEVELOPMENT_TEAM = 92Z6CXGJ35;
 				ENABLE_PREVIEWS = YES;
@@ -617,6 +625,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F7A742C027AC7FBA00A9E56E /* XCRemoteSwiftPackageReference "Popovers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aheze/Popovers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		F7C419862798EF2D00753637 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -632,6 +648,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */;
 			productName = EasyStash;
+		};
+		F7A742C127AC7FBA00A9E56E /* Popovers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7A742C027AC7FBA00A9E56E /* XCRemoteSwiftPackageReference "Popovers" */;
+			productName = Popovers;
 		};
 		F7C419872798EF2D00753637 /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;

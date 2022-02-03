@@ -10,9 +10,7 @@ import UserNotifications
 
 class NotificationService {
     
-    
-    
-    
+    let cache = CacheService()
     
     func requestAccess() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
@@ -23,9 +21,7 @@ class NotificationService {
             }
         }
     }
-    
-    
-    
-    
+
     
 }
+

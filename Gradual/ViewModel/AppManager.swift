@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Network
 import KeychainAccess
 
 @MainActor class AppManager: ObservableObject {
@@ -18,7 +19,7 @@ import KeychainAccess
     @Published var error = ""
 
     @Published var cards = [String](repeating: "Testing", count: 1)
-
+    
 
     let keychain = Keychain(service: "life.gradual.api")
     var schedule: [ClassMeta]?
@@ -167,5 +168,7 @@ import KeychainAccess
     func removeCard(at index: Int) {
         cards.remove(at: index)
     }
+    
+
     
 }
