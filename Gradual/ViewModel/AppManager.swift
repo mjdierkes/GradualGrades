@@ -19,7 +19,7 @@ import KeychainAccess
     @Published var error = ""
 
     @Published var cards = [String](repeating: "Testing", count: 1)
-    
+    @Published var networkOffline = false
 
     let keychain = Keychain(service: "life.gradual.api")
     var schedule: [ClassMeta]?
@@ -31,6 +31,9 @@ import KeychainAccess
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
+    public init() {
+        getNetworkStatus()
+    }
     
     
     /// Attempt to fetch username and password, then load data from server.
@@ -169,6 +172,19 @@ import KeychainAccess
         cards.remove(at: index)
     }
     
+    
+    func getNetworkStatus() {
+        let monitor = NWPathMonitor()
+        let queue = DispatchQueue(label: "Monitor")
+
+        monitor.pathUpdateHandler = { path in
+            DispatchQueue.main.async {
+                self.networkOffline = path.status != .satisfied
+                print(path.status)
+            }
+        }
+        monitor.start(queue: queue)
+    }
 
     
 }
