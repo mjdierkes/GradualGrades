@@ -24,14 +24,32 @@ import KeychainAccess
     var schedule: [ClassMeta]?
     
     let defaults = UserDefaults.standard
+    let cache = CacheService()
     
     var firstName: String {
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
     }
     
+    
+    
     /// Attempt to fetch username and password, then load data from server.
     /// Call this function user login and reload button.
     func reload() async throws{
+        
+        if let cachedData: [Class] = cache.load(forKey: "Classes"){
+            classes = cachedData
+        }
+        
+        if let cachedStudent: Student = cache.load(forKey: "Student"){
+            student = cachedStudent
+        }
+        if let cachedSAT: String = cache.load(forKey: "NextSAT"){
+            nextSAT = cachedSAT
+        }
+        if let cachedGPA: GPA = cache.load(forKey: "GPA"){
+            gpa = cachedGPA
+        }
+        
         print("RELOAD")
         guard let username = try self.keychain.get("username") else { return }
         guard let password = try self.keychain.get("password") else { return }
@@ -65,10 +83,16 @@ import KeychainAccess
             defaults.set(loadedSATs.liveDates[0], forKey: "SAT-Date")
         } else {
             nextSAT = defaults.object(forKey: "SAT-Date") as! String
-            print("SAT Loaded from defaults")
         }
 
-        student = try await gradeService.fetchData(from: .studentInfo)
+        if let student: Student = try await gradeService.fetchData(from: .studentInfo) {
+            cache.save(data: student, forKey: "Student")
+            self.student = student
+        }
+        cache.save(data: classes, forKey: "Classes")
+        cache.save(data: nextSAT, forKey: "NextSAT")
+        cache.save(data: gpa, forKey: "GPA")
+
     }
     
     /// Invalidates the users credentials and removes all stored data.
@@ -81,6 +105,11 @@ import KeychainAccess
             print("error: \(error)")
         }
         student = nil
+        do {
+            try cache.storage?.removeAll()
+        } catch {
+            print(error)
+        }
     }
     
     func saveCredentials(username: String, password: String){

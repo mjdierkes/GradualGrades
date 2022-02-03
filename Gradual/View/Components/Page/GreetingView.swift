@@ -51,6 +51,19 @@ struct GreetingView: View {
                         }
                     }
                 }
+                else {
+                    Text("GPA Hidden")
+                        .bold()
+                        .foregroundColor(Color("BorderGray"))
+                        .padding(.horizontal)
+                        .padding(.bottom, 1)
+                        .padding(.top, 1)
+                        .onTapGesture(count: 2) {
+                            withAnimation {
+                                showGPA.toggle()
+                            }
+                        }
+                }
             }
             
             

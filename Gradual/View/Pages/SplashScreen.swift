@@ -18,15 +18,15 @@ struct SplashScreen: View {
     var body: some View {
         NavigationView {
             ZStack {
-                if dataLoading {
+                if manager.student != nil {
+                    HomePage()
+                }
+                else if dataLoading {
                     ZStack {
-                        Color("GradGreen")
-                        Image("GradHat")
+                        Color("Background")
+//                        Image("GradHat")
                     }
                     .ignoresSafeArea()
-                }
-                else if manager.student != nil {
-                    HomePage()
                 }
                 else {
                    LoginPage(dataLoading: $dataLoading)
