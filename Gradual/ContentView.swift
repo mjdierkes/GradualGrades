@@ -14,7 +14,7 @@ struct ContentView: View {
     @State private var dataLoaded = false
     
     var body: some View {
-        LoginPage()
+        SplashScreen()
             .environmentObject(manager)
             .environmentObject(preferences)
             .preferredColorScheme(preferences.appearance)

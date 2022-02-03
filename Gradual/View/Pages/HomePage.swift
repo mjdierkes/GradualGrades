@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+
+/// This is the main page of the app.
+/// Users can check Upcoming Assignments, Grades, and GPA.
+
 struct HomePage: View {
+    
     var body: some View {
         VStack {
             ScrollView(.vertical, showsIndicators: false) {
@@ -30,8 +35,8 @@ struct HomePage: View {
         .navigationBarBackButtonHidden(true)
         .background(Color("Background"))
         .navigationBarTitleDisplayMode(.inline)
-
     }
+    
 }
 
 struct HomePage_Previews: PreviewProvider {
