@@ -7,12 +7,11 @@
 
 import SwiftUI
 
+/// Loads into the SplashScreen then moves into Login or Homepage.
 struct ContentView: View {
     @StateObject var manager = AppManager()
     @StateObject var preferences = PreferencesManager()
-    
-    @State private var dataLoaded = false
-    
+        
     var body: some View {
         SplashScreen()
             .environmentObject(manager)

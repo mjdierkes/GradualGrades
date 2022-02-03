@@ -10,7 +10,6 @@ import SwiftUI
 
 /// This is the main page of the app.
 /// Users can check Upcoming Assignments, Grades, and GPA.
-
 struct HomePage: View {
     
     var body: some View {

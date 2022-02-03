@@ -38,6 +38,9 @@
 		F78C33142794EF3000596478 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33132794EF3000596478 /* CardView.swift */; };
 		F78C33162795158E00596478 /* AssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33152795158E00596478 /* AssignmentPage.swift */; };
 		F78F509D279DA355004E6EA4 /* UpcomingAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78F509C279DA355004E6EA4 /* UpcomingAssignmentPage.swift */; };
+		F7A742B227AB742000A9E56E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B127AB742000A9E56E /* PreferencesView.swift */; };
+		F7A742B427AC0BFF00A9E56E /* ClassInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */; };
+		F7A742B627AC0D4800A9E56E /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B527AC0D4800A9E56E /* LoginPage.swift */; };
 		F7BE1508279EF6A70079A0E3 /* AccountDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BE1507279EF6A70079A0E3 /* AccountDetailPage.swift */; };
 		F7C419882798EF2D00753637 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F7C419872798EF2D00753637 /* KeychainAccess */; };
 		F7E5865F279B862200438E66 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5865E279B862200438E66 /* About.swift */; };
@@ -77,6 +80,9 @@
 		F78C33132794EF3000596478 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		F78C33152795158E00596478 /* AssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPage.swift; sourceTree = "<group>"; };
 		F78F509C279DA355004E6EA4 /* UpcomingAssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAssignmentPage.swift; sourceTree = "<group>"; };
+		F7A742B127AB742000A9E56E /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassInformation.swift; sourceTree = "<group>"; };
+		F7A742B527AC0D4800A9E56E /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		F7BE1507279EF6A70079A0E3 /* AccountDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailPage.swift; sourceTree = "<group>"; };
 		F7C4198B27999AD900753637 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F7E5865E279B862200438E66 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
@@ -196,6 +202,7 @@
 		F77E76F827AA1D3E00CA2F98 /* InProgress */ = {
 			isa = PBXGroup;
 			children = (
+				F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */,
 				F70E67A12795BC3000D6D60E /* PremiumPage.swift */,
 				F7702A0E27A0D7AE00590028 /* GoalSetPage.swift */,
 				F7E5865E279B862200438E66 /* About.swift */,
@@ -215,7 +222,6 @@
 		F77E76FA27AA1D9000CA2F98 /* Secondary */ = {
 			isa = PBXGroup;
 			children = (
-				F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */,
 				F7BE1507279EF6A70079A0E3 /* AccountDetailPage.swift */,
 				F78F509C279DA355004E6EA4 /* UpcomingAssignmentPage.swift */,
 			);
@@ -229,6 +235,8 @@
 				F77E770227AA2D7D00CA2F98 /* GreetingView.swift */,
 				F77E770427AA2D9F00CA2F98 /* CardStackView.swift */,
 				F77E770627AA2DF000CA2F98 /* ClassGradesView.swift */,
+				F7A742B127AB742000A9E56E /* PreferencesView.swift */,
+				F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -258,6 +266,7 @@
 			children = (
 				F74DDE34279467B600894237 /* HomePage.swift */,
 				F74DDE3027943DC400894237 /* SplashScreen.swift */,
+				F7A742B527AC0D4800A9E56E /* LoginPage.swift */,
 				F77E76F927AA1D8700CA2F98 /* Primary */,
 				F77E76FA27AA1D9000CA2F98 /* Secondary */,
 				F77E76F827AA1D3E00CA2F98 /* InProgress */,
@@ -342,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F77E76ED27AA1B0000CA2F98 /* Class.swift in Sources */,
+				F7A742B427AC0BFF00A9E56E /* ClassInformation.swift in Sources */,
 				F74DDE3C27949B6D00894237 /* RecentAssignmentView.swift in Sources */,
 				F74DDE1127939AB100894237 /* ContentView.swift in Sources */,
 				F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */,
@@ -351,12 +361,14 @@
 				F779C16E279F3C5E00DDF96F /* PreferencesManager.swift in Sources */,
 				F77E770727AA2DF000CA2F98 /* ClassGradesView.swift in Sources */,
 				F7702A0D27A0CE0B00590028 /* SafariViewWrapper.swift in Sources */,
+				F7A742B227AB742000A9E56E /* PreferencesView.swift in Sources */,
 				F74DDE3327944BAC00894237 /* AppManager.swift in Sources */,
 				F78C33162795158E00596478 /* AssignmentPage.swift in Sources */,
 				F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */,
 				F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */,
 				F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */,
 				F74DDE3127943DC400894237 /* SplashScreen.swift in Sources */,
+				F7A742B627AC0D4800A9E56E /* LoginPage.swift in Sources */,
 				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
 				F77E76F027AA1B5000CA2F98 /* Assignment.swift in Sources */,
 				F78F509D279DA355004E6EA4 /* UpcomingAssignmentPage.swift in Sources */,

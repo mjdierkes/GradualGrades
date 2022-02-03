@@ -55,6 +55,7 @@ struct GradeFormatter {
             }
         }
         average /= count
+        
 
         return average
     }

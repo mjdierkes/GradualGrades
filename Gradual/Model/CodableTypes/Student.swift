@@ -17,6 +17,9 @@ struct Student: Codable {
     let id: String
     let name: String
     
+    /// Cleans up the name to remove the middle name.
+    /// Makes the interface feel more connected to the user.
+    /// This is used in the account page.
     var fullName: String {
         let lastName = name.components(separatedBy: ",")[0]
         let firstName = name.components(separatedBy: " ")[1]
@@ -24,6 +27,8 @@ struct Student: Codable {
         return firstName + " " + lastName
     }
     
+    /// Reformats the users birthdate to display the month name.
+    /// Used in the account page.
     var longBirthdate: String {
         let dateFormatter = DateFormatter()
         let stringFormatter = DateFormatter()
@@ -37,10 +42,14 @@ struct Student: Codable {
     }
 }
 
+/// Wrapper for the class info.
+/// Used to get all the class info from the API.
 struct Schedule: Codable {
     let schedule: [ClassMeta]
 }
 
+/// The metadata for a class.
+/// This is displayed under the assignments.
 struct ClassMeta: Codable{
     let building: String
     let courseCode: String

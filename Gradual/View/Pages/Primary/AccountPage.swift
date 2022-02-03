@@ -7,142 +7,51 @@
 
 import SwiftUI
 
+/// Displays the users current settings.
 struct AccountPage: View {
     
-    @Environment(\.dismiss) var dismiss
-    
-    @EnvironmentObject var manager: AppManager
-    @EnvironmentObject var preferences: PreferencesManager
-    @State private var showingAlert = false
-    
-    @AppStorage("FaceID") var requireFaceID: Bool = false
-    @AppStorage("StyleGrades") var styleGrades: Bool = true
-    @AppStorage("ColorScheme") var preferredAppearance: Appearance = .light
-    
-    @State private var selectedAppearance = 1
-    
     var body: some View {
-        
         NavigationView {
             VStack {
-               
-
                 Form {
-                    
-                    NavigationLink(destination: AccountDetailPage()) {
-                        ZStack {
-                            VStack {
-                                Circle()
-                                    .frame(width: 75, height: 75)
-                                
-                                if let student = manager.student {
-                                    Text(student.fullName)
-                                        .font(.title2.weight(.semibold))
-                                    Text("Student")
-                                }
-                               
-                            }
-                            .frame(height: 175)
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                        }
-                    }
-                    
-
-                    Section("Security") {
-                        Toggle(isOn: $requireFaceID) {
-                            Text("Face ID")
-                        }
-
-                    }
-                    
-                    Section("Appearance") {
-
-                        Toggle(isOn: $styleGrades) {
-                            Text("Style Grades")
-                        }
-                        
-                        
-                        
-                        Picker(selection: $selectedAppearance, label: Text("Appearance")) {
-                            Text("System Default").tag(1)
-                            Text("Light").tag(2)
-                            Text("Dark").tag(3)
-                        }
-                        .onChange(of: selectedAppearance) { value in
-                            print(selectedAppearance)
-                            switch selectedAppearance {
-                            case 1:
-                                preferences.appearance = nil
-                            case 2:
-                                preferences.appearance = .light
-                            case 3:
-                                preferences.appearance = .dark
-                            default:
-                                break
-                            }
-                        }
-
-                    
+                    HeaderView()
+                    PreferencesView()
                 }
-                    
-                    Section {
-                        Button {
-                            showingAlert = true
-                        } label: {
-                            Text("Sign out")
-                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-
-                        }
-                        .tint(.red)
-                        .alert(isPresented:$showingAlert) {
-                            Alert(
-                                title: Text("Are you sure you want to sign out?"),
-                                primaryButton: .destructive(Text("Sign out")) {
-                                    manager.signOut()
-                                    dismiss()
-                                },
-                                secondaryButton: .cancel()
-                            )
-                        }
-                    }
-            }
-            .navigationTitle("Account")
-            .preferredColorScheme(preferences.appearance)
-            .onChange(of: styleGrades) { _ in
-                Task {
-                    try await manager.reload()
-                }
-            }
-            .onAppear {
-                switch preferences.appearance {
-                        case .none:
-                            selectedAppearance = 1
-                        case .light:
-                            selectedAppearance = 2
-                        case .dark:
-                            selectedAppearance = 3
-                        default:
-                            break
-                        }
-                    }
+                .navigationTitle("Account")
             }
         }
-        
-        
-        
-        
-        
     }
+    
 }
 
-enum Appearance: String, Identifiable, CaseIterable {
-    case light, dark, system
+/// Header for the Account Page.
+/// Allows the user to navigate out of the page.
+/// Displays more details like student info too.
+private struct HeaderView: View {
     
-    var displayName: String { rawValue.capitalized }
+    @EnvironmentObject var manager: AppManager
+
+    var body: some View {
+        NavigationLink(destination: AccountDetailPage()) {
+            ZStack {
+                VStack {
+                    Circle()
+                        .frame(width: 75, height: 75)
+                    
+                    if let student = manager.student {
+                        Text(student.fullName)
+                            .font(.title2.weight(.semibold))
+                        Text("Student")
+                    }
+                    
+                }
+                .frame(height: 175)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+            }
+        }
+    }
     
-    var id: String { self.rawValue }
 }
-    
 
 struct UserPage_Previews: PreviewProvider {
     static var previews: some View {

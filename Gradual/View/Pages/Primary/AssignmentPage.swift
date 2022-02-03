@@ -15,153 +15,68 @@ struct AssignmentPage: View {
     var body: some View {
         
         VStack {
-            
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
-//                ClassInformation(classDetails: $classDetails)
                 Spacer()
             }
             
             else {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
-                                          
-                        
-                        if classDetails.majorGrades.count > 1{
-                            
-                            HStack {
-                                Text("Majors")
-                                    .font(.title2)
-                                    .bold()
-                                Spacer()
-                                if let average = classDetails.majorAverage {
-                                    Text(String(average) + "%")
-                                        .foregroundColor(classDetails.majorColor())
-                                        .font(.title2)
-                                        .bold()
-                                }
-                                
-
-                            }
-                            .padding(.bottom)
-
-                            
-
-                            ForEach(classDetails.majorGrades) { assessment in
-//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
-                                    SimpleAssignmentView(assessment: assessment)
-//                                }
-                                .tint(.black)
-                            }
-                            
-                            Spacer()
-                                .frame(height: 40)
-                        }
-                        
-                        if classDetails.minorGrades.count > 1{
-                            HStack  {
-                                Text("Minors")
-                                    .font(.title2)
-                                    .bold()
-                                Spacer()
-                                if let average = classDetails.minorAverage {
-                                    Text(String(average) + "%")
-                                        .foregroundColor(classDetails.minorColor())
-                                        .font(.title2)
-                                        .bold()
-                                }
-                                
-                            }
-                            .padding(.bottom)
-                            
-                        
-                            ForEach(classDetails.minorGrades) { assessment in
-//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
-                                    SimpleAssignmentView(assessment: assessment)
-//                                }
-                                .tint(.black)
-                            }
-                        }
-                        
+                        Assignments(gradeType: .major, average: classDetails.majorAverage, assignments: classDetails.majorGrades)
+                        Assignments(gradeType: .minor, average: classDetails.minorAverage, assignments: classDetails.minorGrades)
                     }
                     .padding()
-//                    ClassInformation(classDetails: $classDetails)
                 }
             }
         }
         .navigationBarTitle(classDetails.name)
         .navigationBarTitleDisplayMode(.inline)
-        
-        
+
     }
 }
 
-struct InfoDivider: View {
+private struct Assignments: View {
     
-    let key: String
-    let value: String
+    var gradeType: GradeType
+    var average: Double?
+    var assignments: [Assignment]
+    
+    let formatter = GradeFormatter()
+        
     
     var body: some View {
-        VStack{
-            HStack(alignment: .center){
-                Text(key)
-                    .foregroundColor(Color("BorderGray"))
-                    .font(.system(size: 16))
-                Spacer()
-                Text(value)
-                    .font(.system(size: 16))
-            }
-            Divider()
-        }
-    }
-}
-
-
-struct ClassInformation: View {
-    
-    @Binding var classDetails: Class
-    var body: some View {
-        VStack(alignment: .leading) {
-
-            HStack(alignment: .center) {
-                
-                Text("Information")
-                    .font(.title3)
-                    .padding(.bottom)
-                
+        if assignments.count > 1{
+            
+            HStack {
+                Text((gradeType == .major) ? "Majors" : "Minors")
+                    .font(.title2)
+                    .bold()
                 Spacer()
                 
-                ZStack{
-                    Button {
-                        
-                    } label: {
-                        Text("Doomsday Calculator")
-                            .font(.system(size: 14))
-                            .foregroundColor(Color("GradGreen"))
-                    }
+                if let average = average {
+                    Text(String(average) + "%")
+                        .foregroundColor(formatter.getColor(from: average))
+                        .font(.title2)
+                        .bold()
                 }
-                .padding(.vertical, 6)
-                .padding(.horizontal, 12)
-                .background(Color("LowGreen"))
-                .cornerRadius(50)
+            }
+            .padding(.bottom)
+
+            ForEach(assignments) { assessment in
+//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
+                    SimpleAssignmentView(assessment: assessment)
+//                                }
+                .tint(.black)
             }
             
-            
-            HStack{
-                InfoDivider(key: "Credits", value: classDetails.credits)
-                InfoDivider(key: "Weighting", value: classDetails.weight)
-            }
-            HStack{
-                InfoDivider(key: "Period", value: "3B")
-                InfoDivider(key: "Room Number", value: "XC103")
-            }
+            Spacer()
+                .frame(height: 40)
         }
-        .padding()
-        .padding(.vertical, 5)
+        
     }
 }
-
 
 //struct AssignmentPage_Previews: PreviewProvider {
 //    static var previews: some View {

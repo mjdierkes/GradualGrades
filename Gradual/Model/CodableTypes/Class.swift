@@ -13,6 +13,8 @@ struct Classes: Codable {
     let currentClasses: [Class]
 }
 
+/// Holds all the data for required for a class.
+//  TODO: Possibly refactor view code out to separate struct?
 struct Class: Codable, Identifiable {
     let id = UUID()
     
@@ -21,19 +23,27 @@ struct Class: Codable, Identifiable {
     let weight: String
     let credits: String
     var assignments: [Assignment]
-    var roomNumber: String?
     
+    private enum CodingKeys: String, CodingKey {
+        case name, grade, weight, credits, assignments
+    }
+    
+    
+    // MARK: Formatting for View
     let formatter = GradeFormatter()
     let defaults = UserDefaults()
 
+    /// Easy access for this classes major and minor grades.
+    /// This is used in the Assignments Page.
     var majorGrades: [Assignment] {
         return getGrades(ofType: .major)
     }
-    
     var minorGrades: [Assignment] {
         return getGrades(ofType: .minor)
     }
     
+    
+    /// Averages all the user's assignments to get average by type.
     var majorAverage: Double? {
         let average = formatter.getAverage(for: majorGrades).roundTo(places: 2)
         if average.isNaN{
@@ -41,7 +51,6 @@ struct Class: Codable, Identifiable {
         }
         return average
     }
-    
     var minorAverage: Double? {
         let average = formatter.getAverage(for: minorGrades).roundTo(places: 2)
         if average.isNaN {
@@ -50,6 +59,7 @@ struct Class: Codable, Identifiable {
         return average
     }
     
+    /// Cleans up and formats the grade for displaying.
     var roundedGrade: String {
         if let score = Double(grade){
             if score >= 100 {
@@ -59,10 +69,8 @@ struct Class: Codable, Identifiable {
         }
         return grade
     }
-    private enum CodingKeys: String, CodingKey {
-        case name, grade, weight, credits, assignments
-    }
     
+    /// Provides the view a color based on the class average.
     func scoreColor() -> Color {
         if let score = Double(grade) {
             return formatter.getColor(from: score)
@@ -71,13 +79,13 @@ struct Class: Codable, Identifiable {
         }
     }
     
+    /// Gets the color form the minor average.
     func minorColor() -> Color {
         formatter.getColor(from: minorAverage)
     }
     func majorColor() -> Color {
         formatter.getColor(from: majorAverage)
     }
-    
     func textColor() -> Color {
         if let styleGrades = defaults.object(forKey: "StyleGrades"){
             if styleGrades as? Bool == false {
