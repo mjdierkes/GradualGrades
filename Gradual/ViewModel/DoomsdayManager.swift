@@ -12,12 +12,16 @@ class DoomsdayManager: ObservableObject {
     
     var majorAverage: Double? = 0
     var minorAverage: Double? = 0
-    
+    var plainAverage: Double? = 0
+
     @Published var editableMajor: Double? = 0
     @Published var editableMinor: Double? = 0
+    @Published var editablePlain: Double? = 0
     
     @Published var majorAssignments = [Assignment]()
     @Published var minorAssignments = [Assignment]()
+    @Published var nonAssignments = [Assignment]()
+    
     @Published var calculatorActive = true
     
     let formatter = GradeFormatter()
@@ -27,10 +31,15 @@ class DoomsdayManager: ObservableObject {
         
         majorAverage = classDetails.majorAverage
         minorAverage = classDetails.minorAverage
+        plainAverage = classDetails.nonAverage
+        
         editableMajor = majorAverage
         editableMinor = minorAverage
+        editablePlain = plainAverage
+        
         majorAssignments = classDetails.majorGrades
         minorAssignments = classDetails.minorGrades
+        nonAssignments = classDetails.nonGrades
     }
     
     

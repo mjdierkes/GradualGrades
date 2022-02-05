@@ -57,22 +57,28 @@ import KeychainAccess
             cards = cachedCards
         }
         print("RELOAD")
-        guard let username = try self.keychain.get("username") else { return }
-        guard let password = try self.keychain.get("password") else { return }
+        guard let username = try self.keychain.get("username") else {
+            print("Can't get username")
+            return
+        }
+        guard let password = try self.keychain.get("password") else {
+            print("Can't get password")
+            return }
     
         try await loadData(username: username, password: password)
     }
     
     /// Attempts to access the API and initialize stored properties.
     func loadData(username: String, password: String, newSignIn: Bool = false) async throws {
+        print("LOADING")
         let gradeService = GradeService(username, password)
         let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses)
         let schedule: Schedule = try await gradeService.fetchData(from: .schedule)
         
         self.schedule = schedule.schedule
-        if(newSignIn){
+//        if(newSignIn){
             saveCredentials(username: username, password: password)
-        }
+//        }
         
         classes = loadedClasses.currentClasses
         filterClassnames()
@@ -102,6 +108,7 @@ import KeychainAccess
         cards = [Card]()
         getUpcomingAssignments()
 
+        print("Cards", cards)
         cache.save(data: cards, forKey: "Cards")
 
     }
@@ -117,7 +124,9 @@ import KeychainAccess
             print(error)
         }
         student = nil
+        gpa = nil
         cards = [Card]()
+        classes = [Class]()
     }
     
     func saveCredentials(username: String, password: String){
@@ -128,18 +137,20 @@ import KeychainAccess
                 try self.keychain
                     .set(username, key: "username")
                 
-                guard let requireFaceID = self.defaults.object(forKey: "FaceID") else { return }
-                print(requireFaceID)
-                if requireFaceID as? Bool ?? false {
-                    print("FaceID", requireFaceID)
+//                guard let requireFaceID = self.defaults.object(forKey: "FaceID") else { return }
+//                print(requireFaceID)
+//                if requireFaceID as? Bool ?? false {
+//                    print("FaceID", requireFaceID)
+//                    try self.keychain
+//                        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
+//                        .set(password, key: "password")
+//                    print("Password", password)
+//                }
+//                else {
                     try self.keychain
-                        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
                         .set(password, key: "password")
-                }
-                else {
-                    try self.keychain
-                        .set(password, key: "password")
-                }
+                    print("Password", password)
+//                }
                 
             } catch {
                 print(error)

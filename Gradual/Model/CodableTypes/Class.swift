@@ -41,7 +41,9 @@ struct Class: Codable, Identifiable {
     var minorGrades: [Assignment] {
         return getGrades(ofType: .minor)
     }
-    
+    var nonGrades: [Assignment] {
+        return getGrades(ofType: .none)
+    }
     
     /// Averages all the user's assignments to get average by type.
     var majorAverage: Double? {
@@ -58,7 +60,13 @@ struct Class: Codable, Identifiable {
         }
         return average
     }
-    
+    var nonAverage: Double? {
+        let average = formatter.getAverage(for: nonGrades).roundTo(places: 2)
+        if average.isNaN {
+            return nil
+        }
+        return average
+    }
     /// Cleans up and formats the grade for displaying.
     var roundedGrade: String {
         if let score = Double(grade){
