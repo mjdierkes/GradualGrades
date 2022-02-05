@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AssignmentPage: View {
     
+    @State private var calculatorDisabled = true
     @Binding var classDetails: Class
     @EnvironmentObject var manager: AppManager
 
@@ -24,10 +25,12 @@ struct AssignmentPage: View {
             else {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
-                        Assignments(gradeType: .major, average: classDetails.majorAverage, assignments: classDetails.majorGrades)
-                        Assignments(gradeType: .minor, average: classDetails.minorAverage, assignments: classDetails.minorGrades)
+                        Assignments(gradeType: .major, average: classDetails.majorAverage, assignments: classDetails.majorGrades, calculatorActive: $calculatorDisabled)
+                        Assignments(gradeType: .minor, average: classDetails.minorAverage, assignments: classDetails.minorGrades, calculatorActive: $calculatorDisabled)
                     }
                     .padding()
+                    Spacer()
+                    ClassInformation(classDetails: $classDetails, calculatorActive: $calculatorDisabled)
                 }
             }
         }
@@ -42,6 +45,7 @@ private struct Assignments: View {
     var gradeType: GradeType
     var average: Double?
     var assignments: [Assignment]
+    @Binding var calculatorActive: Bool
     
     let formatter = GradeFormatter()
         
@@ -66,7 +70,7 @@ private struct Assignments: View {
 
             ForEach(assignments) { assessment in
 //                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
-                    SimpleAssignmentView(assessment: assessment)
+                    SimpleAssignmentView(assessment: assessment, calculatorActive: $calculatorActive)
 //                                }
                 .tint(.black)
             }

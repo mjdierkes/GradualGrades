@@ -18,7 +18,7 @@ import KeychainAccess
     @Published var nextSAT = ""
     @Published var error = ""
 
-    @Published var cards = [String](repeating: "Testing", count: 1)
+    @Published var cards = [Card]()
     @Published var networkOffline = false
 
     let keychain = Keychain(service: "life.gradual.api")
@@ -53,7 +53,9 @@ import KeychainAccess
         if let cachedGPA: GPA = cache.load(forKey: "GPA"){
             gpa = cachedGPA
         }
-        
+        if let cachedCards: [Card] = cache.load(forKey: "Cards"){
+            cards = cachedCards
+        }
         print("RELOAD")
         guard let username = try self.keychain.get("username") else { return }
         guard let password = try self.keychain.get("password") else { return }
@@ -96,6 +98,10 @@ import KeychainAccess
         cache.save(data: classes, forKey: "Classes")
         cache.save(data: nextSAT, forKey: "NextSAT")
         cache.save(data: gpa, forKey: "GPA")
+        
+        getUpcomingAssignments()
+
+        cache.save(data: cards, forKey: "Cards")
 
     }
     
@@ -105,15 +111,12 @@ import KeychainAccess
         do {
             try keychain.remove("username")
             try keychain.remove("password")
-        } catch {
-            print("error: \(error)")
-        }
-        student = nil
-        do {
             try cache.storage?.removeAll()
         } catch {
             print(error)
         }
+        student = nil
+        cards = [Card]()
     }
     
     func saveCredentials(username: String, password: String){
@@ -184,6 +187,42 @@ import KeychainAccess
             }
         }
         monitor.start(queue: queue)
+    }
+    
+    
+    func getUpcomingAssignments() {
+        
+        var output = [Assignment]()
+        let dateFormatter = DateFormatter()
+        let stringFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        stringFormatter.dateStyle = .full
+        
+        let today = Date()
+        
+        var assessments = [Assignment]()
+        
+        for classDetails in classes {
+            for var assessment in classDetails.assignments {
+                assessment.className = classDetails.name
+                assessments.append(assessment)
+            }
+        }
+        
+        var index = 0
+        for assessment in assessments {
+            if let date = dateFormatter.date(from: assessment.dateDue) {
+                if date > today {
+                    output.append(assessment)
+                    cards.append(Card(id: index, name: assessment.assignment, className: assessment.className, dueDate: stringFormatter.string(from: date)))
+                    index += 1
+                }
+            } else {
+                print("Unable to convert date")
+            }
+        }
+                
+                    
     }
 
     

@@ -19,6 +19,7 @@ struct Assignment: Codable, Identifiable {
     var score: String
     let totalPoints: String
     
+    var className: String = ""
     let formatter = GradeFormatter()
 
     var gradeType: GradeType {

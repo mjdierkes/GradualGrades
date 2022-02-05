@@ -11,6 +11,8 @@ import SwiftUI
 struct ClassInformation: View {
     
     @Binding var classDetails: Class
+    @Binding var calculatorActive: Bool
+    
     var body: some View {
         VStack(alignment: .leading) {
 
@@ -24,9 +26,9 @@ struct ClassInformation: View {
                 
                 ZStack{
                     Button {
-                        
+                        calculatorActive.toggle()
                     } label: {
-                        Text("Doomsday Calculator")
+                        Text((calculatorActive) ? "Doomsday Calculator" : "Done")
                             .font(.system(size: 14))
                             .foregroundColor(Color("GradGreen"))
                     }

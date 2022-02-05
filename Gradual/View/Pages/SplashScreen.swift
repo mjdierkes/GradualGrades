@@ -32,10 +32,10 @@ struct SplashScreen: View {
                    LoginPage(dataLoading: $dataLoading)
                 }
             }
-        }
-        .navigationBarHidden(true)
         /// Attempt to load the data from keychain.
         /// This screen will disappear if logged in.
+
+        }
         .onAppear(perform: {
             Task {
                 do {
@@ -54,6 +54,7 @@ struct SplashScreen: View {
                 }
             }
         })
+        
     }
 
 }

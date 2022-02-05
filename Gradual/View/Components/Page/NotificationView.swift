@@ -19,7 +19,7 @@ struct NotificationViewPopover: View {
         }
         .frame(maxWidth: 600)
         .padding()
-        .padding(.vertical, 3)
+        .padding(.vertical, 2)
         .background(Color("DarkGray"))
         .opacity(0.98)
         .cornerRadius(12)
