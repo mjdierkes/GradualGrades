@@ -99,6 +99,7 @@ import KeychainAccess
         cache.save(data: nextSAT, forKey: "NextSAT")
         cache.save(data: gpa, forKey: "GPA")
         
+        cards = [Card]()
         getUpcomingAssignments()
 
         cache.save(data: cards, forKey: "Cards")
@@ -192,6 +193,8 @@ import KeychainAccess
     
     func getUpcomingAssignments() {
         
+        print("Upcoming Assignments Loading")
+        print("Cards", cards)
         var output = [Assignment]()
         let dateFormatter = DateFormatter()
         let stringFormatter = DateFormatter()

@@ -11,7 +11,7 @@ import SwiftUI
 struct ClassInformation: View {
     
     @Binding var classDetails: Class
-    @Binding var calculatorActive: Bool
+    @EnvironmentObject var doomManager: DoomsdayManager
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,9 +26,11 @@ struct ClassInformation: View {
                 
                 ZStack{
                     Button {
-                        calculatorActive.toggle()
+                        doomManager.calculatorActive.toggle()
+                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred()
                     } label: {
-                        Text((calculatorActive) ? "Doomsday Calculator" : "Done")
+                        Text((doomManager.calculatorActive) ? "Doomsday Calculator" : "Close Calculator")
                             .font(.system(size: 14))
                             .foregroundColor(Color("GradGreen"))
                     }

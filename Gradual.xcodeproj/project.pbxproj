@@ -51,6 +51,7 @@
 		F7E5865F279B862200438E66 /* About.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E5865E279B862200438E66 /* About.swift */; };
 		F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */; };
 		F7F4CE6A27ACDDCB0015324C /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6927ACDDCB0015324C /* CarouselView.swift */; };
+		F7F4CE7027AECA3A0015324C /* DoomsdayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		F7E5865E279B862200438E66 /* About.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = About.swift; sourceTree = "<group>"; };
 		F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAssignmentPage.swift; sourceTree = "<group>"; };
 		F7F4CE6927ACDDCB0015324C /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomsdayManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 			children = (
 				F74DDE3227944BAC00894237 /* AppManager.swift */,
 				F779C16D279F3C5E00DDF96F /* PreferencesManager.swift */,
+				F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */,
 				F7A742BF27AC2C9300A9E56E /* CacheService.swift in Sources */,
 				F77E76F227AA1BA100CA2F98 /* GradeFormatter.swift in Sources */,
+				F7F4CE7027AECA3A0015324C /* DoomsdayManager.swift in Sources */,
 				F77E76F427AA1BE900CA2F98 /* GPA.swift in Sources */,
 				F77E76FF27AA2CD800CA2F98 /* RefreshToolbarButton.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,

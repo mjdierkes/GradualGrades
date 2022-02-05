@@ -9,10 +9,10 @@ import SwiftUI
 
 struct SimpleAssignmentView: View {
     
-    var assessment: Assignment
-    @State private var text = "98"
     @State private var color = Color.black
-    @Binding var calculatorActive: Bool
+    @Binding var assessment: Assignment
+    @EnvironmentObject var doomManager: DoomsdayManager
+    
     let formatter = GradeFormatter()
     
     var body: some View {
@@ -25,24 +25,34 @@ struct SimpleAssignmentView: View {
 //                    .foregroundColor(assessment.scoreColor())
                 
                 HStack {
-                    TextField("", text: $text)
+                    TextField((!doomManager.calculatorActive && assessment.editableGrade == "") ? "Score" : "", text: $assessment.editableGrade)
+                        .padding(.horizontal)
+                        .background((!doomManager.calculatorActive) ? Color("BackgroundGray") : Color("Background"))
+                        .cornerRadius(7)
                         .keyboardType(.numberPad)
                         .fixedSize()
-                        .disabled(calculatorActive)
-                    Text("%")
+                        .disabled(doomManager.calculatorActive)
+                    Text((Double(assessment.editableGrade) ?? 0 > 0) ? "%" : " ")
                 }
                 .foregroundColor(color)
             }
             .padding(.vertical, 7)
-            .onChange(of: text) { newValue in
+            .onChange(of: assessment.editableGrade) { newValue in
                 if let newValue = Int(newValue) {
                     color = formatter.getColor(from: Double(newValue))
+                    doomManager.calculateAverages()
                 } else {
-                    print("RIPPP")
+                    print("Could not convert to int")
                 }
+            }
+            .onChange(of: doomManager.calculatorActive) { newValue in
+                assessment.editableGrade = assessment.calculatedScore
+                
+                color = assessment.scoreColor()
             }
             .onAppear {
                 color = assessment.scoreColor()
+                assessment.editableGrade = assessment.calculatedScore
             }
             Divider()
         }

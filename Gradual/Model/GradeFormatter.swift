@@ -60,6 +60,23 @@ struct GradeFormatter {
         return average
     }
     
+    func getEditableAverage(for assignments: [Assignment]) -> Double{
+        var average: Double = 0
+        var count = Double(assignments.count)
+        
+        for assessment in assignments {
+            if let score = Double(assessment.editableGrade){
+                average += score
+            } else {
+                count -= 1
+            }
+        }
+        average /= count
+        
+
+        return average
+    }
+    
 }
 
 

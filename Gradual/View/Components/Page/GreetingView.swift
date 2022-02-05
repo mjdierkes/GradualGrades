@@ -15,7 +15,6 @@ struct GreetingView: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            
             Text("Good \(dayTime()) \(manager.firstName)")
                 .padding(.horizontal)
                 .padding(.top)
@@ -65,10 +64,6 @@ struct GreetingView: View {
                         }
                 }
             }
-            
-            
-            
-            
         }
     }
     

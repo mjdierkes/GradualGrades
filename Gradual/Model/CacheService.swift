@@ -34,7 +34,6 @@ class CacheService {
         DispatchQueue.global().async {
             do {
                 try self.storage?.save(object: data, forKey: key)
-                print("SAVED")
             } catch {
                 print(error)
             }
@@ -45,7 +44,6 @@ class CacheService {
         DispatchQueue.global().async {
             do {
                 try self.storage?.save(object: data, forKey: key)
-                print("SAVED")
             } catch {
                 print(error)
             }

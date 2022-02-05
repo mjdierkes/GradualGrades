@@ -9,13 +9,20 @@ import SwiftUI
 
 struct AssignmentPage: View {
     
-    @State private var calculatorDisabled = true
     @Binding var classDetails: Class
     @EnvironmentObject var manager: AppManager
-
+    @StateObject var doomManager = DoomsdayManager()
+    @FocusState private var focused: Bool
+    
     var body: some View {
         
         VStack {
+            
+            HStack {
+                Text("Average")
+                Text(doomManager.overallAverage)
+            }
+            
             if classDetails.assignments.count == 0 {
                 Spacer()
                 Text("No Assignments Yet")
@@ -25,41 +32,54 @@ struct AssignmentPage: View {
             else {
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack(alignment: .leading) {
-                        Assignments(gradeType: .major, average: classDetails.majorAverage, assignments: classDetails.majorGrades, calculatorActive: $calculatorDisabled)
-                        Assignments(gradeType: .minor, average: classDetails.minorAverage, assignments: classDetails.minorGrades, calculatorActive: $calculatorDisabled)
+                        MajorAssignments()
+                        MinorAssignments()
                     }
                     .padding()
                     Spacer()
-                    ClassInformation(classDetails: $classDetails, calculatorActive: $calculatorDisabled)
+                    ClassInformation(classDetails: $classDetails)
                 }
             }
         }
+        .focused($focused)
+        .onChange(of: doomManager.calculatorActive, perform: { newValue in
+            doomManager.overallAverage = classDetails.grade
+        })
+        .onAppear {
+            doomManager.build(from: classDetails)
+        }
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                Button("Done") {
+                    focused = false
+                }
+            }
+        }
+        .environmentObject(doomManager)
         .navigationBarTitle(classDetails.name)
         .navigationBarTitleDisplayMode(.inline)
-
+        
     }
 }
 
-private struct Assignments: View {
+private struct MajorAssignments: View {
     
-    var gradeType: GradeType
-    var average: Double?
-    var assignments: [Assignment]
-    @Binding var calculatorActive: Bool
+    @EnvironmentObject var doomManager: DoomsdayManager
     
     let formatter = GradeFormatter()
-        
+    
     
     var body: some View {
-        if assignments.count > 1{
+        if doomManager.majorAssignments.count > 1{
             
             HStack {
-                Text((gradeType == .major) ? "Majors" : "Minors")
+                Text("Majors")
                     .font(.title2)
                     .bold()
+                
                 Spacer()
                 
-                if let average = average {
+                if let average = (!doomManager.calculatorActive) ? doomManager.editableMajor : doomManager.majorAverage {
                     Text(String(average) + "%")
                         .foregroundColor(formatter.getColor(from: average))
                         .font(.title2)
@@ -67,12 +87,12 @@ private struct Assignments: View {
                 }
             }
             .padding(.bottom)
-
-            ForEach(assignments) { assessment in
-//                                NavigationLink(destination: DetailedAssignmentPage(assessment: assessment)) {
-                    SimpleAssignmentView(assessment: assessment, calculatorActive: $calculatorActive)
-//                                }
-                .tint(.black)
+            .onChange(of: doomManager.calculatorActive) { newValue in
+                doomManager.editableMajor = doomManager.majorAverage
+            }
+            
+            ForEach($doomManager.majorAssignments) { assessment in
+                SimpleAssignmentView(assessment: assessment)
             }
             
             Spacer()
@@ -82,6 +102,47 @@ private struct Assignments: View {
     }
 }
 
+
+private struct MinorAssignments: View {
+    
+    @EnvironmentObject var doomManager: DoomsdayManager
+    
+    let formatter = GradeFormatter()
+    
+    
+    var body: some View {
+        if doomManager.minorAssignments.count > 1{
+            
+            HStack {
+                Text("Minors")
+                    .font(.title2)
+                    .bold()
+                
+                Spacer()
+                
+                if let average = (!doomManager.calculatorActive) ? doomManager.editableMinor : doomManager.minorAverage {
+                    Text(String(average) + "%")
+                        .foregroundColor(formatter.getColor(from: average))
+                        .font(.title2)
+                        .bold()
+                }
+            }
+            .padding(.bottom)
+            .onChange(of: doomManager.calculatorActive) { newValue in
+                doomManager.editableMinor = doomManager.minorAverage
+            }
+            
+            ForEach($doomManager.minorAssignments) { assessment in
+                SimpleAssignmentView(assessment: assessment)
+            }
+            
+            Spacer()
+                .frame(height: 40)
+        }
+        
+        
+    }
+}
 //struct AssignmentPage_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AssignmentPage()
