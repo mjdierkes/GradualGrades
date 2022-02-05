@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import MapKit
 
 struct ClassInformation: View {
     
@@ -42,14 +42,23 @@ struct ClassInformation: View {
             }
             
             
+
+            
+            if let meta = classDetails.meta {
+                InfoDivider(key: "Teacher", value: meta.teacher, spacer: false)
+                InfoDivider(key: "Building", value: meta.building, spacer: false)
+                HStack{
+                    InfoDivider(key: "Period", value: meta.periods + meta.days)
+                    InfoDivider(key: "Room Number", value: meta.room)
+                }
+            }
+            
             HStack{
                 InfoDivider(key: "Credits", value: classDetails.credits)
                 InfoDivider(key: "Weighting", value: classDetails.weight)
             }
-            HStack{
-                InfoDivider(key: "Period", value: "3B")
-                InfoDivider(key: "Room Number", value: "XC103")
-            }
+          
+           
         }
         .padding()
         .padding(.vertical, 5)
@@ -61,16 +70,37 @@ struct InfoDivider: View {
     
     let key: String
     let value: String
+    var spacer: Bool = true
     
     var body: some View {
         VStack{
-            HStack(alignment: .center){
+            HStack {
                 Text(key)
                     .foregroundColor(Color("BorderGray"))
                     .font(.system(size: 16))
-                Spacer()
-                Text(value)
-                    .font(.system(size: 16))
+                    .padding(.trailing, (spacer) ? 0 : 20)
+                if spacer {
+                    Spacer()
+                }
+                
+                if value == "CTE"{
+                    Button {
+                        let coordinate = CLLocationCoordinate2DMake(33.126738, -96.796412)
+                        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+                        mapItem.name = "CTE Center"
+                        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+                    } label:  {
+                        Text(value + " Center")
+                            .tint(Color("GradGreen"))
+                    }
+                } else {
+                    Text(value)
+                        .font(.system(size: 16))
+                }
+                
+                if !spacer {
+                    Spacer()
+                }
             }
             Divider()
         }

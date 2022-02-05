@@ -27,6 +27,7 @@ struct AssignmentPage: View {
                 Spacer()
                 Text("No Assignments Yet")
                 Spacer()
+                ClassInformation(classDetails: $classDetails)
             }
             
             else {

@@ -28,6 +28,7 @@ struct Class: Codable, Identifiable {
         case name, grade, weight, credits, assignments
     }
     
+    var meta: ClassMeta? 
     
     // MARK: Formatting for View
     let formatter = GradeFormatter()

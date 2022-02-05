@@ -81,6 +81,7 @@ import KeychainAccess
 //        }
         
         classes = loadedClasses.currentClasses
+        populateClassInfo()
         filterClassnames()
         
         do {
@@ -237,6 +238,17 @@ import KeychainAccess
         }
                 
                     
+    }
+    
+    
+    func populateClassInfo() {
+        if let schedule = schedule {
+            for meta in schedule {
+                if let i = classes.firstIndex(where: { $0.name.contains(meta.courseCode) }) {
+                    classes[i].meta = meta
+                }
+            }
+        }
     }
 
     
