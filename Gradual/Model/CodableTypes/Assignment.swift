@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 /// Holds the data for a class assignment.
-struct Assignment: Codable, Identifiable {
+struct Assignment: Codable, Identifiable, Equatable {
     let id = UUID()
     
     let dateDue: String
@@ -50,16 +50,27 @@ struct Assignment: Codable, Identifiable {
         }
     }
     
+    static func ==(lhs: Assignment, rhs: Assignment) -> Bool {
+        return lhs.assignment == rhs.assignment && lhs.calculatedScore == rhs.calculatedScore
+    }
+    
+    
     /// Only these keys will be codable
     private enum CodingKeys: String, CodingKey {
         case dateDue, dateAssigned, assignment, category, score, totalPoints
     }
 }
 
+extension Assignment: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(assignment)
+        hasher.combine(score)
+    }
+}
 
 /// Manages what kind of grade the assignment is.
 enum GradeType: String {
     case minor = "Minor Grades"
     case major = "Major Grades"
-    case none  = "Non Graded"
+    case none  = "Non-graded"
 }

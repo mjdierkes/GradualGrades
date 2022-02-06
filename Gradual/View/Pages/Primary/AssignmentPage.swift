@@ -35,6 +35,7 @@ struct AssignmentPage: View {
                     VStack(alignment: .leading) {
                         MajorAssignments()
                         MinorAssignments()
+                        PlainAssignments()
                     }
                     .padding()
                     Spacer()

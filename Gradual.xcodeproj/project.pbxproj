@@ -52,6 +52,7 @@
 		F7E58661279B8F3200438E66 /* DetailedAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */; };
 		F7F4CE6A27ACDDCB0015324C /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6927ACDDCB0015324C /* CarouselView.swift */; };
 		F7F4CE7027AECA3A0015324C /* DoomsdayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */; };
+		F7F4CE7427B029300015324C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE7327B029300015324C /* BackgroundManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAssignmentPage.swift; sourceTree = "<group>"; };
 		F7F4CE6927ACDDCB0015324C /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomsdayManager.swift; sourceTree = "<group>"; };
+		F7F4CE7327B029300015324C /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				F74DDE3227944BAC00894237 /* AppManager.swift */,
 				F779C16D279F3C5E00DDF96F /* PreferencesManager.swift */,
 				F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */,
+				F7F4CE7327B029300015324C /* BackgroundManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
 				F77E76F027AA1B5000CA2F98 /* Assignment.swift in Sources */,
 				F78F509D279DA355004E6EA4 /* UpcomingAssignmentPage.swift in Sources */,
+				F7F4CE7427B029300015324C /* BackgroundManager.swift in Sources */,
 				F7BE1508279EF6A70079A0E3 /* AccountDetailPage.swift in Sources */,
 				F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */,
 				F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */,

@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct GradualApp: App {
+    let notificationService = NotificationService()
+    @Environment(\.scenePhase) var scenePhase
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .background {
+                        print("Background")
+                        notificationService.registerBackgroundTask()
+                    }
+                }
         }
     }
 }
