@@ -22,6 +22,27 @@
 		F74DDE3727946BBB00894237 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3627946BBB00894237 /* AsyncButton.swift */; };
 		F74DDE3A2794890400894237 /* SimpleClassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE392794890400894237 /* SimpleClassView.swift */; };
 		F74DDE3C27949B6D00894237 /* RecentAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */; };
+		F768DB5F27B37F870080DE5E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F768DB5E27B37F870080DE5E /* WidgetKit.framework */; };
+		F768DB6127B37F870080DE5E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F768DB6027B37F870080DE5E /* SwiftUI.framework */; };
+		F768DB6427B37F870080DE5E /* AppWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768DB6327B37F870080DE5E /* AppWidget.swift */; };
+		F768DB6627B37F890080DE5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F768DB6527B37F890080DE5E /* Assets.xcassets */; };
+		F768DB6A27B37F890080DE5E /* AppWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F768DB5C27B37F870080DE5E /* AppWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F768DB7027B37FA80080DE5E /* ClassWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768DB6F27B37FA80080DE5E /* ClassWidgetView.swift */; };
+		F768DB7127B3803E0080DE5E /* ClassWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F768DB6F27B37FA80080DE5E /* ClassWidgetView.swift */; };
+		F768DB7227B3806B0080DE5E /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE3227944BAC00894237 /* AppManager.swift */; };
+		F768DB7327B380E40080DE5E /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76EC27AA1B0000CA2F98 /* Class.swift */; };
+		F768DB7427B380E40080DE5E /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE2E279433A500894237 /* Upcoming.swift */; };
+		F768DB7527B380E40080DE5E /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76EF27AA1B5000CA2F98 /* Assignment.swift */; };
+		F768DB7627B380E40080DE5E /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F527AA1C0000CA2F98 /* Student.swift */; };
+		F768DB7727B380E40080DE5E /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F327AA1BE900CA2F98 /* GPA.swift */; };
+		F768DB7827B380F40080DE5E /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6927ACDDCB0015324C /* CarouselView.swift */; };
+		F768DB7927B3810E0080DE5E /* GradeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE2A2793BC1700894237 /* GradeService.swift */; };
+		F768DB7A27B3810E0080DE5E /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742BE27AC2C9300A9E56E /* CacheService.swift */; };
+		F768DB7B27B3810E0080DE5E /* GradeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F127AA1BA100CA2F98 /* GradeFormatter.swift */; };
+		F768DB7D27B381570080DE5E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33132794EF3000596478 /* CardView.swift */; };
+		F768DB7E27B381670080DE5E /* DetailedAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E58660279B8F3200438E66 /* DetailedAssignmentPage.swift */; };
+		F768DB8027B381B80080DE5E /* EasyStash in Frameworks */ = {isa = PBXBuildFile; productRef = F768DB7F27B381B80080DE5E /* EasyStash */; };
+		F768DB8227B381C40080DE5E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F768DB8127B381C40080DE5E /* KeychainAccess */; };
 		F7702A0D27A0CE0B00590028 /* SafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7702A0C27A0CE0B00590028 /* SafariViewWrapper.swift */; };
 		F7702A0F27A0D7AE00590028 /* GoalSetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7702A0E27A0D7AE00590028 /* GoalSetPage.swift */; };
 		F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77288D0279600EF000B5F3B /* AccountPage.swift */; };
@@ -55,6 +76,30 @@
 		F7F4CE7427B029300015324C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE7327B029300015324C /* BackgroundManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		F768DB6827B37F890080DE5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F74DDE0327939AB100894237 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F768DB5B27B37F870080DE5E;
+			remoteInfo = AppWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F768DB6B27B37F890080DE5E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F768DB6A27B37F890080DE5E /* AppWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		F709DE2127AC8102007ECFDC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
@@ -72,6 +117,13 @@
 		F74DDE3627946BBB00894237 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		F74DDE392794890400894237 /* SimpleClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleClassView.swift; sourceTree = "<group>"; };
 		F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAssignmentView.swift; sourceTree = "<group>"; };
+		F768DB5C27B37F870080DE5E /* AppWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AppWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F768DB5E27B37F870080DE5E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F768DB6027B37F870080DE5E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F768DB6327B37F870080DE5E /* AppWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppWidget.swift; sourceTree = "<group>"; };
+		F768DB6527B37F890080DE5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F768DB6727B37F890080DE5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F768DB6F27B37FA80080DE5E /* ClassWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassWidgetView.swift; sourceTree = "<group>"; };
 		F7702A0C27A0CE0B00590028 /* SafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewWrapper.swift; sourceTree = "<group>"; };
 		F7702A0E27A0D7AE00590028 /* GoalSetPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSetPage.swift; sourceTree = "<group>"; };
 		F77288D0279600EF000B5F3B /* AccountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPage.swift; sourceTree = "<group>"; };
@@ -114,6 +166,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F768DB5927B37F870080DE5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F768DB8227B381C40080DE5E /* KeychainAccess in Frameworks */,
+				F768DB8027B381B80080DE5E /* EasyStash in Frameworks */,
+				F768DB6127B37F870080DE5E /* SwiftUI.framework in Frameworks */,
+				F768DB5F27B37F870080DE5E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -131,6 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				F74DDE0D27939AB100894237 /* Gradual */,
+				F768DB6227B37F870080DE5E /* AppWidget */,
+				F768DB5D27B37F870080DE5E /* Frameworks */,
 				F74DDE0C27939AB100894237 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -139,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				F74DDE0B27939AB100894237 /* Gradual.app */,
+				F768DB5C27B37F870080DE5E /* AppWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,6 +272,26 @@
 				F77E76FB27AA1E7A00CA2F98 /* Page */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F768DB5D27B37F870080DE5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F768DB5E27B37F870080DE5E /* WidgetKit.framework */,
+				F768DB6027B37F870080DE5E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F768DB6227B37F870080DE5E /* AppWidget */ = {
+			isa = PBXGroup;
+			children = (
+				F768DB6327B37F870080DE5E /* AppWidget.swift */,
+				F768DB6F27B37FA80080DE5E /* ClassWidgetView.swift */,
+				F768DB6527B37F890080DE5E /* Assets.xcassets */,
+				F768DB6727B37F890080DE5E /* Info.plist */,
+			);
+			path = AppWidget;
 			sourceTree = "<group>";
 		};
 		F77E76EE27AA1B3400CA2F98 /* CodableTypes */ = {
@@ -306,10 +392,12 @@
 				F74DDE0727939AB100894237 /* Sources */,
 				F74DDE0827939AB100894237 /* Frameworks */,
 				F74DDE0927939AB100894237 /* Resources */,
+				F768DB6B27B37F890080DE5E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F768DB6927B37F890080DE5E /* PBXTargetDependency */,
 			);
 			name = Gradual;
 			packageProductDependencies = (
@@ -320,6 +408,27 @@
 			productName = Gradual;
 			productReference = F74DDE0B27939AB100894237 /* Gradual.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F768DB5B27B37F870080DE5E /* AppWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F768DB6E27B37F890080DE5E /* Build configuration list for PBXNativeTarget "AppWidgetExtension" */;
+			buildPhases = (
+				F768DB5827B37F870080DE5E /* Sources */,
+				F768DB5927B37F870080DE5E /* Frameworks */,
+				F768DB5A27B37F870080DE5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppWidgetExtension;
+			packageProductDependencies = (
+				F768DB7F27B381B80080DE5E /* EasyStash */,
+				F768DB8127B381C40080DE5E /* KeychainAccess */,
+			);
+			productName = AppWidgetExtension;
+			productReference = F768DB5C27B37F870080DE5E /* AppWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -332,6 +441,9 @@
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					F74DDE0A27939AB100894237 = {
+						CreatedOnToolsVersion = 13.0;
+					};
+					F768DB5B27B37F870080DE5E = {
 						CreatedOnToolsVersion = 13.0;
 					};
 				};
@@ -355,6 +467,7 @@
 			projectRoot = "";
 			targets = (
 				F74DDE0A27939AB100894237 /* Gradual */,
+				F768DB5B27B37F870080DE5E /* AppWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -366,6 +479,14 @@
 			files = (
 				F74DDE1627939AB300894237 /* Preview Assets.xcassets in Resources */,
 				F74DDE1327939AB300894237 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F768DB5A27B37F870080DE5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F768DB6627B37F890080DE5E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +520,7 @@
 				F74DDE3127943DC400894237 /* SplashScreen.swift in Sources */,
 				F7A742B627AC0D4800A9E56E /* LoginPage.swift in Sources */,
 				F74DDE35279467B600894237 /* HomePage.swift in Sources */,
+				F768DB7027B37FA80080DE5E /* ClassWidgetView.swift in Sources */,
 				F77E76F027AA1B5000CA2F98 /* Assignment.swift in Sources */,
 				F78F509D279DA355004E6EA4 /* UpcomingAssignmentPage.swift in Sources */,
 				F7F4CE7427B029300015324C /* BackgroundManager.swift in Sources */,
@@ -420,7 +542,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F768DB5827B37F870080DE5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F768DB7527B380E40080DE5E /* Assignment.swift in Sources */,
+				F768DB7E27B381670080DE5E /* DetailedAssignmentPage.swift in Sources */,
+				F768DB7927B3810E0080DE5E /* GradeService.swift in Sources */,
+				F768DB7327B380E40080DE5E /* Class.swift in Sources */,
+				F768DB7427B380E40080DE5E /* Upcoming.swift in Sources */,
+				F768DB7227B3806B0080DE5E /* AppManager.swift in Sources */,
+				F768DB7827B380F40080DE5E /* CarouselView.swift in Sources */,
+				F768DB7B27B3810E0080DE5E /* GradeFormatter.swift in Sources */,
+				F768DB7D27B381570080DE5E /* CardView.swift in Sources */,
+				F768DB7727B380E40080DE5E /* GPA.swift in Sources */,
+				F768DB6427B37F870080DE5E /* AppWidget.swift in Sources */,
+				F768DB7627B380E40080DE5E /* Student.swift in Sources */,
+				F768DB7127B3803E0080DE5E /* ClassWidgetView.swift in Sources */,
+				F768DB7A27B3810E0080DE5E /* CacheService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F768DB6927B37F890080DE5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F768DB5B27B37F870080DE5E /* AppWidgetExtension */;
+			targetProxy = F768DB6827B37F890080DE5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F74DDE1727939AB300894237 /* Debug */ = {
@@ -542,6 +693,7 @@
 		F74DDE1A27939AB300894237 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -575,6 +727,7 @@
 		F74DDE1B27939AB300894237 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -605,6 +758,60 @@
 			};
 			name = Release;
 		};
+		F768DB6C27B37F890080DE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92Z6CXGJ35;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AppWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesdierkes.Gradual.AppWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F768DB6D27B37F890080DE5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92Z6CXGJ35;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AppWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AppWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamesdierkes.Gradual.AppWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -622,6 +829,15 @@
 			buildConfigurations = (
 				F74DDE1A27939AB300894237 /* Debug */,
 				F74DDE1B27939AB300894237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F768DB6E27B37F890080DE5E /* Build configuration list for PBXNativeTarget "AppWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F768DB6C27B37F890080DE5E /* Debug */,
+				F768DB6D27B37F890080DE5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -656,6 +872,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F768DB7F27B381B80080DE5E /* EasyStash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */;
+			productName = EasyStash;
+		};
+		F768DB8127B381C40080DE5E /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7C419862798EF2D00753637 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		F7A742BC27AC2C0C00A9E56E /* EasyStash */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */;

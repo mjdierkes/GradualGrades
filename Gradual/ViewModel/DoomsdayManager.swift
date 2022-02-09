@@ -46,14 +46,29 @@ class DoomsdayManager: ObservableObject {
     func getOverallAverage() -> Double {
         var output = 0.0
         
-        if let editableMajor = editableMajor {
-            output += editableMajor * 0.6
+        guard let editableMajor = editableMajor else {
+            return output
         }
-        if let editableMinor = editableMinor {
-            output += editableMinor * 0.4
+        guard let editableMinor = editableMinor else {
+            return output
         }
         
-        return output
+        output += editableMajor * 0.6
+        output += editableMinor * 0.4
+        
+        if editableMinor.isNaN && editableMajor.isNaN {
+            return output
+        }
+        
+        if editableMajor.isNaN {
+            return editableMinor
+        }
+        
+        if editableMinor.isNaN {
+            return editableMajor
+        }
+        
+        return output.roundTo(places: 2)
     }
     
     

@@ -18,10 +18,13 @@ struct AssignmentPage: View {
         
         VStack {
             
-            HStack {
-                Text("Average")
-                Text(doomManager.overallAverage)
+            if doomManager.overallAverage != "" {
+                HStack {
+                    Text("Average")
+                    Text(doomManager.overallAverage)
+                }
             }
+           
             
             if classDetails.assignments.count == 0 {
                 Spacer()
@@ -72,7 +75,7 @@ private struct MajorAssignments: View {
     
     
     var body: some View {
-        if doomManager.majorAssignments.count > 1{
+        if doomManager.majorAssignments.count > 0{
             
             HStack {
                 Text("Majors")
@@ -113,7 +116,7 @@ private struct MinorAssignments: View {
     
     
     var body: some View {
-        if doomManager.minorAssignments.count > 1{
+        if doomManager.minorAssignments.count > 0{
             
             HStack {
                 Text("Minors")
@@ -154,8 +157,8 @@ private struct PlainAssignments: View {
     
     
     var body: some View {
-        if doomManager.nonAssignments.count > 1{
-            if !doomManager.calculatorActive {
+        if doomManager.nonAssignments.count > 0{
+            if doomManager.calculatorActive {
                 VStack {
                     HStack {
                         Text("Non Graded")

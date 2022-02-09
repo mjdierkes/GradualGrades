@@ -38,6 +38,7 @@ struct SplashScreen: View {
         /// This screen will disappear if logged in.
 
         }
+        .accentColor(Color("GradGreen")) 
         .onAppear(perform: {
             Task {
                 do {
