@@ -17,7 +17,6 @@ struct AccountPage: View {
                     HeaderView()
                     PreferencesView()
                 }
-                .navigationTitle("Account")
             }
         }
     }
@@ -32,22 +31,22 @@ private struct HeaderView: View {
     @EnvironmentObject var manager: AppManager
 
     var body: some View {
-        NavigationLink(destination: AccountDetailPage()) {
+        if let student = manager.student {
             ZStack {
                 VStack {
-                    Circle()
-                        .frame(width: 75, height: 75)
-                    
-                    if let student = manager.student {
-                        Text(student.fullName)
-                            .font(.title2.weight(.semibold))
-                        Text("Student")
+                    HStack{
+                        InfoDivider(key: "Student ID", value: student.id)
+                        InfoDivider(key: "Grade", value: student.grade)
                     }
-                    
+
+                    InfoDivider(key: "Campus", value: student.campus)
+                    InfoDivider(key: "Birthdate", value: student.longBirthdate)
                 }
+                .padding(.vertical)
                 .frame(height: 175)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
             }
+            .navigationTitle(student.fullName)
         }
     }
     

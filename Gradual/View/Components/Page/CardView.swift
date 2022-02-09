@@ -37,13 +37,13 @@ struct CardView: View {
                             .font(.title2)
                             .multilineTextAlignment(.leading)
                             .lineLimit(nil)
-                            .fixedSize(horizontal: true, vertical: false)
+                            .fixedSize(horizontal: false, vertical: true)
                             .padding(.bottom, 2)
 
                         Text(card.dueDate)
                         
                         Spacer()
-                        NavigationLink(destination: UpcomingAssignmentPage()) {
+                        NavigationLink(destination: DetailedAssignmentPage(assessment: card.assignment)) {
                             Text("Learn More")
                         }
                         .tint(Color("GradGreen"))
@@ -60,9 +60,9 @@ struct CardView: View {
     }
 }
 
-struct CardView_Previews: PreviewProvider {
-    @State private static var card = Card(id: 0, name: "Gradual Grades", className: "Mobile Apps", dueDate: "February 20th")
-    static var previews: some View {
-        CardView(card: $card)
-    }
-}
+//struct CardView_Previews: PreviewProvider {
+//    @State private static var card = Card(id: 0, name: "Gradual Grades", className: "Mobile Apps", dueDate: "February 20th")
+//    static var previews: some View {
+//        CardView(card: $card)
+//    }
+//}

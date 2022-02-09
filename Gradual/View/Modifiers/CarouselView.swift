@@ -56,6 +56,7 @@ struct Card: Codable, Hashable, Identifiable {
     var name: String = ""
     var className: String = ""
     var dueDate: String = ""
+    var assignment: Assignment
 }
 
 public class UIStateModel: ObservableObject {
@@ -115,15 +116,15 @@ struct Carousel<Items : View> : View {
         }.onEnded { value in
             self.UIState.screenDrag = 0
             
-            if (value.translation.width < -50) {
+            if (value.translation.width < -50 && UIState.activeCard != Int(numberOfItems - 1)) {
                 self.UIState.activeCard = self.UIState.activeCard + 1
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
             }
             
-            if (value.translation.width > 50) {
+            if (value.translation.width > 50 && UIState.activeCard != 0) {
                 self.UIState.activeCard = self.UIState.activeCard - 1
-                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                let impactMed = UIImpactFeedbackGenerator(style: .light)
                 impactMed.impactOccurred()
             }
         })

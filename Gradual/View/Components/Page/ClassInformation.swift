@@ -24,28 +24,30 @@ struct ClassInformation: View {
                 
                 Spacer()
                 
-                ZStack{
-                    Button {
-                        doomManager.calculatorActive.toggle()
-                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                        impactMed.impactOccurred()
-                    } label: {
-                        Text((doomManager.calculatorActive) ? "Doomsday Calculator" : "Close Calculator")
-                            .font(.system(size: 14))
-                            .foregroundColor(Color("GradGreen"))
+                if classDetails.assignments.count > 0 {
+                    ZStack{
+                        Button {
+                            doomManager.calculatorActive.toggle()
+                            let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                            impactMed.impactOccurred()
+                        } label: {
+                            Text((doomManager.calculatorActive) ? "Doomsday Calculator" : "Close Calculator")
+                                .font(.system(size: 14))
+                                .foregroundColor(Color("GradGreen"))
+                        }
                     }
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 12)
+                    .background(Color("LowGreen"))
+                    .cornerRadius(50)
                 }
-                .padding(.vertical, 6)
-                .padding(.horizontal, 12)
-                .background(Color("LowGreen"))
-                .cornerRadius(50)
             }
             
             
 
             
             if let meta = classDetails.meta {
-                InfoDivider(key: "Teacher", value: meta.teacher, spacer: false)
+                InfoDivider(key: "Teacher", value: meta.teacher.capitalized, spacer: false)
                 InfoDivider(key: "Building", value: meta.building, spacer: false)
                 HStack{
                     InfoDivider(key: "Period", value: meta.periods + meta.days)

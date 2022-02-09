@@ -14,55 +14,56 @@ struct GreetingView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading){
-            Text("Good \(dayTime()) \(manager.firstName)")
-                .padding(.horizontal)
-                .padding(.top)
-                .font(.title2)
-                .font(.system(.body, design: .rounded))
-                .onTapGesture(count: 2) {
-                    withAnimation {
-                        showGPA.toggle()
-                    }
-                }
-            
-            
-            if let gpa = manager.gpa?.roundedWeightedGPA {
-                if showGPA {
-                    VStack(alignment: .leading) {
-                        Text(gpa)
-                            .font(.largeTitle)
-                            .font(.system(.body, design: .rounded))
-                            .fontWeight(.medium)
-                            .padding(.horizontal)
-                            .padding(.top, 1)
-                        
-                        
-                        Text("Live GPA")
-                            .bold()
-                            .foregroundColor(Color("GradGreen"))
-                            .padding(.horizontal)
-                            .padding(.bottom, 1)
-                    }
+        HStack {
+            VStack(alignment: .leading){
+                Text("Good \(dayTime()) \(manager.firstName)")
+                    .padding(.horizontal)
+                    .padding(.top)
+                    .font(.title2)
+                    .font(.system(.body, design: .rounded))
                     .onTapGesture(count: 2) {
                         withAnimation {
                             showGPA.toggle()
                         }
                     }
-                }
-                else {
-                    Text("GPA Hidden")
-                        .bold()
-                        .foregroundColor(Color("BorderGray"))
-                        .padding(.horizontal)
-                        .padding(.bottom, 1)
-                        .padding(.top, 1)
-                        .onTapGesture(count: 2) {
-                            withAnimation {
-                                showGPA.toggle()
-                            }
+                
+                
+                if let gpa = manager.gpa?.roundedWeightedGPA {
+                    if showGPA {
+                        VStack(alignment: .leading) {
+                            Text(gpa)
+                                .font(.largeTitle)
+                                .font(.system(.body, design: .rounded))
+                                .fontWeight(.medium)
+                                .padding(.horizontal)
+                                .padding(.top, 1)
+                            
+                            
+                            Text("Live GPA")
+                                .bold()
+                                .foregroundColor(Color("GradGreen"))
+                                .padding(.horizontal)
+                                .padding(.bottom, 1)
                         }
+
+                    }
+                    else {
+                        Text("GPA Hidden")
+                            .bold()
+                            .foregroundColor(Color("BorderGray"))
+                            .padding(.horizontal)
+                            .padding(.bottom, 1)
+                            .padding(.top, 1)
+                    }
                 }
+            }
+            
+            Spacer()
+        }
+        .background(Color("Background"))
+        .onTapGesture(count: 2) {
+            withAnimation {
+                showGPA.toggle()
             }
         }
     }

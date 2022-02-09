@@ -74,7 +74,7 @@ struct GradeFormatter {
         average /= count
         
 
-        return average
+        return average.roundTo(places: 2)
     }
     
 }

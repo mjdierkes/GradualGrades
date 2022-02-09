@@ -20,17 +20,6 @@ struct DetailedAssignmentPage: View {
             Text(assessment.dateDue)
             
             HStack {
-                ZStack{
-                    
-                    Text("Better than 80%")
-                        .font(.system(size: 14))
-                        .foregroundColor(Color("GradGreen"))
-                    
-                }
-                .padding(.vertical, 6)
-                .padding(.horizontal, 12)
-                .background(Color("LowGreen"))
-                .cornerRadius(50)
                 
                 Spacer()
                 
@@ -42,12 +31,12 @@ struct DetailedAssignmentPage: View {
             
             Spacer()
             
-            Text("Recommended Videos")
-                .font(.title2)
-            Text("Here are some tutorials that we think we could help.")
-                .font(.subheadline)
-            
-            Spacer(minLength: 75)
+//            Text("Recommended Videos")
+//                .font(.title2)
+//            Text("Here are some tutorials that we think we could help.")
+//                .font(.subheadline)
+//            
+//            Spacer(minLength: 75)
             
         }
         .padding()

@@ -13,7 +13,7 @@ struct PreferencesView: View {
     @EnvironmentObject var preferences: PreferencesManager
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage("FaceID") var requireFaceID: Bool = false
+//    @AppStorage("FaceID") var requireFaceID: Bool = false
     @AppStorage("StyleGrades") var styleGrades: Bool = true
     @AppStorage("ColorScheme") var preferredAppearance: Appearance = .light
     @State private var showingAlert = false
@@ -23,11 +23,11 @@ struct PreferencesView: View {
     var body: some View {
         
         
-            Section("Security") {
-                Toggle(isOn: $requireFaceID) {
-                    Text("Face ID")
-                }
-            }
+//            Section("Security") {
+//                Toggle(isOn: $requireFaceID) {
+//                    Text("Face ID")
+//                }
+//            }
             
             Section("Appearance") {
                 Toggle(isOn: $styleGrades) {
@@ -54,6 +54,8 @@ struct PreferencesView: View {
             }
             
             Section {
+//                NavigationLink(destination: SplashScreen(), isActive: .constant(manager.student == nil)) { EmptyView() }
+
                 Button {
                     showingAlert = true
                 } label: {

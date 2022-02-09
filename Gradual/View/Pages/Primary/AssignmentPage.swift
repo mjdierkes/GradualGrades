@@ -155,32 +155,35 @@ private struct PlainAssignments: View {
     
     var body: some View {
         if doomManager.nonAssignments.count > 1{
-            
-            HStack {
-                Text("Non Graded")
-                    .font(.title2)
-                    .bold()
-                
-                Spacer()
-                
-                if let average = (!doomManager.calculatorActive) ? doomManager.editablePlain : doomManager.plainAverage {
-                    Text(String(average) + "%")
-                        .foregroundColor(formatter.getColor(from: average))
-                        .font(.title2)
-                        .bold()
+            if !doomManager.calculatorActive {
+                VStack {
+                    HStack {
+                        Text("Non Graded")
+                            .font(.title2)
+                            .bold()
+                        
+                        Spacer()
+                        
+                        if let average = (!doomManager.calculatorActive) ? doomManager.editablePlain : doomManager.plainAverage {
+                            Text(String(average) + "%")
+                                .foregroundColor(formatter.getColor(from: average))
+                                .font(.title2)
+                                .bold()
+                        }
+                    }
+                    .padding(.bottom)
+                    .onChange(of: doomManager.calculatorActive) { newValue in
+                        doomManager.editablePlain = doomManager.plainAverage
+                    }
+                    
+                    ForEach($doomManager.nonAssignments) { assessment in
+                        SimpleAssignmentView(assessment: assessment)
+                    }
+                    
+                    Spacer()
+                        .frame(height: 40)
                 }
             }
-            .padding(.bottom)
-            .onChange(of: doomManager.calculatorActive) { newValue in
-                doomManager.editablePlain = doomManager.plainAverage
-            }
-            
-            ForEach($doomManager.nonAssignments) { assessment in
-                SimpleAssignmentView(assessment: assessment)
-            }
-            
-            Spacer()
-                .frame(height: 40)
         }
         
         

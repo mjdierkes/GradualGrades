@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct AccountToolButton: View {
-    @State private var showingAccountPage = false
+    @EnvironmentObject var manager: AppManager
 
     var body: some View {
         Button {
-            showingAccountPage.toggle()
+            manager.showingAccountPage.toggle()
         } label: {
             Image(systemName: "person")
                 .resizable()
@@ -22,9 +22,10 @@ struct AccountToolButton: View {
         .tint(Color("Text"))
         .scaleEffect(0.9)
         .padding(.trailing)
-        .sheet(isPresented: $showingAccountPage){
+        .sheet(isPresented: $manager.showingAccountPage){
             AccountPage()
         }
+
     }
 }
 

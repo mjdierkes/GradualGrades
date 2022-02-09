@@ -17,7 +17,8 @@ import KeychainAccess
     
     @Published var nextSAT = ""
     @Published var error = ""
-
+    @Published var showingAccountPage = false
+    
     @Published var cards = [Card]()
     @Published var networkOffline = false
 
@@ -128,6 +129,7 @@ import KeychainAccess
         gpa = nil
         cards = [Card]()
         classes = [Class]()
+        showingAccountPage = false
     }
     
     func saveCredentials(username: String, password: String){
@@ -229,7 +231,7 @@ import KeychainAccess
             if let date = dateFormatter.date(from: assessment.dateDue) {
                 if date > today {
                     output.append(assessment)
-                    cards.append(Card(id: index, name: assessment.assignment, className: assessment.className, dueDate: stringFormatter.string(from: date)))
+                    cards.append(Card(id: index, name: assessment.assignment, className: assessment.className, dueDate: stringFormatter.string(from: date), assignment: assessment))
                     index += 1
                 }
             } else {

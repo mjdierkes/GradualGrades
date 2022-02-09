@@ -64,13 +64,13 @@ struct StudentCredentialsView: View {
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
             
-            
-            Button {
-                
-            } label: {
-                Text("I'm a parent")
-                    .foregroundColor(Color("GradGreen"))
-            }
+//            
+//            Button {
+//                
+//            } label: {
+//                Text("I'm a parent")
+//                    .foregroundColor(Color("GradGreen"))
+//            }
         }
         
     }

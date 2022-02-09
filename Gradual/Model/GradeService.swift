@@ -38,8 +38,8 @@ private actor GradeServiceStore {
     private let password: String
     private var path = ""
     
-    private var url: URL {
-        urlComponents.url!
+    private var url: String {
+        urlComponents.url!.absoluteString.removingPercentEncoding!
     }
     
     public init(username: String, password: String) {
@@ -50,8 +50,8 @@ private actor GradeServiceStore {
     /// Builds a URL to connect to the API sever.
     private var urlComponents: URLComponents {
         var components = URLComponents()
-        components.scheme = "http"
-        components.host = "gradualgrades-env.eba-dkw3kc3t.us-east-2.elasticbeanstalk.com"
+        components.scheme = "https"
+        components.host = "gradual-deploy.vercel.app"
         components.path = path
         return components
     }
@@ -61,10 +61,10 @@ private actor GradeServiceStore {
         
         self.path = root.rawValue
         if root != .satDates {
-            path += "/\(username)/\(password)"
+            path += "?username=\(username)&password=\(password)"
         }
                 
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let (data, response) = try await URLSession.shared.data(from: URL(string: url)!)
         
         print(url)
 
