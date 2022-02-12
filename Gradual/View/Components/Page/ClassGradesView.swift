@@ -17,10 +17,10 @@ struct ClassGradesView: View {
             .font(.system(.body, design: .rounded))
         
         ForEach($manager.classes) { details in
-            NavigationLink(destination: AssignmentPage(classDetails: details)) {
+//            ZStack {
                 SimpleClassView(classData: details)
-            }
-            .tint(.black)
+                    .background( NavigationLink("", destination: AssignmentPage(classDetails: details)).opacity(0))
+//            }
         }
     }
 }

@@ -17,12 +17,12 @@ struct GradualApp: App {
                 .onAppear(perform: {
                     notificationService.requestAccess()
                 })
-                .onChange(of: scenePhase) { newPhase in
-                    if newPhase == .background {
-                        print("Background")
-                        notificationService.registerBackgroundTask()
-                    }
-                }
+//                .onChange(of: scenePhase) { newPhase in
+//                    if newPhase == .background {
+//                        print("Background")
+//                        notificationService.registerBackgroundTask()
+//                    }
+//                }
         }
     }
 }

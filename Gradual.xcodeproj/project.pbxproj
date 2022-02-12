@@ -52,7 +52,6 @@
 		F77E76F227AA1BA100CA2F98 /* GradeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F127AA1BA100CA2F98 /* GradeFormatter.swift */; };
 		F77E76F427AA1BE900CA2F98 /* GPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F327AA1BE900CA2F98 /* GPA.swift */; };
 		F77E76F627AA1C0000CA2F98 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76F527AA1C0000CA2F98 /* Student.swift */; };
-		F77E76FF27AA2CD800CA2F98 /* RefreshToolbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E76FE27AA2CD800CA2F98 /* RefreshToolbarButton.swift */; };
 		F77E770127AA2D3E00CA2F98 /* AccountToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E770027AA2D3E00CA2F98 /* AccountToolButton.swift */; };
 		F77E770327AA2D7D00CA2F98 /* GreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E770227AA2D7D00CA2F98 /* GreetingView.swift */; };
 		F77E770527AA2D9F00CA2F98 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77E770427AA2D9F00CA2F98 /* CardStackView.swift */; };
@@ -74,6 +73,7 @@
 		F7F4CE6A27ACDDCB0015324C /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6927ACDDCB0015324C /* CarouselView.swift */; };
 		F7F4CE7027AECA3A0015324C /* DoomsdayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */; };
 		F7F4CE7427B029300015324C /* BackgroundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F4CE7327B029300015324C /* BackgroundManager.swift */; };
+		F7F973D527B8436A00E1B7D7 /* ScrollRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F973D427B8436A00E1B7D7 /* ScrollRefreshable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,7 +133,6 @@
 		F77E76F127AA1BA100CA2F98 /* GradeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFormatter.swift; sourceTree = "<group>"; };
 		F77E76F327AA1BE900CA2F98 /* GPA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPA.swift; sourceTree = "<group>"; };
 		F77E76F527AA1C0000CA2F98 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
-		F77E76FE27AA2CD800CA2F98 /* RefreshToolbarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshToolbarButton.swift; sourceTree = "<group>"; };
 		F77E770027AA2D3E00CA2F98 /* AccountToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountToolButton.swift; sourceTree = "<group>"; };
 		F77E770227AA2D7D00CA2F98 /* GreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingView.swift; sourceTree = "<group>"; };
 		F77E770427AA2D9F00CA2F98 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
@@ -153,6 +152,7 @@
 		F7F4CE6927ACDDCB0015324C /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		F7F4CE6F27AECA3A0015324C /* DoomsdayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoomsdayManager.swift; sourceTree = "<group>"; };
 		F7F4CE7327B029300015324C /* BackgroundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundManager.swift; sourceTree = "<group>"; };
+		F7F973D427B8436A00E1B7D7 /* ScrollRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollRefreshable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +186,7 @@
 				F74DDE3627946BBB00894237 /* AsyncButton.swift */,
 				F7702A0C27A0CE0B00590028 /* SafariViewWrapper.swift */,
 				F7F4CE6927ACDDCB0015324C /* CarouselView.swift */,
+				F7F973D427B8436A00E1B7D7 /* ScrollRefreshable.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -363,7 +364,6 @@
 		F77E76FD27AA2B2300CA2F98 /* Toolbar */ = {
 			isa = PBXGroup;
 			children = (
-				F77E76FE27AA2CD800CA2F98 /* RefreshToolbarButton.swift */,
 				F77E770027AA2D3E00CA2F98 /* AccountToolButton.swift */,
 			);
 			path = Toolbar;
@@ -536,7 +536,7 @@
 				F77E76F227AA1BA100CA2F98 /* GradeFormatter.swift in Sources */,
 				F7F4CE7027AECA3A0015324C /* DoomsdayManager.swift in Sources */,
 				F77E76F427AA1BE900CA2F98 /* GPA.swift in Sources */,
-				F77E76FF27AA2CD800CA2F98 /* RefreshToolbarButton.swift in Sources */,
+				F7F973D527B8436A00E1B7D7 /* ScrollRefreshable.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,
 				F74DDE2F279433A500894237 /* Upcoming.swift in Sources */,
 			);

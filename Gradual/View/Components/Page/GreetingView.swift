@@ -36,15 +36,14 @@ struct GreetingView: View {
                                 .font(.system(.body, design: .rounded))
                                 .fontWeight(.medium)
                                 .padding(.horizontal)
-                                .padding(.top, 1)
                             
                             
                             Text("Live GPA")
                                 .bold()
                                 .foregroundColor(Color("GradGreen"))
                                 .padding(.horizontal)
-                                .padding(.bottom, 1)
                         }
+                        .frame(height: 65)
 
                     }
                     else {
@@ -52,8 +51,7 @@ struct GreetingView: View {
                             .bold()
                             .foregroundColor(Color("BorderGray"))
                             .padding(.horizontal)
-                            .padding(.bottom, 1)
-                            .padding(.top, 1)
+                            .frame(height: 65)
                     }
                 }
             }

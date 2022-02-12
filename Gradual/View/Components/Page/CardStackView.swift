@@ -10,8 +10,8 @@ import SwiftUI
 struct CardStackView: View {
     
     @EnvironmentObject var manager: AppManager
-    @StateObject var model = UIStateModel()
-
+    @EnvironmentObject var model: UIStateModel
+    
     var body: some View {
         if manager.cards.count > 0 {
             
@@ -20,21 +20,19 @@ struct CardStackView: View {
                 Color("BackgroundGray")
 
                 SnapCarousel(items: $manager.cards)
-                    .environmentObject(model)
                     .frame(height: 180)
-
                 
             }
             .frame(height: 200)
             
         }
     }
+    
 }
 
-
-
-struct CardStackView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardStackView()
-    }
-}
+//
+//struct CardStackView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardStackView()
+//    }
+//}

@@ -63,16 +63,8 @@ struct StudentCredentialsView: View {
                 .tint(.black)
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-            
-//            
-//            Button {
-//                
-//            } label: {
-//                Text("I'm a parent")
-//                    .foregroundColor(Color("GradGreen"))
-//            }
         }
-        
+        .navigationBarBackButtonHidden(true)
     }
     
     /// Helper function to load the student data.

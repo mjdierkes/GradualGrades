@@ -10,22 +10,23 @@ import SwiftUI
 /// This is the main page of the app.
 /// Users can check Upcoming Assignments, Grades, and GPA.
 struct HomePage: View {
-    
+    @EnvironmentObject var manager: AppManager
+
     var body: some View {
         VStack {
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading){
+            ScrollRefreshable(content: {
                     GreetingView()
                     CardStackView()
                     ClassGradesView()
+            }){
+                do {
+                    try await manager.reload()
+                } catch {
+                    print("Unable to reload")
                 }
             }
         }
         .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                RefreshToolButton()
-            }
-            
             ToolbarItem(placement: .navigationBarTrailing) {
                 AccountToolButton()
             }
@@ -33,6 +34,12 @@ struct HomePage: View {
         .navigationBarBackButtonHidden(true)
         .background(Color("Background"))
         .navigationBarTitleDisplayMode(.inline)
+        .overlay(
+            
+            DetailPage()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+
+        )
     }
     
 }

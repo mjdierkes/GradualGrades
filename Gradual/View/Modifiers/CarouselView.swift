@@ -10,19 +10,12 @@ import SwiftUI
 struct SnapCarousel: View {
     @EnvironmentObject var UIState: UIStateModel
     @Binding var items: [Card]
+//    let namespace: Namespace.ID
 
     var body: some View {
         let spacing: CGFloat = 16
         let widthOfHiddenCards: CGFloat = 10 /// UIScreen.main.bounds.width - 10
         let cardHeight: CGFloat = 175
-
-//        print(items)
-//        let items = [
-//            Card(id: 0, name: "Hey"),
-//            Card(id: 1, name: "Ho"),
-//            Card(id: 2, name: "Lets"),
-//            Card(id: 3, name: "Go")
-//        ]
         
         return Canvas {
             /// TODO: find a way to avoid passing same arguments to Carousel and Item
@@ -38,18 +31,27 @@ struct SnapCarousel: View {
                         widthOfHiddenCards: widthOfHiddenCards,
                         cardHeight: cardHeight
                     ) {
-                        CardView(card: item)
+                            CardView(card: item)
+//                            .matchedGeometryEffect(id: item.wrappedValue.id, in: namespace)
+                            .onTapGesture {
+                                withAnimation(.spring()){
+                                    UIState.currentCard = item.wrappedValue
+                                    UIState.showDetailPage = true
+                                }
+                            }
                     }
+                
                     .background(Color("Background"))
                     .cornerRadius(8)
-//                    .shadow(color: Color("shadow1"), radius: 4, x: 0, y: 4)
                     .transition(AnyTransition.slide)
                     .animation(.spring())
                 }
             }
         }
     }
+
 }
+
 
 struct Card: Codable, Hashable, Identifiable {
     var id: Int
@@ -62,6 +64,16 @@ struct Card: Codable, Hashable, Identifiable {
 public class UIStateModel: ObservableObject {
     @Published var activeCard: Int = 0
     @Published var screenDrag: Float = 0.0
+    
+    // Detail Hero Page..
+    @Published var showDetailPage: Bool = false
+    @Published var currentCard: Card?
+    
+    // showing Detail content a bit later...
+    @Published var showDetailContent: Bool = false
+    
+    // For Hero Animation
+    // Using Namespace...
 }
 
 struct Carousel<Items : View> : View {
@@ -173,14 +185,82 @@ struct Item<Content: View>: View {
     }
 }
 
-//struct SnapCarousel_Previews: PreviewProvider {
-//    static let items = [
-//        Card(id: 0, name: "Hey"),
-//        Card(id: 1, name: "Ho"),
-//        Card(id: 2, name: "Lets"),
-//        Card(id: 3, name: "Go")
-//    ]
-//    static var previews: some View {
-//        SnapCarousel(items: items)
-//    }
-//}
+struct DetailPage: View {
+    
+    @EnvironmentObject var UIState: UIStateModel
+//    let namespace: Namespace.ID
+
+
+
+    
+    var body: some View {
+        ZStack{
+            
+            if let currentCard = UIState.currentCard, UIState.showDetailPage {
+                
+                Rectangle()
+                    .fill(.white)
+//                    .matchedGeometryEffect(id: currentCard.id, in: namespace)
+                    .ignoresSafeArea()
+                
+                VStack(alignment: .leading, spacing: 15) {
+                    
+                    // Close Button...
+                    
+                    HStack {
+                        Button {
+                            withAnimation{
+                                // Closing View..
+                                UIState.showDetailContent = false
+                                UIState.showDetailPage = false
+                                print("Tappe")
+                            }
+                        } label: {
+                            Image(systemName: "xmark")
+                                .foregroundColor(.black)
+                                .padding(10)
+                                .background(Color.white.opacity(0.6))
+                                .clipShape(Circle())
+                        }
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    Text(currentCard.dueDate)
+                        .font(.callout)
+                        .fontWeight(.semibold)
+                        .padding(.top)
+
+                    Text(currentCard.name)
+                        .font(.title.bold())
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
+                        
+                        // Sample Content...
+                        Text(content)
+                            .kerning(1.1)
+                            .lineSpacing(8)
+                            .multilineTextAlignment(.leading)
+                            .padding(.top,10)
+                    }
+                }
+                .opacity(UIState.showDetailPage ? 1 : 0)
+                .foregroundColor(.black)
+                .padding()
+                // Moving view to top Without Any Spacers..
+                .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .top)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                        
+                        withAnimation{
+                            UIState.showDetailPage = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+        let content = "Humans have long used cognitive enhancement methods to expand the proficiency and range of the various mental activities that they engage in, including writing to store and retrieve information, and computers that allow them to perform myriad activities that are now commonplace in the internet age. Neuroenhancement describes the use of neuroscience-based techniques for enhancing cognitive function by acting directly on the human brain and nervous system, altering its properties to increase performance. Cognitive neuroscience has now reached the point where it may begin to put theory derived from years of experimentation into practice. This special issue includes 16 articles that employ or examine a variety of neuroenhancement methods currently being developed to increase cognition in healthy people and in patients with neurological or psychiatric illness.This includes transcranial electromagnetic stimulation methods, such as transcranial direct current stimulation (tDCS) and transcranial magnetic stimulation (TMS), along with deep brain stimulation, neurofeedback, behavioral training techniques, and these and other techniques in conjunction with neuroimaging."
+}

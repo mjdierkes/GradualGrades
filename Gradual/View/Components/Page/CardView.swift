@@ -43,10 +43,10 @@ struct CardView: View {
                         Text(card.dueDate)
                         
                         Spacer()
-                        NavigationLink(destination: DetailedAssignmentPage(assessment: card.assignment)) {
-                            Text("Learn More")
-                        }
-                        .tint(Color("GradGreen"))
+//                        NavigationLink(destination: DetailedAssignmentPage(assessment: card.assignment)) {
+//                            Text("Learn More")
+//                        }
+//                        .tint(Color("GradGreen"))
                     }
                     .padding(.vertical)
                     .padding(.trailing, 19)

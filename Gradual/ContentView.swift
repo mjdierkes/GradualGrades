@@ -12,31 +12,33 @@ struct ContentView: View {
     
     @StateObject var manager = AppManager()
     @StateObject var preferences = PreferencesManager()
-    
+    @StateObject var model = UIStateModel()
+
     @State var presentingUUID = UUID()
     
     var body: some View {
         SplashScreen()
             .environmentObject(manager)
             .environmentObject(preferences)
+            .environmentObject(model)
             .preferredColorScheme(preferences.appearance)
-//            .popover(
-//                present: $manager.networkOffline,
-//                attributes: {
-//                    $0.sourceFrameInset = UIEdgeInsets(16)
-//                    $0.position = .relative(
-//                        popoverAnchors: [
-//                            .bottom,
-//                        ]
-//                    )
-//                    $0.presentation.transition = .move(edge: .bottom)
-//                    $0.dismissal.transition = .move(edge: .bottom)
-//                    $0.dismissal.mode = [.dragDown]
-//                    $0.dismissal.dragDismissalProximity = 0.1
-//                }
-//            ) {
-//                NotificationViewPopover()
-//            }
+            .popover(
+                present: $manager.networkOffline,
+                attributes: {
+                    $0.sourceFrameInset = UIEdgeInsets(16)
+                    $0.position = .relative(
+                        popoverAnchors: [
+                            .bottom,
+                        ]
+                    )
+                    $0.presentation.transition = .move(edge: .bottom)
+                    $0.dismissal.transition = .move(edge: .bottom)
+                    $0.dismissal.mode = [.dragDown]
+                    $0.dismissal.dragDismissalProximity = 0.1
+                }
+            ) {
+                NotificationViewPopover()
+            }
         }
 
 }

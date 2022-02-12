@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailedAssignmentPage: View {
     
-    var assessment: Assignment
+    @Binding var assessment: Assignment
     
     var body: some View {
         VStack(alignment: .leading){
