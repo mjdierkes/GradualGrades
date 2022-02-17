@@ -33,7 +33,8 @@ struct Class: Codable, Identifiable {
     // MARK: Formatting for View
     let formatter = GradeFormatter()
     let defaults = UserDefaults()
-
+    let cache = CacheService()
+    
     /// Easy access for this classes major and minor grades.
     /// This is used in the Assignments Page.
     var majorGrades: [Assignment] {
@@ -71,12 +72,24 @@ struct Class: Codable, Identifiable {
     /// Cleans up and formats the grade for displaying.
     var roundedGrade: String {
         if let score = Double(grade){
+            cache.save(data: grade, forKey: name + "- Average")
+            print(name, "- Average")
             if score >= 100 {
                 return String(Int(score.roundTo(places: 0)))
             }
             return String(score.roundTo(places: 2))
         }
         return grade
+    }
+    
+    func getPercentChange() -> Double? {
+        print(name, "- Average")
+        if let previousScore: Double = cache.load(forKey: name + "- Average") {
+            if let score = Double(grade) {
+                return ((score - previousScore) / previousScore) * 100
+            }
+        }
+        return nil
     }
     
     /// Provides the view a color based on the class average.

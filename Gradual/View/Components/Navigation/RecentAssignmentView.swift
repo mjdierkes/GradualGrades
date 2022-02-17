@@ -13,16 +13,19 @@ struct RecentAssignmentView: View {
     var className: String
     var assignment: Assignment
     
-    let size = 170.0
+    let size = 150.0
+    let formatter = GradeFormatter()
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(assignment.assignment)
+                    .font(.subheadline)
                     .bold()
-                Text(assignment.score)
-                    .foregroundColor(Color("GradGreen"))
-                    .font(.system(size: 16))
+                Text(assignment.calculatedScore)
+                    .foregroundColor(assignment.scoreColor())
+                    .font(.title)
+                    .bold()
 
                 Spacer()
                 Text(className)
@@ -42,7 +45,7 @@ struct RecentAssignmentView: View {
             Spacer()
         }
         .padding(15)
-        .frame(width: 170, height: 170)
+        .frame(width: size, height: size)
         .cornerRadius(7)
         .overlay(
             RoundedRectangle(cornerRadius: 16)
@@ -51,8 +54,11 @@ struct RecentAssignmentView: View {
     }
 }
 
-//struct RecentAssignmentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RecentAssignmentView()
-//    }
-//}
+struct RecentAssignmentView_Previews: PreviewProvider {
+    @StateObject static var manager = AppManager()
+    static var assessment = Assignment(dateDue: "", dateAssigned: "", assignment: "Unit Circle Test", category: "Major", score: "100", totalPoints: "100")
+    static var previews: some View {
+        RecentAssignmentView(className: "Mobile App", assignment: assessment)
+            .environmentObject(manager)
+    }
+}

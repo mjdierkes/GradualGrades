@@ -13,6 +13,7 @@ struct SimpleAssignmentView: View {
     @Binding var assessment: Assignment
     @EnvironmentObject var doomManager: DoomsdayManager
     
+    var isEditable = true
     let formatter = GradeFormatter()
     
     var body: some View {
@@ -27,11 +28,11 @@ struct SimpleAssignmentView: View {
                 HStack {
                     TextField((!doomManager.calculatorActive && assessment.editableGrade == "") ? "Score" : "", text: $assessment.editableGrade)
                         .padding(.horizontal)
-                        .background((!doomManager.calculatorActive) ? Color("BackgroundGray") : Color("Background"))
+                        .background((!doomManager.calculatorActive && isEditable) ? Color("BackgroundGray") : Color("Background"))
                         .cornerRadius(7)
                         .keyboardType(.numberPad)
                         .fixedSize()
-                        .disabled(doomManager.calculatorActive)
+                        .disabled(doomManager.calculatorActive && isEditable)
                     Text((Double(assessment.editableGrade) ?? 0 > 0) ? "%" : " ")
                 }
                 .foregroundColor(color)

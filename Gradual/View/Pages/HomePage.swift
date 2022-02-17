@@ -16,6 +16,7 @@ struct HomePage: View {
         VStack {
             ScrollRefreshable(content: {
                     GreetingView()
+                    RecentAssignmentStack()
                     CardStackView()
                     ClassGradesView()
             }){

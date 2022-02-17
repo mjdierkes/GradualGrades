@@ -22,11 +22,14 @@ import KeychainAccess
     @Published var cards = [Card]()
     @Published var networkOffline = false
 
+    @Published var recentAssignments = [Assignment]()
+    
     let keychain = Keychain(service: "life.gradual.api")
     var schedule: [ClassMeta]?
     
     let defaults = UserDefaults.standard
     let cache = CacheService()
+    let notificationService = NotificationService()
     
     var firstName: String {
         return student?.name.components(separatedBy: " ")[1] ?? "Student"
@@ -67,6 +70,8 @@ import KeychainAccess
             return }
     
         try await loadData(username: username, password: password)
+        notificationService.update()
+        recentAssignments = notificationService.recentAssignments
     }
     
     /// Attempts to access the API and initialize stored properties.
@@ -110,7 +115,6 @@ import KeychainAccess
         cards = [Card]()
         getUpcomingAssignments()
 
-        print("Cards", cards)
         cache.save(data: cards, forKey: "Cards")
 
     }
@@ -221,6 +225,7 @@ import KeychainAccess
         
         for classDetails in classes {
             for var assessment in classDetails.assignments {
+                assessment.percentChange = classDetails.getPercentChange()
                 assessment.className = classDetails.name
                 assessments.append(assessment)
             }

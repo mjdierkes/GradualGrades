@@ -19,6 +19,7 @@ struct Assignment: Codable, Identifiable, Equatable {
     var score: String
     let totalPoints: String
     
+    var percentChange: Double?
     var className: String = ""
     var editableGrade: String = ""
     let formatter = GradeFormatter()

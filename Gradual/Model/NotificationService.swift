@@ -10,8 +10,9 @@ import UserNotifications
 import KeychainAccess
 import UIKit
 
-class NotificationService {
+class NotificationService: ObservableObject {
     
+    @Published var recentAssignments = [Assignment]()
     let cache = CacheService()
     let keychain = Keychain(service: "life.gradual.api")
     
@@ -71,7 +72,7 @@ class NotificationService {
         Task {
             do {
                 try await loadData()
-                getNewAssignments()
+                recentAssignments = getNewAssignments()
                 cache.save(data: classes, forKey: "Classes")
             } catch {
                 print(error)
@@ -79,28 +80,31 @@ class NotificationService {
         }
     }
     
-    func getNewAssignments() {
+    func getNewAssignments() -> [Assignment]{
         
+        var output = [Assignment]()
         guard let classes = classes else {
             print("Classes are nil")
-            return
+            return output
         }
         
         guard let previousClasses = previousClasses else {
             print("Previous classes are nil")
-            return
+            return output
         }
         
         for (classDetails, previousDetails) in zip(classes, previousClasses) {
             let difference = classDetails.assignments.gradeDifference(from: previousDetails.assignments)
-            print(difference)
+            
             for difference in difference {
                 if difference.score != "" {
                     sendNotification(title: difference.assignment, subtitle: "Grade changed to " + difference.score)
+                    output.append(difference)
                 }
             }
         }
         
+        return output
                 
     }
     

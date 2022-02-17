@@ -14,17 +14,27 @@ struct AssignmentPage: View {
     @StateObject var doomManager = DoomsdayManager()
     @FocusState private var focused: Bool
     
+    let formatter = GradeFormatter()
+    
     var body: some View {
         
         VStack {
             
-            if doomManager.overallAverage != "" {
+            
+            if let average = Double(doomManager.overallAverage) {
                 HStack {
                     Text("Average")
-                    Text(doomManager.overallAverage)
+                        .font(.title2)
+                        .bold()
+                    Spacer()
+                    Text(doomManager.overallAverage + "%")
+                        .foregroundColor(formatter.getColor(from: average))
+                        .font(.title2)
+                        .bold()
+
                 }
+                .padding()
             }
-           
             
             if classDetails.assignments.count == 0 {
                 Spacer()
@@ -158,7 +168,6 @@ private struct PlainAssignments: View {
     
     var body: some View {
         if doomManager.nonAssignments.count > 0{
-            if doomManager.calculatorActive {
                 VStack {
                     HStack {
                         Text("Non Graded")
@@ -180,13 +189,12 @@ private struct PlainAssignments: View {
                     }
                     
                     ForEach($doomManager.nonAssignments) { assessment in
-                        SimpleAssignmentView(assessment: assessment)
+                        SimpleAssignmentView(assessment: assessment, isEditable: false)
                     }
                     
                     Spacer()
                         .frame(height: 40)
                 }
-            }
         }
         
         

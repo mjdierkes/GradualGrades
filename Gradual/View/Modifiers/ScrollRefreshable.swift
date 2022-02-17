@@ -30,7 +30,7 @@ struct ScrollRefreshable<Content: View>: View {
         List{
             content
                 .listRowSeparatorTint(.clear)
-                .listRowBackground(Color.white)
+                .listRowBackground(Color("Background"))
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         }
         .listStyle(.plain)

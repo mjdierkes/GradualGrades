@@ -204,16 +204,13 @@ struct DetailPage: View {
                     .ignoresSafeArea()
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    
-                    // Close Button...
-                    
+                                        
                     HStack {
                         Button {
                             withAnimation{
                                 // Closing View..
                                 UIState.showDetailContent = false
                                 UIState.showDetailPage = false
-                                print("Tappe")
                             }
                         } label: {
                             Image(systemName: "xmark")
