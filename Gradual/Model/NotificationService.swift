@@ -10,6 +10,11 @@ import UserNotifications
 import KeychainAccess
 import UIKit
 
+/// Manages sending notifications to the user.
+/// These are updates about new assignments and grade changes.
+///
+/// Notification access requested in onboarding screen.
+
 class NotificationService: ObservableObject {
     
     @Published var recentAssignments = [Assignment]()

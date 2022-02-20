@@ -17,9 +17,6 @@ struct SplashScreen: View {
     
     var body: some View {
         NavigationView {
-            
-//        NavigationLink("", destination: HomePage(), isActive: .constant(manager.student != nil))
-
             ZStack {
                 NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) { EmptyView() }
                 let _ = print(dataLoading)
@@ -27,24 +24,20 @@ struct SplashScreen: View {
                     ZStack {
                         Color("Background")
                             .ignoresSafeArea()
-//                        Image("GradHat")
                     }
                 }
                 else {
                    LoginPage(dataLoading: $dataLoading)
                 }
             }
-        /// Attempt to load the data from keychain.
-        /// This screen will disappear if logged in.
-
         }
         .accentColor(Color("GradGreen")) 
         .onAppear(perform: {
+            /// Attempt to load the data from keychain.
+            /// This screen will disappear if logged in.
             Task {
                 do {
                     try await manager.reload()
-//                    username = ""
-//                    password = ""
                     manager.error = ""
                     withAnimation {
                         dataLoading = false
@@ -57,7 +50,6 @@ struct SplashScreen: View {
                 }
             }
         })
-        
     }
 
 }
