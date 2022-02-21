@@ -15,43 +15,55 @@ struct SplashScreen: View {
     @EnvironmentObject var manager: AppManager
     @State private var dataLoading = true
     
+    @AppStorage("isNewUser") var isNewUser = true
+    @State private var presentingView = true
     var body: some View {
-        NavigationView {
+        GeometryReader{ proxy in
+            
             ZStack {
-                NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) { EmptyView() }
-                let _ = print(dataLoading)
-                if dataLoading {
+                NavigationView {
                     ZStack {
-                        Color("Background")
-                            .ignoresSafeArea()
+                        NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) { EmptyView() }
+                        let _ = print(dataLoading)
+                        if dataLoading {
+                            ZStack {
+                                Color("Background")
+                                    .ignoresSafeArea()
+                            }
+                        }
+                        else {
+                            LoginPage(dataLoading: $dataLoading)
+                        }
+                        
                     }
                 }
-                else {
-                   LoginPage(dataLoading: $dataLoading)
+                if isNewUser && presentingView{
+                    let size = proxy.size
+                    OnboardingPage(screenSize: size, presentingView: $presentingView)
                 }
             }
+            .accentColor(Color("GradGreen"))
+            .onAppear(perform: {
+                /// Attempt to load the data from keychain.
+                /// This screen will disappear if logged in.
+                Task {
+                    do {
+                        try await manager.reload()
+                        manager.error = ""
+                        withAnimation {
+                            dataLoading = false
+                        }
+                    } catch {
+                        print("Unable to load data from Keynanchain")
+                        withAnimation {
+                            dataLoading = false
+                        }
+                    }
+                }
+            })
         }
-        .accentColor(Color("GradGreen")) 
-        .onAppear(perform: {
-            /// Attempt to load the data from keychain.
-            /// This screen will disappear if logged in.
-            Task {
-                do {
-                    try await manager.reload()
-                    manager.error = ""
-                    withAnimation {
-                        dataLoading = false
-                    }
-                } catch {
-                    print("Unable to load data from Keynanchain")
-                    withAnimation {
-                        dataLoading = false
-                    }
-                }
-            }
-        })
     }
-
+    
 }
 
 
