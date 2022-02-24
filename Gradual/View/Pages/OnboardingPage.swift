@@ -10,6 +10,7 @@ import SwiftUI
 
 struct OnboardingPage: View {
     
+    let notificationService = NotificationService()
     var screenSize: CGSize
     @State var offset: CGFloat = 0
     @Binding var presentingView: Bool
@@ -89,10 +90,12 @@ struct OnboardingPage: View {
                 .offset(y: -15)
                 
                 Button {
-                    
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                    impactMed.impactOccurred()
                     let index = min(getIndex() + 1, intros.count - 1)
                     if getIndex() == intros.count - 1 {
                         withAnimation {
+                            notificationService.requestAccess()
                             presentingView = false
                             isNewUser = false
                         }

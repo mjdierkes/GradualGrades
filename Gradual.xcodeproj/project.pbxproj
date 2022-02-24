@@ -10,6 +10,7 @@
 		F709DE2227AC8102007ECFDC /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709DE2127AC8102007ECFDC /* NotificationView.swift */; };
 		F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */; };
 		F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E67A12795BC3000D6D60E /* PremiumPage.swift */; };
+		F71142D927C477B4001B21C8 /* WelcomeGiftPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71142D827C477B4001B21C8 /* WelcomeGiftPage.swift */; };
 		F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE0E27939AB100894237 /* GradualApp.swift */; };
 		F74DDE1127939AB100894237 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE1027939AB100894237 /* ContentView.swift */; };
 		F74DDE1327939AB300894237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74DDE1227939AB300894237 /* Assets.xcassets */; };
@@ -75,6 +76,7 @@
 		F709DE2127AC8102007ECFDC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
 		F70E67A12795BC3000D6D60E /* PremiumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPage.swift; sourceTree = "<group>"; };
+		F71142D827C477B4001B21C8 /* WelcomeGiftPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeGiftPage.swift; sourceTree = "<group>"; };
 		F74DDE0B27939AB100894237 /* Gradual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gradual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74DDE0E27939AB100894237 /* GradualApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradualApp.swift; sourceTree = "<group>"; };
 		F74DDE1027939AB100894237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -290,9 +292,9 @@
 				F77E770427AA2D9F00CA2F98 /* CardStackView.swift */,
 				F7A742B127AB742000A9E56E /* PreferencesView.swift */,
 				F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */,
-				F709DE2127AC8102007ECFDC /* NotificationView.swift */,
 				F783AA7927BC0BCB0035A1E6 /* RecentAssignmentStack.swift */,
 				F7DB83FD27C32AC900873A84 /* OnboardingStack.swift */,
+				F709DE2127AC8102007ECFDC /* NotificationView.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -323,6 +325,7 @@
 				F74DDE3027943DC400894237 /* SplashScreen.swift */,
 				F7A742B527AC0D4800A9E56E /* LoginPage.swift */,
 				F7DB83FB27C31A6B00873A84 /* OnboardingPage.swift */,
+				F71142D827C477B4001B21C8 /* WelcomeGiftPage.swift */,
 				F77E76F927AA1D8700CA2F98 /* Primary */,
 				F77E76FA27AA1D9000CA2F98 /* Secondary */,
 				F77E76F827AA1D3E00CA2F98 /* InProgress */,
@@ -423,6 +426,7 @@
 				F783AA7A27BC0BCB0035A1E6 /* RecentAssignmentStack.swift in Sources */,
 				F77E770127AA2D3E00CA2F98 /* AccountToolButton.swift in Sources */,
 				F74DDE2B2793BC1700894237 /* GradeService.swift in Sources */,
+				F71142D927C477B4001B21C8 /* WelcomeGiftPage.swift in Sources */,
 				F779C16E279F3C5E00DDF96F /* PreferencesManager.swift in Sources */,
 				F77E770727AA2DF000CA2F98 /* ClassGradesView.swift in Sources */,
 				F7702A0D27A0CE0B00590028 /* SafariViewWrapper.swift in Sources */,

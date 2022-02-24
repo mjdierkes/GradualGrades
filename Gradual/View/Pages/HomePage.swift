@@ -11,21 +11,28 @@ import SwiftUI
 /// Users can check Upcoming Assignments, Grades, and GPA.
 struct HomePage: View {
     @EnvironmentObject var manager: AppManager
+    @State private var showingGiftPage = false
+    @AppStorage("offerAvailable") var offerAvailable = true
 
     var body: some View {
-        VStack {
-            ScrollRefreshable(content: {
-                    GreetingView()
-                    RecentAssignmentStack()
-                    CardStackView()
-                    ClassGradesView()
-            }){
-                do {
-                    try await manager.reload()
-                } catch {
-                    print("Unable to reload")
+        Group {
+            VStack {
+                ScrollRefreshable(content: {
+                        GreetingView()
+                        RecentAssignmentStack()
+                        CardStackView()
+                        ClassGradesView()
+                }){
+                    do {
+                        try await manager.reload()
+                    } catch {
+                        print("Unable to reload")
+                    }
                 }
             }
+        }
+        .sheet(isPresented: $showingGiftPage){
+            WelcomeGiftPage()
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -36,11 +43,16 @@ struct HomePage: View {
         .background(Color("Background"))
         .navigationBarTitleDisplayMode(.inline)
         .overlay(
-            
             DetailPage()
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
         )
+        .onAppear {
+            if offerAvailable {
+                showingGiftPage = true
+            }
+            offerAvailable = false
+        }
     }
     
 }
