@@ -11,8 +11,6 @@ import SwiftUI
 /// Users can check Upcoming Assignments, Grades, and GPA.
 struct HomePage: View {
     @EnvironmentObject var manager: AppManager
-    @State private var showingGiftPage = false
-    @AppStorage("offerAvailable") var offerAvailable = true
 
     var body: some View {
         Group {
@@ -31,9 +29,6 @@ struct HomePage: View {
                 }
             }
         }
-        .sheet(isPresented: $showingGiftPage){
-            WelcomeGiftPage()
-        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 AccountToolButton()
@@ -47,12 +42,6 @@ struct HomePage: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 
         )
-        .onAppear {
-            if offerAvailable {
-                showingGiftPage = true
-            }
-            offerAvailable = false
-        }
     }
     
 }
