@@ -20,7 +20,7 @@ struct OnboardingPage: View {
     var intros : [Intro] = [
         Intro(image: "Relax", title: "Learning Made Simple", description: "Check your grades at a glance, and easily see grade changes and updates."),
         Intro(image: "Trophy", title: "Raise the Bar", description: "With Live GPA calculations, you can be sure to stay on top of your game."),
-        Intro(image: "Notifications", title: "Stay in the Loop", description: "With notifications, you can see your new test scores as soon as they're put in. BETA")
+        Intro(image: "Notifications", title: "Stay in the Loop", description: "With notifications, you can see your new test scores as soon as they're put in.", isBeta: true)
     ]
     
     var body: some View {
@@ -51,6 +51,16 @@ struct OnboardingPage: View {
                                     .font(.title)
                                 
                                 Text(intro.description)
+                                if intro.isBeta {
+                                    Text("BETA")
+                                        .bold()
+                                        .padding(.vertical, 3)
+                                        .padding(.horizontal, 7)
+                                        .foregroundColor(Color.white)
+                                        .background(Color("PerfectlyInsane"))
+                                        .cornerRadius(7)
+                                }
+                               
                             }
                             .foregroundStyle(.black)
                             .padding(.top,50)
@@ -153,6 +163,8 @@ struct Intro: Identifiable{
     var image: String
     var title: String
     var description: String
+    
+    var isBeta: Bool = false
 }
 
 

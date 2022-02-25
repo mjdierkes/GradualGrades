@@ -30,9 +30,9 @@ struct PreferencesView: View {
 //            }
             
             Section("Appearance") {
-                Toggle(isOn: $styleGrades) {
-                    Text("Style Grades")
-                }
+//                Toggle(isOn: $styleGrades) {
+//                    Text("Style Grades")
+//                }
                 Picker(selection: $selectedAppearance, label: Text("Appearance")) {
                     Text("System Default").tag(1)
                     Text("Light").tag(2)

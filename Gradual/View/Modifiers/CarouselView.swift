@@ -33,12 +33,12 @@ struct SnapCarousel: View {
                     ) {
                             CardView(card: item)
 //                            .matchedGeometryEffect(id: item.wrappedValue.id, in: namespace)
-                            .onTapGesture {
-                                withAnimation(.spring()){
-                                    UIState.currentCard = item.wrappedValue
-                                    UIState.showDetailPage = true
-                                }
-                            }
+//                            .onTapGesture {
+//                                withAnimation(.spring()){
+//                                    UIState.currentCard = item.wrappedValue
+//                                    UIState.showDetailPage = true
+//                                }
+//                            }
                     }
                 
                     .background(Color("Background"))
