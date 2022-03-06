@@ -48,7 +48,7 @@ struct GradeFormatter {
         var count = Double(assignments.count)
         
         for assessment in assignments {
-            if let score = Double(assessment.score){
+            if let score = Double(assessment.calculatedScore){
                 average += score
             } else {
                 count -= 1

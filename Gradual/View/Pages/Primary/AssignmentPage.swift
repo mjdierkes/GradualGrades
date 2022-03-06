@@ -21,20 +21,6 @@ struct AssignmentPage: View {
         VStack {
             
             
-            if let average = Double(doomManager.overallAverage) {
-                HStack {
-                    Text("Average")
-                        .font(.title2)
-                        .bold()
-                    Spacer()
-                    Text(doomManager.overallAverage + "%")
-                        .foregroundColor(formatter.getColor(from: average))
-                        .font(.title2)
-                        .bold()
-
-                }
-                .padding()
-            }
             
             if classDetails.assignments.count == 0 {
                 Spacer()
@@ -45,6 +31,22 @@ struct AssignmentPage: View {
             
             else {
                 ScrollView(.vertical, showsIndicators: false) {
+                    
+                    if let average = Double(doomManager.overallAverage) {
+                        HStack {
+                            Text("Average")
+                                .font(.title2)
+                                .bold()
+                            Spacer()
+                            Text(doomManager.overallAverage + "%")
+                                .foregroundColor(formatter.getColor(from: average))
+                                .font(.title2)
+                                .bold()
+
+                        }
+                        .padding()
+                    }
+                    
                     VStack(alignment: .leading) {
                         MajorAssignments()
                         MinorAssignments()

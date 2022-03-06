@@ -11,16 +11,18 @@ struct ClassGradesView: View {
     @EnvironmentObject var manager: AppManager
 
     var body: some View {
-        Text("Grades")
-            .padding()
-            .font(.title2)
-            .font(.system(.body, design: .rounded))
+        HStack {
+            Text("Grades")
+                .padding()
+                .font(.title2)
+                .font(.system(.body, design: .rounded))
+            Spacer()
+        }
         
         ForEach($manager.classes) { details in
-//            ZStack {
+            NavigationLink(destination: AssignmentPage(classDetails: details)) {
                 SimpleClassView(classData: details)
-                    .background( NavigationLink("", destination: AssignmentPage(classDetails: details)).opacity(0))
-//            }
+            }
         }
     }
 }

@@ -43,7 +43,6 @@ struct GreetingView: View {
                                 .foregroundColor(Color("GradGreen"))
                                 .padding(.horizontal)
                         }
-                        .frame(height: 65)
 
                     }
                     else {
@@ -51,7 +50,7 @@ struct GreetingView: View {
                             .bold()
                             .foregroundColor(Color("BorderGray"))
                             .padding(.horizontal)
-                            .frame(height: 65)
+                            .padding(.vertical, 2)
                     }
                 }
             }

@@ -46,11 +46,14 @@ struct OnboardingPage: View {
                             
                             VStack(spacing: 22) {
                                 Text(intro.title)
+                                    .foregroundColor(Color("Text"))
                                     .fontWeight(.semibold)
                                     .multilineTextAlignment(.center)
                                     .font(.title)
                                 
                                 Text(intro.description)
+                                    .foregroundColor(Color("Text"))
+
                                 if intro.isBeta {
                                     Text("BETA")
                                         .bold()
@@ -70,7 +73,7 @@ struct OnboardingPage: View {
                         .frame(width: screenSize.width)
                     }
                 }
-                .background(Color.white)
+                .background(Color("Background"))
                 .multilineTextAlignment(.center)
                 
             }
@@ -84,14 +87,14 @@ struct OnboardingPage: View {
                     ForEach(intros.indices,id: \.self){index in
                         
                         Capsule()
-                            .fill(.black)
+                            .fill(Color("Text"))
                         // increasing width for only current index...
                             .frame(width: getIndex() == index ? 20 : 7, height: 7)
                     }
                 }
                 .overlay(
                     Capsule()
-                        .fill(.black)
+                        .fill(Color("Text"))
                         .frame(width: 20, height: 7)
                         .offset(x: getIndicatorOffset())
                     
@@ -114,9 +117,10 @@ struct OnboardingPage: View {
                     
                 } label: {
                     Text("Next")
+                        .foregroundColor(Color("FlippedText"))
                         .frame(minWidth: 275, minHeight: 32)
                 }
-                .tint(.black)
+                .tint(Color("Text"))
                 .buttonStyle(.borderedProminent)
             }
             
@@ -125,7 +129,7 @@ struct OnboardingPage: View {
             
             
         }
-        .background(Color.white)
+        .background(Color("Background"))
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         // Animating when index Changes...
         .animation(.easeInOut,value: getIndex())

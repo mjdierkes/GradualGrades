@@ -26,14 +26,19 @@ struct SimpleAssignmentView: View {
 //                    .foregroundColor(assessment.scoreColor())
                 
                 HStack {
-                    TextField((!doomManager.calculatorActive && assessment.editableGrade == "") ? "Score" : "", text: $assessment.editableGrade)
-                        .padding(.horizontal)
-                        .background((!doomManager.calculatorActive && isEditable) ? Color("BackgroundGray") : Color("Background"))
-                        .cornerRadius(7)
-                        .keyboardType(.numberPad)
-                        .fixedSize()
-                        .disabled(doomManager.calculatorActive && isEditable)
-                    Text((Double(assessment.editableGrade) ?? 0 > 0) ? "%" : " ")
+                    if !doomManager.calculatorActive && assessment.gradeType != .none {
+                        TextField((!doomManager.calculatorActive && assessment.editableGrade == "") ? "Score" : "", text: $assessment.editableGrade)
+                            .padding(.horizontal)
+                            .background((!doomManager.calculatorActive && isEditable) ? Color("BackgroundGray") : Color("Background"))
+                            .cornerRadius(7)
+                            .keyboardType(.numberPad)
+                            .fixedSize()
+                            .disabled(doomManager.calculatorActive && isEditable)
+                    }
+                    else {
+                        Text((Double(assessment.editableGrade) ?? 0 > 0) ? "\(assessment.editableGrade)%" : " ")
+                            .padding(1)
+                    }
                 }
                 .foregroundColor(color)
             }

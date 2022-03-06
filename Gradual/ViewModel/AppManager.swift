@@ -21,7 +21,8 @@ import KeychainAccess
     
     @Published var cards = [Card]()
     @Published var networkOffline = false
-
+    @Published var dataLoading = false
+    
     @Published var recentAssignments = [Assignment]()
     
     let keychain = Keychain(service: "life.gradual.api")

@@ -48,16 +48,19 @@ struct SplashScreen: View {
                 /// This screen will disappear if logged in.
                 Task {
                     do {
+                        manager.dataLoading = true
                         try await manager.reload()
                         manager.error = ""
                         withAnimation {
                             dataLoading = false
                         }
+                        manager.dataLoading = false
                     } catch {
                         print("Unable to load data from Keynanchain")
                         withAnimation {
                             dataLoading = false
                         }
+                        manager.dataLoading = false
                     }
                 }
             })

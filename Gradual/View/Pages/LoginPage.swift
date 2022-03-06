@@ -58,9 +58,9 @@ struct StudentCredentialsView: View {
             
             AsyncButton("Sign In", action: loadData)
                 .font(.headline)
-                .foregroundColor(Color.white)
+                .foregroundColor(Color("FlippedText"))
                 .padding(.vertical)
-                .tint(.black)
+                .tint(Color("Text"))
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
         }

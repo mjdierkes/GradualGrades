@@ -15,23 +15,19 @@ struct HomePage: View {
     var body: some View {
         Group {
             VStack {
-                ScrollRefreshable(content: {
-                        GreetingView()
-//                        RecentAssignmentStack()
-                        CardStackView()
-                        ClassGradesView()
-                }){
-                    do {
-                        try await manager.reload()
-                    } catch {
-                        print("Unable to reload")
-                    }
+                ScrollView(showsIndicators: false) {
+                    GreetingView()
+                    CardStackView()
+                    ClassGradesView()
                 }
             }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 AccountToolButton()
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                RefreshToolButton()
             }
         }
         .navigationBarBackButtonHidden(true)
