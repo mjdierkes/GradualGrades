@@ -43,6 +43,7 @@
 		F78C33142794EF3000596478 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33132794EF3000596478 /* CardView.swift */; };
 		F78C33162795158E00596478 /* AssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78C33152795158E00596478 /* AssignmentPage.swift */; };
 		F78F509D279DA355004E6EA4 /* UpcomingAssignmentPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F78F509C279DA355004E6EA4 /* UpcomingAssignmentPage.swift */; };
+		F7A5C80927D52ABA00B03230 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = F7A5C80827D52ABA00B03230 /* SwiftUICharts */; };
 		F7A742B227AB742000A9E56E /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B127AB742000A9E56E /* PreferencesView.swift */; };
 		F7A742B427AC0BFF00A9E56E /* ClassInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B327AC0BFF00A9E56E /* ClassInformation.swift */; };
 		F7A742B627AC0D4800A9E56E /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A742B527AC0D4800A9E56E /* LoginPage.swift */; };
@@ -134,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F75BEE7027C96DFF008A53A2 /* Popovers in Frameworks */,
+				F7A5C80927D52ABA00B03230 /* SwiftUICharts in Frameworks */,
 				F75BEE6E27C96DFF008A53A2 /* EasyStash in Frameworks */,
 				F75BEE6C27C96DFF008A53A2 /* KeychainAccess in Frameworks */,
 			);
@@ -357,6 +359,7 @@
 				F75BEE6B27C96DFF008A53A2 /* KeychainAccess */,
 				F75BEE6D27C96DFF008A53A2 /* EasyStash */,
 				F75BEE6F27C96DFF008A53A2 /* Popovers */,
+				F7A5C80827D52ABA00B03230 /* SwiftUICharts */,
 			);
 			productName = Gradual;
 			productReference = F74DDE0B27939AB100894237 /* Gradual.app */;
@@ -390,6 +393,7 @@
 				F7C419862798EF2D00753637 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */,
 				F7A742C027AC7FBA00A9E56E /* XCRemoteSwiftPackageReference "Popovers" */,
+				F7A5C80727D52ABA00B03230 /* XCRemoteSwiftPackageReference "ChartViews" */,
 			);
 			productRefGroup = F74DDE0C27939AB100894237 /* Products */;
 			projectDirPath = "";
@@ -677,6 +681,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F7A5C80727D52ABA00B03230 /* XCRemoteSwiftPackageReference "ChartViews" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mjdierkes/ChartViews";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		F7A742BB27AC2C0C00A9E56E /* XCRemoteSwiftPackageReference "EasyStash" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onmyway133/EasyStash";
@@ -718,6 +730,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7A742C027AC7FBA00A9E56E /* XCRemoteSwiftPackageReference "Popovers" */;
 			productName = Popovers;
+		};
+		F7A5C80827D52ABA00B03230 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7A5C80727D52ABA00B03230 /* XCRemoteSwiftPackageReference "ChartViews" */;
+			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

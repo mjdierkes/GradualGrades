@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUICharts
 
 struct AssignmentPage: View {
     
@@ -14,6 +15,8 @@ struct AssignmentPage: View {
     @StateObject var doomManager = DoomsdayManager()
     @FocusState private var focused: Bool
     
+    @AppStorage("isDogPerson") var isDogPerson = true
+
     let formatter = GradeFormatter()
     
     var body: some View {
@@ -23,29 +26,27 @@ struct AssignmentPage: View {
             
             
             if classDetails.assignments.count == 0 {
-                Spacer()
-                Text("No Assignments Yet")
-                Spacer()
+                Group {
+                    Spacer()
+                    Image(isDogPerson ? "Zeus" : "CuteCat")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: isDogPerson ? 250 : 175)
+                    Text("No Assignments Yet")
+                        .padding()
+                    Spacer()
+                }
+                .onTapGesture(count: 2) {
+                    isDogPerson.toggle()
+                }
                 ClassInformation(classDetails: $classDetails)
             }
             
             else {
+ 
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    if let average = Double(doomManager.overallAverage) {
-                        HStack {
-                            Text("Average")
-                                .font(.title2)
-                                .bold()
-                            Spacer()
-                            Text(doomManager.overallAverage + "%")
-                                .foregroundColor(formatter.getColor(from: average))
-                                .font(.title2)
-                                .bold()
-
-                        }
-                        .padding()
-                    }
+                    LineChartView(data: [8,23,54,45,12,37,7,23,43], title: "Mobile App Programing", legend: "Average \(doomManager.overallAverage + "%")", form: ChartForm.extraLarge, rateValue: 20, dropShadow: false)
                     
                     VStack(alignment: .leading) {
                         MajorAssignments()

@@ -32,6 +32,7 @@ struct Class: Codable, Identifiable {
     
     // MARK: Formatting for View
     let formatter = GradeFormatter()
+    let dateFormatter = DateFormatter()
     let defaults = UserDefaults()
     let cache = CacheService()
     
@@ -129,5 +130,41 @@ struct Class: Codable, Identifiable {
             }
         }
         return output
+    }
+    
+    func getGradualAverage() -> [Double]{
+//        var dates = [(Date, Assignment)]()
+//        var currentDate: Date
+//
+//        for assessment in assignments {
+//            if let date = dateFormatter.date(from: assessment.dateDue) {
+//                dates.append((date, assessm
+//            } else {
+//                print("Unable to convert date")
+//            }
+//        }
+//
+//        for date in dates {
+//
+//        }
+//
+        
+        
+        
+        
+        
+        
+        return [Double]()
+    }
+    
+    
+    public func getAssessmentDates() -> [Date] {
+        var dates = [Date]()
+        for assessment in assignments {
+            if let date = dateFormatter.date(from: assessment.dateDue) {
+                dates.append(date)
+            }
+        }
+        return dates.sorted()
     }
 }
