@@ -73,8 +73,8 @@ struct Class: Codable, Identifiable {
     /// Cleans up and formats the grade for displaying.
     var roundedGrade: String {
         if let score = Double(grade){
-            cache.save(data: grade, forKey: name + "- Average")
-            print(name, "- Average")
+//            cache.save(data: grade, forKey: name + "- Average")
+//            print(name, "- Average")
             if score >= 100 {
                 return String(Int(score.roundTo(places: 0)))
             }

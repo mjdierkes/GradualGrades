@@ -144,21 +144,9 @@ import KeychainAccess
             do {
                 try self.keychain
                     .set(username, key: "username")
-                
-//                guard let requireFaceID = self.defaults.object(forKey: "FaceID") else { return }
-//                print(requireFaceID)
-//                if requireFaceID as? Bool ?? false {
-//                    print("FaceID", requireFaceID)
-//                    try self.keychain
-//                        .accessibility(.whenPasscodeSetThisDeviceOnly, authenticationPolicy: [.biometryAny])
-//                        .set(password, key: "password")
-//                    print("Password", password)
-//                }
-//                else {
+
                     try self.keychain
                         .set(password, key: "password")
-                    print("Password", password)
-//                }
                 
             } catch {
                 print(error)
@@ -226,7 +214,7 @@ import KeychainAccess
         
         for classDetails in classes {
             for var assessment in classDetails.assignments {
-                assessment.percentChange = classDetails.getPercentChange()
+//                assessment.percentChange = classDetails.getPercentChange()
                 assessment.className = classDetails.name
                 assessments.append(assessment)
             }

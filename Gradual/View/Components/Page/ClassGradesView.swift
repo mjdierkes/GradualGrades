@@ -23,6 +23,7 @@ struct ClassGradesView: View {
             NavigationLink(destination: AssignmentPage(classDetails: details)) {
                 SimpleClassView(classData: details)
             }
+            .isDetailLink(false)
         }
     }
 }

@@ -44,11 +44,11 @@ struct SimpleAssignmentView: View {
             }
             .padding(.vertical, 7)
             .onChange(of: assessment.editableGrade) { newValue in
-                if let newValue = Int(newValue) {
-                    color = formatter.getColor(from: Double(newValue))
+                if let newValue = Double(newValue) {
+                    color = formatter.getColor(from: newValue)
                     doomManager.calculateAverages()
                 } else {
-                    print("Could not convert to int")
+                    print("Could not convert \(newValue) to Double")
                 }
             }
             .onChange(of: doomManager.calculatorActive) { newValue in

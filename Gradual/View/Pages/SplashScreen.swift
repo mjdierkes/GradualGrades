@@ -23,20 +23,23 @@ struct SplashScreen: View {
             ZStack {
                 NavigationView {
                     ZStack {
-                        NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) { EmptyView() }
-                        let _ = print(dataLoading)
-                        if dataLoading {
-                            ZStack {
-                                Color("Background")
-                                    .ignoresSafeArea()
-                            }
+                        NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {
+                            EmptyView()
                         }
-                        else {
-                            LoginPage(dataLoading: $dataLoading)
-                        }
+//                        .isDetailLink(false)
+//                        if dataLoading {
+//                            ZStack {
+//                                Color("Background")
+//                                    .ignoresSafeArea()
+//                            }
+//                        }
+//                        else {
+//                            LoginPage(dataLoading: $dataLoading)
+//                        }
                         
                     }
                 }
+                .navigationViewStyle(.stack)
                 if isNewUser && presentingView{
                     let size = proxy.size
                     OnboardingPage(screenSize: size, presentingView: $presentingView)
