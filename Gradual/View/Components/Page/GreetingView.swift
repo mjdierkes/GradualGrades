@@ -11,6 +11,7 @@ struct GreetingView: View {
     
     @EnvironmentObject var manager: AppManager
     @AppStorage("ShowGPA") var showGPA = true
+    @State private var showingSetup = false
     
     var body: some View {
         
@@ -57,12 +58,19 @@ struct GreetingView: View {
             
             Spacer()
         }
+        .sheet(isPresented: $showingSetup) {
+            GPASetupPage()
+        }
         .background(Color("Background"))
         .onTapGesture(count: 2) {
             withAnimation {
                 showGPA.toggle()
             }
         }
+        .onTapGesture {
+            showingSetup = true
+        }
+        
     }
     
     func dayTime() -> String {

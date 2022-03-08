@@ -10,6 +10,7 @@
 		F709DE2227AC8102007ECFDC /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F709DE2127AC8102007ECFDC /* NotificationView.swift */; };
 		F70E679E2795B2BC00D6D60E /* SimpleAssignmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */; };
 		F70E67A22795BC3000D6D60E /* PremiumPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70E67A12795BC3000D6D60E /* PremiumPage.swift */; };
+		F718DF7E27D7B45D00C82DC5 /* GPASetupPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F718DF7D27D7B45D00C82DC5 /* GPASetupPage.swift */; };
 		F74DDE0F27939AB100894237 /* GradualApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE0E27939AB100894237 /* GradualApp.swift */; };
 		F74DDE1127939AB100894237 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74DDE1027939AB100894237 /* ContentView.swift */; };
 		F74DDE1327939AB300894237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F74DDE1227939AB300894237 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		F709DE2127AC8102007ECFDC /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		F70E679D2795B2BC00D6D60E /* SimpleAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAssignmentView.swift; sourceTree = "<group>"; };
 		F70E67A12795BC3000D6D60E /* PremiumPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumPage.swift; sourceTree = "<group>"; };
+		F718DF7D27D7B45D00C82DC5 /* GPASetupPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPASetupPage.swift; sourceTree = "<group>"; };
 		F74DDE0B27939AB100894237 /* Gradual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gradual.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F74DDE0E27939AB100894237 /* GradualApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradualApp.swift; sourceTree = "<group>"; };
 		F74DDE1027939AB100894237 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			children = (
 				F7BE1507279EF6A70079A0E3 /* AccountDetailPage.swift */,
 				F78F509C279DA355004E6EA4 /* UpcomingAssignmentPage.swift */,
+				F718DF7D27D7B45D00C82DC5 /* GPASetupPage.swift */,
 			);
 			path = Secondary;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				F7F973D527B8436A00E1B7D7 /* ScrollRefreshable.swift in Sources */,
 				F78C33142794EF3000596478 /* CardView.swift in Sources */,
 				F74DDE2F279433A500894237 /* Upcoming.swift in Sources */,
+				F718DF7E27D7B45D00C82DC5 /* GPASetupPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
