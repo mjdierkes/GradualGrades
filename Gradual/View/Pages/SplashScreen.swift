@@ -26,16 +26,16 @@ struct SplashScreen: View {
                         NavigationLink(destination: HomePage(), isActive: .constant(manager.student != nil)) {
                             EmptyView()
                         }
-//                        .isDetailLink(false)
-//                        if dataLoading {
-//                            ZStack {
-//                                Color("Background")
-//                                    .ignoresSafeArea()
-//                            }
-//                        }
-//                        else {
-//                            LoginPage(dataLoading: $dataLoading)
-//                        }
+                        .isDetailLink(false)
+                        if dataLoading {
+                            ZStack {
+                                Color("Background")
+                                    .ignoresSafeArea()
+                            }
+                        }
+                        else {
+                            LoginPage(dataLoading: $dataLoading)
+                        }
                         
                     }
                 }
