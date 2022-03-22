@@ -89,7 +89,7 @@ import KeychainAccess
         
         classes = loadedClasses.currentClasses
         populateClassInfo()
-        filterClassnames()
+//        filterClassnames()
         
         do {
             gpa = try await gradeService.fetchData(from: .GPA)
@@ -151,31 +151,6 @@ import KeychainAccess
             } catch {
                 print(error)
             }
-        }
-    }
-
-    
-    /// Cleans up the class names by removing unnecessary info.
-    private func filterClassnames() {
-        for i in 0..<classes.count {
-            var name = classes[i].name
-            var size = name.count
-            
-            name = String(name.components(separatedBy: "-")[1])
-            size = name.count
-            
-            name = String(name.suffix(size - 6))
-            size = name.count
-            
-            if name.contains("@CTE") {
-                name = String(name.prefix(size - 7))
-            }
-            
-            else if name.contains("S2") || name.contains("S1"){
-                name = String(name.prefix(size - 2))
-            }
-            
-            classes[i].name = name
         }
     }
     
@@ -240,7 +215,7 @@ import KeychainAccess
     func populateClassInfo() {
         if let schedule = schedule {
             for meta in schedule {
-                if let i = classes.firstIndex(where: { $0.name.contains(meta.courseCode) }) {
+                if let i = classes.firstIndex(where: { $0.rawName.contains(meta.courseCode) }) {
                     classes[i].meta = meta
                 }
             }

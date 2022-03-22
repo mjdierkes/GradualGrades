@@ -67,9 +67,9 @@ struct GreetingView: View {
                 showGPA.toggle()
             }
         }
-        .onTapGesture {
-            showingSetup = true
-        }
+//        .onTapGesture {
+//            showingSetup = true
+//        }
         
     }
     

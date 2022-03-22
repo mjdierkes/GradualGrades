@@ -15,20 +15,32 @@ struct Classes: Codable {
 
 /// Holds all the data for required for a class.
 //  TODO: Possibly refactor view code out to separate struct?
-struct Class: Codable, Identifiable {
-    let id = UUID()
-    
+struct Class: Codable {
     var name: String
+    var rawName: String
     let grade: String
     let weight: String
     let credits: String
     var assignments: [Assignment]
     
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        rawName = try container.decode(String.self, forKey: .name)
+        grade = try container.decode(String.self, forKey: .grade)
+        weight = try container.decode(String.self, forKey: .weight)
+        credits = try container.decode(String.self, forKey: .credits)
+        assignments = try container.decode([Assignment].self, forKey: .assignments)
+        
+        let formatter = GradeFormatter()
+        name = formatter.filter(name: rawName)
+    }
+    
+    
     private enum CodingKeys: String, CodingKey {
         case name, grade, weight, credits, assignments
     }
     
-    var meta: ClassMeta? 
+    var meta: ClassMeta?
     
     // MARK: Formatting for View
     let formatter = GradeFormatter()
@@ -73,8 +85,8 @@ struct Class: Codable, Identifiable {
     /// Cleans up and formats the grade for displaying.
     var roundedGrade: String {
         if let score = Double(grade){
-//            cache.save(data: grade, forKey: name + "- Average")
-//            print(name, "- Average")
+            //            cache.save(data: grade, forKey: name + "- Average")
+            //            print(name, "- Average")
             if score >= 100 {
                 return String(Int(score.roundTo(places: 0)))
             }
@@ -133,21 +145,21 @@ struct Class: Codable, Identifiable {
     }
     
     func getGradualAverage() -> [Double]{
-//        var dates = [(Date, Assignment)]()
-//        var currentDate: Date
-//
-//        for assessment in assignments {
-//            if let date = dateFormatter.date(from: assessment.dateDue) {
-//                dates.append((date, assessm
-//            } else {
-//                print("Unable to convert date")
-//            }
-//        }
-//
-//        for date in dates {
-//
-//        }
-//
+        //        var dates = [(Date, Assignment)]()
+        //        var currentDate: Date
+        //
+        //        for assessment in assignments {
+        //            if let date = dateFormatter.date(from: assessment.dateDue) {
+        //                dates.append((date, assessm
+        //            } else {
+        //                print("Unable to convert date")
+        //            }
+        //        }
+        //
+        //        for date in dates {
+        //
+        //        }
+        //
         
         
         
@@ -156,6 +168,8 @@ struct Class: Codable, Identifiable {
         
         return [Double]()
     }
+    
+    
     
     
     public func getAssessmentDates() -> [Date] {
@@ -167,4 +181,8 @@ struct Class: Codable, Identifiable {
         }
         return dates.sorted()
     }
+}
+
+extension Class: Identifiable {
+    var id: Int { return name.hashValue }
 }

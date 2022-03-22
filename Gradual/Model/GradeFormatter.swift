@@ -77,6 +77,32 @@ struct GradeFormatter {
         return average.roundTo(places: 2)
     }
     
+    
+    /// Cleans up the class names by removing unnecessary info.
+    func filter(name: String) -> String {
+        var name = name
+        var size = 0
+        
+        if name.contains("-") {
+            name = String(name.components(separatedBy: "-")[1])
+            size = name.count
+            
+            name = String(name.suffix(size - 6))
+            size = name.count
+            
+            if name.contains("@CTE") {
+                name = String(name.prefix(size - 7))
+            }
+            
+            else if name.contains("S2") || name.contains("S1"){
+                name = String(name.prefix(size - 2))
+            }
+        }
+       
+        
+        return name
+    }
+    
 }
 
 
