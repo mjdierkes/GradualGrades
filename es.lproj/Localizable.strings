@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  Gradual
+
+  Created by Mason Dierkes on 3/24/22.
+  
+*/
+
+"Good" = "Bueno %@";
+"Connect_Grades" = "Conéctate a tus calificaciones";
+"Username" = "Nombre de usuario";
+"Password" = "Clave";
+"Sign In"  = "Registrarse";
+"Appearance" = "Apariencia";
+"Campus" = "Instalaciones";
+"Birthday" = "Cumpleaños";
+"Grade" = "Calificación";
+"Sign out" = "Desconectar";
+"Grades" = "Los Grados";
+"Student ID" = "Estudiante";
+"Are_You_Sure" = "¿Estás seguro de que quieres cerrar sesión?";
+"Light" = "Ligero";
+"Dark" = "Oscuro";
+"System Default" = "Por defecto";
+"Live GPA" = "GPA en Vivo";
+"GPA Hidden" = "GPA Oculto";
+"No Assignments Yet" = "No hay asignaciones todavía";
+"Information" = "Información";
+"Teacher" = "Maestro";
+"Building" = "Edificio";
+"Period" = "Período";
+"Room Number" = "Número";
+"Credits" = "Créditos";
+"Weighting" = "Ponderación";
+"Majors" = "Grandes Ligas";
+"Minors" = "Menores";
+"Non Graded" = "No Calificado";
+"Doomsday Calculator" = "Calculadora de Fatalidad";
+"Morning" = "Mañana";
+"Afternoon" = "Tarde";
+"Sign Out" = "Desconectar";
+"Learning Made Simple" = "Aprendizaje simplificado";
+"Check your grades at a glance, and easily see grade changes and updates." = "Verifique sus calificaciones de un vistazo y vea fácilmente los cambios y actualizaciones de calificaciones.";
+"Raise the Bar" = "Levanta el listón";
+"With Live GPA calculations, you can be sure to stay on top of your game." = "Con los cálculos de GPA en vivo, puede estar seguro de estar al tanto de su juego.";
+"Stay in the Loop" = "Permanecer en el bucle";
+"With notifications, you can see your new test scores as soon as they're put in." = "Con las notificaciones, puede ver sus nuevos puntajes de prueba tan pronto como se ingresan.";
+"Next" = "Próximo";

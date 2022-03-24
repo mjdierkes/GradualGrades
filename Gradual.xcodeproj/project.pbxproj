@@ -26,6 +26,7 @@
 		F75BEE6C27C96DFF008A53A2 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F75BEE6B27C96DFF008A53A2 /* KeychainAccess */; };
 		F75BEE6E27C96DFF008A53A2 /* EasyStash in Frameworks */ = {isa = PBXBuildFile; productRef = F75BEE6D27C96DFF008A53A2 /* EasyStash */; };
 		F75BEE7027C96DFF008A53A2 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = F75BEE6F27C96DFF008A53A2 /* Popovers */; };
+		F766391927ECC15C005633DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F766391B27ECC15C005633DE /* Localizable.strings */; };
 		F7702A0D27A0CE0B00590028 /* SafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7702A0C27A0CE0B00590028 /* SafariViewWrapper.swift */; };
 		F7702A0F27A0D7AE00590028 /* GoalSetPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7702A0E27A0D7AE00590028 /* GoalSetPage.swift */; };
 		F77288D1279600EF000B5F3B /* AccountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77288D0279600EF000B5F3B /* AccountPage.swift */; };
@@ -92,6 +93,8 @@
 		F74DDE3627946BBB00894237 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		F74DDE392794890400894237 /* SimpleClassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleClassView.swift; sourceTree = "<group>"; };
 		F74DDE3B27949B6D00894237 /* RecentAssignmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentAssignmentView.swift; sourceTree = "<group>"; };
+		F766391A27ECC15C005633DE /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F766391C27ECC161005633DE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F768DB5E27B37F870080DE5E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F768DB6027B37F870080DE5E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F7702A0C27A0CE0B00590028 /* SafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariViewWrapper.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		F74DDE0227939AB100894237 = {
 			isa = PBXGroup;
 			children = (
+				F766391B27ECC15C005633DE /* Localizable.strings */,
 				F74DDE0D27939AB100894237 /* Gradual */,
 				F768DB5D27B37F870080DE5E /* Frameworks */,
 				F74DDE0C27939AB100894237 /* Products */,
@@ -387,6 +391,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = F74DDE0227939AB100894237;
 			packageReferences = (
@@ -410,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F74DDE1627939AB300894237 /* Preview Assets.xcassets in Resources */,
+				F766391927ECC15C005633DE /* Localizable.strings in Resources */,
 				F74DDE1327939AB300894237 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +477,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F766391B27ECC15C005633DE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F766391A27ECC15C005633DE /* es */,
+				F766391C27ECC161005633DE /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F74DDE1727939AB300894237 /* Debug */ = {
@@ -596,7 +614,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.51;
+				CURRENT_PROJECT_VERSION = 1.52;
 				DEVELOPMENT_ASSET_PATHS = "\"Gradual/Preview Content\"";
 				DEVELOPMENT_TEAM = F9H27V7343;
 				ENABLE_PREVIEWS = YES;
@@ -614,7 +632,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.028;
+				MARKETING_VERSION = 1.029;
 				PRODUCT_BUNDLE_IDENTIFIER = life.gradual.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -630,7 +648,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.51;
+				CURRENT_PROJECT_VERSION = 1.52;
 				DEVELOPMENT_ASSET_PATHS = "\"Gradual/Preview Content\"";
 				DEVELOPMENT_TEAM = F9H27V7343;
 				ENABLE_PREVIEWS = YES;
@@ -648,7 +666,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.028;
+				MARKETING_VERSION = 1.029;
 				PRODUCT_BUNDLE_IDENTIFIER = life.gradual.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

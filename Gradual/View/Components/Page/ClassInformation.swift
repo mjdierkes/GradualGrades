@@ -70,7 +70,7 @@ struct ClassInformation: View {
 
 struct InfoDivider: View {
     
-    let key: String
+    let key: LocalizedStringKey
     let value: String
     var spacer: Bool = true
     

@@ -66,7 +66,7 @@ struct PreferencesView: View {
                 .tint(.red)
                 .alert(isPresented:$showingAlert) {
                     Alert(
-                        title: Text("Are you sure you want to sign out?"),
+                        title: Text(LocalizedStringKey("Are_You_Sure")),
                         primaryButton: .destructive(Text("Sign out")) {
                             manager.signOut()
                             dismiss()

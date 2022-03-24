@@ -165,8 +165,8 @@ struct OnboardingPage: View {
 struct Intro: Identifiable{
     var id = UUID()
     var image: String
-    var title: String
-    var description: String
+    var title: LocalizedStringKey
+    var description: LocalizedStringKey
     
     var isBeta: Bool = false
 }

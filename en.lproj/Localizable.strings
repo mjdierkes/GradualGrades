@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Gradual
+
+  Created by Mason Dierkes on 3/24/22.
+  
+*/
+
+"Good" = "Good %@";
+"Connect_Grades" = "Connect to Your Grades";
+"Username" = "Username";
+"Password" = "Password";
+"Sign In"  = "Sign In";
+"Appearance" = "Appearance";
+"Campus" = "Campus";
+"Birthday" = "Birthday";
+"Grade" = "Grade";
+"Sign Out" = "Sign Out";
+"Grades" = "Grades";
+"Student_ID" = "Student ID";
+"Are_You_Sure" = "Are you sure you want to sign out?";
+"Light" = "Light";
+"Dark" = "Dark";
+"System_Default" = "System Default";
+"Live_GPA" = "Live GPA";
+"GPA_Hidden" = "GPA Hidden";
+"No Assignments Yet" = "No Assignments Yet";
+"Information" = "Information";
+"Teacher" = "Teacher";
+"Building" = "Building";
+"Period" = "Period";
+"Room Number" = "Room Number";
+"Credits" = "Credits";
+"Weighting" = "Weighting";
+"Majors" = "Majors";
+"Minors" = "Minors";
+"Non Graded" = "Non Graded";
+"Doomsday Calculator" = "Doomsday Calculator";
+"Morning" = "Morning";
+"Afternoon" = "Afternoon";

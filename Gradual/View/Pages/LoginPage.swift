@@ -22,7 +22,7 @@ struct LoginPage: View {
             
             GradualLogo()
             
-            Text("Connect to your \nGrades")
+            Text(LocalizedStringKey("Connect_Grades"))
                 .font(.largeTitle)
             
             StudentCredentialsView(username: $username, password: $password, dataLoading: $dataLoading)

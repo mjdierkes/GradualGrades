@@ -12,7 +12,7 @@ struct ClassGradesView: View {
 
     var body: some View {
         HStack {
-            Text("Grades")
+            Text(LocalizedStringKey("Grades"))
                 .padding()
                 .font(.title2)
                 .font(.system(.body, design: .rounded))

@@ -58,7 +58,7 @@ struct AsyncButton<Label: View>: View {
 }
 
 extension AsyncButton where Label == Text {
-    init(_ label: String,
+    init(_ label: LocalizedStringKey,
          actionOptions: Set<ActionOption> = Set(ActionOption.allCases),
          action: @escaping () async -> Void) {
         self.init(action: action) {
