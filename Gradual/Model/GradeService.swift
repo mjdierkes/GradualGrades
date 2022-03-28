@@ -22,10 +22,10 @@ class GradeService {
     /// Returns the decoded value of the type provided.
     /// To implement set your variable to the value that fetch data returns.
     /// Make sure to pass in the correct root or this function will throw an error.
-    func fetchData<T>(from root: AvailableRoot) async throws -> T where T: Decodable {
+    func fetchData<T>(from root: AvailableRoot, with quarter: Quarter? = nil) async throws -> T where T: Decodable {
         isFetching = true
         defer { isFetching = false }
-        let loadedPackage: T = try await store.load(with: root)
+        let loadedPackage: T = try await store.load(with: root, quarter: quarter)
         return loadedPackage
     }
 }
@@ -57,13 +57,9 @@ private actor GradeServiceStore {
     }
     
     /// Attempts to decode the data returned from the server.
-    func load<T>(with root: AvailableRoot) async throws -> T where T: Decodable {
+    func load<T>(with root: AvailableRoot, quarter: Quarter?) async throws -> T where T: Decodable {
         
-        self.path = root.rawValue
-        if root != .satDates {
-            path += "?username=\(username)&password=\(password)"
-        }
-                
+        self.path = getPath(for: root, and: quarter)
         let (data, response) = try await URLSession.shared.data(from: URL(string: url)!)
         
         print(url)
@@ -78,6 +74,17 @@ private actor GradeServiceStore {
             throw DownloadError.decoderError
         }
     }
+    
+    func getPath(for root: AvailableRoot, and quarter: Quarter?) -> String {
+        if root != .satDates {
+            if let quarter = quarter {
+                return root.rawValue + "?username=\(username)&password=\(password)&quarter=\(quarter.rawValue)"
+            }
+            return root.rawValue + "?username=\(username)&password=\(password)"
+        }
+        return root.rawValue
+    }
+    
 }
 
 /// All the available roots on the server.
@@ -87,6 +94,14 @@ enum AvailableRoot: String {
     case studentInfo = "/students/info"
     case GPA = "/students/gpa"
     case satDates = "/satdates"
+    case pastAssignments = "/students/pastassignments"
+}
+
+enum Quarter: String {
+    case first = "1"
+    case second = "2"
+    case third = "3"
+    case fourth = "4"
 }
 
 
