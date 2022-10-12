@@ -2,11 +2,18 @@
 Learning takes time
 
 
+## About
+Power School's Home Access Center (HAC) doesn't have a good iOS application, so I decided to make my own. I used Swift and SwiftUI to develop the app, which connects into the custom API that we buit. 
 
-## Live UI Design
-Must login with an Adobe Account.
+https://apps.apple.com/in/app/gradual-grades/id1610433832
 
-https://assets.adobe.com/id/urn:aaid:sc:US:7c072ae5-74a4-4321-bfb1-2bdc488689d0?view=difile
+
+
+
+
+
+
+
 
 
 ## API
