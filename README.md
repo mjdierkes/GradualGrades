@@ -17,4 +17,4 @@ https://apps.apple.com/in/app/gradual-grades/id1610433832
 
 
 ## API
-https://github.com/SumitNalavade/GradualGrade_API
+https://github.com/SumitNalavade/FriscoISDHACAPI
