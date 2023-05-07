@@ -79,7 +79,7 @@ import KeychainAccess
     func loadData(username: String, password: String, newSignIn: Bool = false) async throws {
         print("LOADING")
         let gradeService = GradeService(username, password)
-        let loadedClasses: Classes = try await gradeService.fetchData(from: .pastAssignments, with: .first)
+        let loadedClasses: Classes = try await gradeService.fetchData(from: .currentClasses, with: .first)
         let schedule: Schedule = try await gradeService.fetchData(from: .schedule)
         
         self.schedule = schedule.schedule

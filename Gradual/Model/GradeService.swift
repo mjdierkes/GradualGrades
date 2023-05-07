@@ -51,7 +51,7 @@ private actor GradeServiceStore {
     private var urlComponents: URLComponents {
         var components = URLComponents()
         components.scheme = "https"
-        components.host = "gradual-deploy.vercel.app"
+        components.host = "sea-lion-app-kf4vb.ondigitalocean.app"
         components.path = path
         return components
     }
